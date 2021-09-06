@@ -1,33 +1,50 @@
 ---
 title: Hello World
-date: 2021-09-06 17:00:00
+date: 2021-09-06 12:00:00
+math: true
 ---
 
-苟利国家生死以，岂因祸福避趋之。
-
-## Quick Start
+### 中文测试
 
 灵梦的夜晚关卡曲，正如曲名，是少女绮想曲的重编排曲。
 
 说到神社就做成伪和风的感觉了。大概。
 
-虽说在夏前便已经做完，不过听过了永夜抄中的少女绮想曲之后，就变成了『改动的位置可能搞错了吧』——这种微妙的心情。
+虽说在夏前便已经做完，不过听过了永夜抄中的少女绮想曲之后，就变成了“改动的位置可能搞错了吧”——这种微妙的心情。
 
 不过算了，如果向同一方向去作的话，就变成单单的劣化副本了，所以我认为这样也有这样才好的感觉。 
 
 ### Latex Test
 
-{% katex %}
-\Gamma _ { \epsilon } ( x ) = [ 1- e ^ { - 2\pi \epsilon } ] ^ { 1- x } \prod _ { n = 0} ^ { \infty } \frac { 1- \operatorname{exp} ( - 2\pi \epsilon ( n + 1) ) } { 1- \operatorname{exp} ( - 2\pi \epsilon ( x + n ) ) }
-{% endkatex %}
+$$
+\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
+$$
 
-{% mathjax %}
-\left( \begin{array} c t ^ { \prime } \ x ^ { \prime } \ y ^ { \prime } \ z ^ { \prime } \end{array} \right) = \left( \begin{array} { c c c c } { \gamma } & { - \gamma \beta } & { 0 } & { 0 } \ { - \gamma \beta } & { \gamma } & { 0 } & { 0 } \ { 0 } & { 0 } & { 1 } & { 0 } \ { 0 } & { 0 } & { 0 } & { 1 } \end{array} \right) \left( \begin{array} c t \ x \ y \ z \end{array} \right)
-{% endmathjax %}
+$$
+\lim_{n\to+\infty}a^n = \left\{
+    \begin{aligned}
+        &0,\quad &|a|<1 \\
+        &N/A,\quad &|a|>1 \\
+        &1\quad &a=1 \\
+        &N/A,\quad &a=-1
+    \end{aligned}
+\right.
+$$
 
-{% mathjax %}
-6 \mathrm { CO } _ { 2 } + 6 \mathrm { H } _ { 2 } \mathrm { O } \rightarrow \mathrm { C } _ { 6 } \mathrm { H } _ { 12 } \mathrm { O } _ { 6 } + 6 \mathrm { O } _ { 2 }
-{% endmathjax %}
+$$
+\boldsymbol{a}\cdot(\boldsymbol{b}\times\boldsymbol{c}) = \boldsymbol{b}\cdot(\boldsymbol{c}\times\boldsymbol{a}) = \boldsymbol{c}\cdot(\boldsymbol{a}\times\boldsymbol{b})
+$$
+
+$$
+\begin{align*}
+            \partial_i r
+            &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
+            &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
+            &= \frac{x-x'}{r}
+        \end{align*}
+$$
+
+
 
 ### Code Test
 
@@ -45,8 +62,6 @@ fib(1000)
 iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 ```
 
-    iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
-
 ### Picture Test
 
-![](catalina.jpg)
+![](../images/catalina.jpg)
