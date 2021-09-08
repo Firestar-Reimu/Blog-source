@@ -83,7 +83,7 @@ fun_features:
 
     # 打印速度，数字越大越慢
     # Typing speed, the larger the number, the slower
-    typeSpeed: 70
+    typeSpeed: 64
 
     # 游标字符
     # Cursor character
@@ -102,7 +102,7 @@ fun_features:
     # Options: hover | always | touch
     visible: hover
     # Option：§ | # | ❡
-    icon: ""
+    icon: "§"
 
   # 加载进度条
   # Progress bar when loading
@@ -188,7 +188,7 @@ color:
 font:
   font_size: 16px
   font_family: Noto Sans CJK SC, sans-serif
-  code_font_size: 85%
+  code_font_size: 100%
 
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
 # Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`
@@ -197,8 +197,8 @@ custom_js:
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
 custom_css:
-  - /css/sakura.css
-  - /css/love.css
+  - //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css
+  - //at.alicdn.com/t/font_2794470_brhhjh3wx87.css
 
 # 自定义 <head> 节点中的 HTML 内容
 # Customize <head> HTML content
@@ -310,7 +310,8 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "links", link: "/links/", icon: "iconfont icon-github-fill" }
+    - { key: "tools", link: "/tools/", icon: "iconfont icon-tools" }
+    - { key: "Github", link: "https://github.com/1900011604", icon: "iconfont icon-github" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -789,7 +790,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/Blue_Sky.jpg
+  banner_img: /img/Dawn.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -837,12 +838,10 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/Purple_Flower.jpg
+  banner_img: /img/Blue_Sky.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
-  subtitle:
-  avatar:
-  name:
+  avatar: /img/favicon.ico
   intro:
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
@@ -858,7 +857,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/Blue_Sky.jpg
+  banner_img: /img/Purple_Flower.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -880,8 +879,8 @@ page404:
 # Links Page
 #---------------------------
 links:
-  enable: true
-  banner_img: /img/Dawn.jpg
+  enable: false
+  banner_img: /img/Whales.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -892,18 +891,12 @@ links:
       title: "Github",
       intro: "Github 链接",
       link: "https://github.com/1900011604",
-      avatar: "/img/favicon.ico"
-    }
-    - {
-      title: "Time Calculator",
-      intro: "时间计算器",
-      link: "https://blog.firestar-reimu.top/tools/time-calculator",
-      avatar: "/img/favicon.ico"
+      avatar: "/img/github-fill.svg"
     }
 
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
-  onerror_avatar: /img/avatar.png
+  onerror_avatar: /img/user.svg
 
   # 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字
   # Custom content at the bottom of the links

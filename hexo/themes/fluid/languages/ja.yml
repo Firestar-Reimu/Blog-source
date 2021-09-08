@@ -32,13 +32,13 @@ category:
   subtitle: カテゴリー
 
 about:
-  title: 本ブログ情報　
+  title: 本ブログ情報
   subtitle: 本ブログ情報
 
 page404:
   title: ページが見つかりませんでした
   subtitle: ページが見つかりませんでした
 
-links:
-  title: リンク
-  subtitle: リンク
+tools:
+  title: 道具
+  subtitle: 道具

@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: '欢迎来到 Firestar 的幻想乡！'
+title: 'Firestar 的幻想乡'
 subtitle: ''
 description: ''
 keywords:
@@ -98,6 +98,13 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: fluid
+
+aplayer:
+  cdn: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js  # 引用 APlayer.js 外部 CDN 地址 (默认不开启)
+  style_cdn: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
+  meting: true       # MetingJS 支持
+  meting_cdn: https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js # 引用 Meting.js 外部 CDN 地址 (默认不开启)
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -16,6 +16,7 @@ math: true
 
 ### Latex Test
 
+This is a equation $a+b=c$.
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
 $$
@@ -65,3 +66,13 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 ### Picture Test
 
 ![](../images/catalina.jpg)
+
+### 超链接测试
+
+https://blog.csdn.net/Xiaoming782893687/article/details/90744911
+
+https://zhuanlan.zhihu.com/p/69211731
+
+### 音乐测试
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=0&height=66"></iframe>
