@@ -1476,7 +1476,7 @@ https://docs.anaconda.com/anaconda/packages/pkg-docs/
 
 #### deepin-wine-wechat 高分辨率适配调整：
 
-用命令 `/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%分辨率：
+用命令 `/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%的放大率：
 
 Graphics --> Screen Resolution --> 192 dpi
 
@@ -1490,7 +1490,7 @@ Graphics --> Screen Resolution --> 192 dpi
 
 高分辨率适配调整：
 
-用命令 `/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%分辨率：
+用命令 `/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%的放大率：
 
 Graphics --> Screen Resolution --> 192 dpi
 
