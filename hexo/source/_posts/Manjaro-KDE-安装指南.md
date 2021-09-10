@@ -2,6 +2,7 @@
 title: Manjaro KDE 安装指南
 date: 2021-09-08 00:48:38
 tags: Manjaro
+category: Linux
 ---
 
 # **在 ThinkPad X13 Gen 2 Intel/Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南**
@@ -1449,6 +1450,14 @@ https://docs.anaconda.com/anaconda/packages/pkg-docs/
 
     yay -S ds9-bin
 
+### **Github Desktop 安装（可选）**
+
+推荐选择二进制包 `github-desktop-bin`：
+
+    yay -S github-desktop-bin
+
+登录时要创建一个密钥环，密钥设为 Github 密码即可
+
 ### **WPS 安装（可选）**
 
 运行：
@@ -1457,45 +1466,43 @@ https://docs.anaconda.com/anaconda/packages/pkg-docs/
 
 ### **微信安装**
 
-可以在 pamac 中搜索：
+极简版（原生适配高分辨率屏幕，不需要 wine/deepin-wine 即可运行；但是功能较少，不支持截屏和“订阅号消息”，且对大文件传输的支持不佳）：
 
-    pamac search wechat
+    yay -S wechat-uos
 
-极简版（推荐，原生适配高分辨率屏幕，不需要 wine/deepin-wine 即可运行，对收发文件的支持较好，但是功能较少，不支持截屏和“订阅号消息”）：
+功能较多，和最新的 Windows 电脑版同步更新，但依赖 deepin-wine，且暂不支持“截屏时隐藏当前窗口”的版本：
 
-```
-wechat-uos    UOS专业版微信 (迫真魔改版)
-```
+    yay -S deepin-wine-wechat
 
-功能较多，但依赖 deepin-wine ，且对截屏和收发文件的支持不佳的版本：
+#### deepin-wine-wechat 高分辨率适配调整：
 
-```
-com.qq.weixin.spark    Tencent WeChat Client on Deepin Wine 5 (from Spark Store)
-```
-
-高分辨率适配调整：
-
-    WINEPREFIX=~/.deepinwine/Spark-WeChat deepin-wine5 winecfg
+用命令 `/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%分辨率：
 
 Graphics --> Screen Resolution --> 192 dpi
 
-### **网易云音乐安装**
+其余基于 Deepin Wine 的软件（如腾讯会议）也是类似的处理方法，将 `com.qq.weixin.deepin` 换成对应的文件夹名称即可（都在 `/opt/apps/` 目录下）
 
-可以在 pamac 中搜索：
+### **会议软件安装**
 
-    pamac search netease-cloud-music
+腾讯会议：
 
-功能较多的版本（目前使用起来有些卡顿）：
+    yay -S com.tencent.deepin.meeting
 
-```
-netease-cloud-music-imflacfix    Netease Cloud Music, converted from .deb package, with IBus input method and online SQ support
-```
+高分辨率适配调整：
 
-极简版（流畅且原生适配高分辨率屏幕，但是功能较少，不支持歌词滚动和正在播放的曲子在歌单上标记）：
+用命令 `/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%分辨率：
 
-```
-electron-netease-cloud-music    UNOFFICIAL client for music.163.com . Powered by Electron, Vue, and Muse-UI.
-```
+Graphics --> Screen Resolution --> 192 dpi
+
+### **音乐软件安装**
+
+网易云音乐安装：
+
+    yay -S netease-cloud-music
+
+QQ 音乐安装：
+
+    yay -S qqmusic-bin
 
 ### **Geant4 安装**
 

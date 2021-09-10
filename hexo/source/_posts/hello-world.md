@@ -2,21 +2,260 @@
 title: Hello World
 date: 2021-09-06 12:00:00
 math: true
+category: Hello
 ---
 
-### 中文测试
+### 申请 Github Pages
 
-灵梦的夜晚关卡曲，正如曲名，是少女绮想曲的重编排曲。
+新建一个repo，命名为`(user_name).github.io`，隐私设置为Public，再建一个repo用来存放博客的源代码（可选）
 
-说到神社就做成伪和风的感觉了。大概。
+### 申请域名
 
-虽说在夏前便已经做完，不过听过了永夜抄中的少女绮想曲之后，就变成了“改动的位置可能搞错了吧”——这种微妙的心情。
+我选择的是阿里云，在https://wanwang.aliyun.com/输入自己想要的域名并购买。一般来讲`.top`最便宜，`.xyz`次之。 假设域名为`example.top`根据网站提示做好域名实名制认证等流程。在域名控制台https://dc.console.aliyun.com/next/#/domain/list/all-domain中选择域名 –> 操作 –> 解析
 
-不过算了，如果向同一方向去作的话，就变成单单的劣化副本了，所以我认为这样也有这样才好的感觉。 
+解析中添加一条记录：
 
-### Latex Test
+记录类型：CNAME；主机记录自选，(我这里选择的是blog，因为www经常无法与Github Pages联通）；解析线路选择默认；记录值选择`(user_name).github.io`；TTL选择10分钟即可。
 
-This is a equation $a+b=c$.
+再去名为`(user_name).github.io`的repo，settings内选择倒数第二项Pages，custom domain选择`blog.example.top`即可，通过Github的网络检测后就可以使用。此时可以分别在浏览器中输入`(user_name).github.io`和`blog.example.top`试一试，如果能显示`README.md`中的内容则设置成功。
+
+### Hexo 搭建
+
+我选择用 [Hexo](https://hexo.io/zh-cn/index.html)
+
+建议在Linux上搭建，而不用Windows
+
+下载Node-js和npm：`sudo pacman -S nodejs npm`，下载 Hexo：`npm install hexo`
+
+找一个空文件夹`(hexo_folder)`，运行：
+
+```bash
+npx hexo init (hexo_folder)
+cd (hexo_folder)
+npm install
+```
+
+所有的npm和hexo命令都要在`(hexo_folder)`（下文称为“**博客目录**”）下执行
+
+部署：`npx hexo clean && npx hexo deploy`
+
+调试：`npx hexo s --debug`
+
+全局配置的官方指南在https://hexo.io/zh-cn/docs/，在`(hexo_folder)/_config.yml`下修改：
+
+```yaml
+url: https://example.top
+permalink: :title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: false
+  trailing_html: false
+```
+
+每篇文章的Markdown文件内一开始有用`---`分隔的部分，下文称为**Front-matter**，例如：
+
+```
+title: Hello World
+date: 2021-09-06 12:00:00
+math: true
+category: Linux
+tags: Manjaro
+```
+
+### Fluid 主题
+
+我选择的是 [Fluid](https://hexo.fluid-dev.com/) 主题，安装方法：
+
+```bash
+npm install --save hexo-theme-fluid
+```
+
+这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-fluid`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update --save hexo-theme-fluid`
+
+Fluid配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
+
+在`(hexo_folder)/_config.yml`下修改：`theme:fluid`
+
+在博客目录下创建 `_config.fluid.yml` 文件，将主题目录下的 `_config.yml`复制过去，以后如果修改任何主题配置，都只需修改 `_config.fluid.yml` 的配置即可，其优先级比主题目录下的 `_config.yml`高。
+
+[ (opens new window)](https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml) 内容复制过去。
+
+以后如果修改任何主题配置，都只需修改 `_config.fluid.yml` 的配置即可。
+
+*   更改用于浏览器标签的图标：`favicon: /img/favicon.png`，`apple_touch_icon`同步修改
+
+*   `force_https: true`
+
+*   代码高亮：`highlightjs: style: "Vs"`
+
+*   打字机打印速度：`typespeed: 64`，不开启循环播放
+
+*   为文章内容中的标题添加锚图标：`icon: "§"`
+
+*   主题字体配置：
+
+```
+    font:
+      font_size: 16px
+      font_family: Noto Sans CJK SC, sans-serif
+      code_font_size: 100%
+```
+
+*   导航栏左侧的标题：`blog_title: "Home"`
+*   每个页面的 Banner 头图：`banner_img` ，自选
+*   首页副标题（slogan）的独立设置：`slogan: text: ` 自选
+*   隐藏版权声明：`copyright: enable: false`
+*   Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test**一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（`$...$`）和行间公式（`$$...$$`）
+*   关于页中`icons`一项只保留 Github
+
+### 如何用“友链”页的模板创建一个“工具”页
+
+首先新建一个页面：`npx hexo new page tools`
+
+这样就有了 `example.top/tools/`的页面
+
+再找到`icon-tools`的图标：https://blog.csdn.net/Xiaoming782893687/article/details/90744911
+
+实际操作是：在`custom_css`一栏中加入`- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单`menu:`一栏中加入`- { key: "tools", link: "/tools/", icon: "iconfont icon-tools" }`
+
+在博客目录内的`/source/tools/index.md`的Front-matter加入`layout: links`，这会引入主题目录中的模板：`/layout/links.ejs`，主要是：
+
+```ejs
+page.title = theme.links.title || __('links.title')
+page.subtitle = theme.links.subtitle || __('links.subtitle')
+page.banner_img = theme.links.banner_img
+```
+
+于是开始设置`_config.fluid.yml`：
+
+```
+links:
+  enable: false
+  banner_img: (your_picture)
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  subtitle:
+  # 友链的成员项
+  # Member item of page
+  items:
+    - {
+      title: "(your_title)",
+      intro: "(your_intro)",
+      link: "(your_link)",
+      avatar: "(your_avatar)"
+    }
+```
+
+并修改主题目录下`/languages/`中的所有`.yml`文件，例如`en.yml`中改为：
+
+```yaml
+links:
+  title: tools
+  subtitle: tools
+```
+
+### 如何在导航栏菜单创建一个 Github 链接
+
+和创建“工具”方法类似，这次需要找到`icon-github`（自带图标太小了）的图标
+
+实际操作是：在`custom_css`一栏中加入`- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单`menu:`一栏中加入`- { key: "Github", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }`即可
+
+### 加入特效：鼠标点击有小红心
+
+在主题目录下的 `/source/js` 文件夹中新建文件 `love.js`，在 `love.js` 文件中添加以下代码：（修改过，更新了已经弃用的部分，详见[这里](https://segmentfault.com/a/1190000007215988)）
+```js
+!
+function(e, t, a) {
+    function n() {
+        c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),
+        o(),
+        r()
+    }
+    function r() {
+        for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
+        requestAnimationFrame(r)
+    }
+    function o() {
+        var t = "function" == typeof e.onclick && e.onclick;
+        e.onclick = function(e) {
+            t && t(),
+            i(e)
+        }
+    }
+    function i(e) {
+        var a = t.createElement("div");
+        a.className = "heart",
+        d.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: s()
+        }),
+        t.body.appendChild(a)
+    }
+    function c(e) {
+        var a = t.createElement("style");
+        try {
+            a.appendChild(t.createTextNode(e))
+        } catch(t) {
+            a.styleSheet.cssText = e
+        }
+        t.getElementsByTagName("head")[0].appendChild(a)
+    }
+    function s() {
+        return "rgb(" + ~~ (255 * Math.random()) + "," + ~~ (255 * Math.random()) + "," + ~~ (255 * Math.random()) + ")"
+    }
+    var d = [];
+    e.requestAnimationFrame = function() {
+        return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame ||
+        function(e) {
+            setTimeout(e, 1e3 / 60)
+        }
+    } (),
+    n()
+} (window, document);
+```
+在主题目录下的``\layout\layout.ejs` 文件末尾添加以下代码：
+
+````ejs
+<script type="text/javascript" src="/js/love.js"></script>
+````
+
+### 插入网易云音乐
+
+在网易云音乐的网页版上选择一首音乐（不能是VIP音乐），点进页面`https://music.163.com/#/song?id=(music_id)`后选择“生成外链播放器”，“自动播放”一栏自选，再复制HTML代码：
+
+```html
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=0&height=66"></iframe>
+```
+
+直接粘贴到Markdown文件内即可
+
+### 部署到 Github
+
+安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
+
+```bash
+$ npm install hexo-deployer-git --save
+```
+
+修改配置`_config.yml`：
+
+```
+deploy:
+  type: git
+  repo: <repository url> # https://github.com/(user_name)/(user_name).github.io
+  branch: [branch] # default is "main"
+```
+
+运行 `hexo clean && hexo deploy`，查看 `(user_name).github.io`（并检查是否会被重定向到`example.top`） 上的网页是否部署成功
+
+### LaTeX Test
+
+```
+This is a equation $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
 $$
@@ -38,14 +277,73 @@ $$
 
 $$
 \begin{align*}
-            \partial_i r
-            &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
-            &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
-            &= \frac{x-x'}{r}
-        \end{align*}
+    \partial_i r
+    &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
+    &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
+    &= \frac{x-x'}{r}
+\end{align*}
 $$
 
+$$
+I_r = \frac{1}{2\pi}\oint p_r \,\mathrm{d}r = \frac{1}{2\pi}\int_0^{2\pi} p_r \frac{\mathrm{d}r}{\mathrm{d}\theta}\,\mathrm{d}\theta = \frac{\lambda}{\omega} + \sqrt{2m\kappa}
+$$
 
+$$
+\begin{align*}
+    H
+    &= T+V \\
+    &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
+    &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
+    &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
+\end{align*}
+$$
+```
+This is a equation $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
+$$
+\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
+$$
+
+$$
+\lim_{n\to+\infty}a^n = \left\{
+    \begin{aligned}
+        &0,\quad &|a|<1 \\
+        &N/A,\quad &|a|>1 \\
+        &1\quad &a=1 \\
+        &N/A,\quad &a=-1
+    \end{aligned}
+\right.
+$$
+
+$$
+\boldsymbol{a}\cdot(\boldsymbol{b}\times\boldsymbol{c}) = \boldsymbol{b}\cdot(\boldsymbol{c}\times\boldsymbol{a}) = \boldsymbol{c}\cdot(\boldsymbol{a}\times\boldsymbol{b})
+$$
+
+$$
+\begin{align*}
+    \partial_i r
+    &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
+    &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
+    &= \frac{x-x'}{r}
+\end{align*}
+$$
+
+$$
+I_r = \frac{1}{2\pi}\oint p_r \,\mathrm{d}r = \frac{1}{2\pi}\int_0^{2\pi} p_r \frac{\mathrm{d}r}{\mathrm{d}\theta}\,\mathrm{d}\theta = \frac{\lambda}{\omega} + \sqrt{2m\kappa}
+$$
+
+$$
+\begin{align*}
+    H
+    &= T+V \\
+    &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
+    &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
+    &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
+\end{align*}
+$$
 
 ### Code Test
 
@@ -65,6 +363,8 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 
 ### Picture Test
 
+格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的`/source/images/`下
+
 ![](../images/catalina.jpg)
 
 ### 超链接测试
@@ -76,3 +376,8 @@ https://zhuanlan.zhihu.com/p/69211731
 ### 音乐测试
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=0&height=66"></iframe>
+
+### 尚未实现的功能
+
+*   Aplayer
+*   樱花特效
