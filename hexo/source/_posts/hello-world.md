@@ -2,22 +2,38 @@
 title: Hello World
 date: 2021-09-06 12:00:00
 math: true
-category: Hello
+category:
+- 教程
+tag:
+- Hello World
+- Blog
+index_img: /img/Purple_Flower.jpg
+banner_img: /img/Purple_Flower.jpg
 ---
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=1&height=66"></iframe>
 
 ### 申请 Github Pages
 
-新建一个repo，命名为`(user_name).github.io`，隐私设置为Public，再建一个repo用来存放博客的源代码（可选）
+新建一个repo，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 Github 仓库用来存放博客的源代码（可选）
 
 ### 申请域名
 
-我选择的是阿里云，在https://wanwang.aliyun.com/输入自己想要的域名并购买。一般来讲`.top`最便宜，`.xyz`次之。 假设域名为`example.top`根据网站提示做好域名实名制认证等流程。在域名控制台https://dc.console.aliyun.com/next/#/domain/list/all-domain中选择域名 –> 操作 –> 解析
+我选择的是阿里云，在[万网](https://wanwang.aliyun.com/)输入自己想要的域名并购买。一般来讲 `.top` 最便宜，`.xyz` 次之。 假设域名为 `example.top` 根据网站提示做好域名实名制认证等流程。在[域名控制台](https://dc.console.aliyun.com/next/#/domain/list/all-domain)中选择：域名 —> 操作 —> 解析
 
 解析中添加一条记录：
 
-记录类型：CNAME；主机记录自选，(我这里选择的是blog，因为www经常无法与Github Pages联通）；解析线路选择默认；记录值选择`(user_name).github.io`；TTL选择10分钟即可。
+```
+记录类型：CNAME；
+主机记录自选，(我这里选择的是 blog，因为 www 经常无法与Github Pages联通）；
+解析线路选择默认；
+记录值选择(user_name).github.io；
+TTL选择“10分钟”
+```
 
-再去名为`(user_name).github.io`的repo，settings内选择倒数第二项Pages，custom domain选择`blog.example.top`即可，通过Github的网络检测后就可以使用。此时可以分别在浏览器中输入`(user_name).github.io`和`blog.example.top`试一试，如果能显示`README.md`中的内容则设置成功。
+再去名为 `(user_name).github.io` 的repo，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 Github 的网络检测后就可以使用。
+
+此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top` 试一试，如果能显示`README.md` 中的内容则设置成功。
 
 ### Hexo 搭建
 
@@ -25,9 +41,25 @@ category: Hello
 
 建议在Linux上搭建，而不用Windows
 
-下载Node-js和npm：`sudo pacman -S nodejs npm`，下载 Hexo：`npm install hexo`
+下载 Node-js 和 npm ：`sudo pacman -S nodejs npm`
 
-找一个空文件夹`(hexo_folder)`，运行：
+下载 Hexo 的方法如下：（推荐全局下载或用 `npm install hexo` 下载于一个单独的文件夹中）
+
+```bash
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+```
+
+然后在 `~/.profile` 中加入一行：`export PATH=~/.npm-global/bin:$PATH`
+
+最后输入：
+
+````bash
+source ~/.profile
+npm install -g hexo-cli
+````
+
+找一个空文件夹 `(hexo_folder)`，运行：
 
 ```bash
 npx hexo init (hexo_folder)
@@ -41,7 +73,7 @@ npm install
 
 调试：`npx hexo s --debug`
 
-全局配置的官方指南在https://hexo.io/zh-cn/docs/，在`(hexo_folder)/_config.yml`下修改：
+全局配置的官方指南在[这里](https://hexo.io/zh-cn/docs/)，在 `(hexo_folder)/_config.yml` 下修改：
 
 ```yaml
 url: https://example.top
@@ -52,14 +84,19 @@ pretty_urls:
   trailing_html: false
 ```
 
-每篇文章的Markdown文件内一开始有用`---`分隔的部分，下文称为**Front-matter**，例如：
+每篇文章的Markdown文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
 
 ```
 title: Hello World
 date: 2021-09-06 12:00:00
 math: true
-category: Linux
-tags: Manjaro
+category:
+- 教程
+tag:
+- Hello World
+- Blog
+index_img: /img/Purple_Flower.jpg
+banner_img: /img/Purple_Flower.jpg
 ```
 
 ### Fluid 主题
@@ -102,35 +139,36 @@ Fluid配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 ```
 
 *   导航栏左侧的标题：`blog_title: "Home"`
+
 *   每个页面的 Banner 头图：`banner_img` ，自选
+
 *   首页副标题（slogan）的独立设置：`slogan: text: ` 自选
+
+*   自动截取文章摘要：`auto_excerpt: enable: false`
+
 *   隐藏版权声明：`copyright: enable: false`
-*   Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test**一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（`$...$`）和行间公式（`$$...$$`）
-*   关于页中`icons`一项只保留 Github
+
+*   Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式
+
+*   关于页中 `icons` 一项只保留 Github
 
 ### 如何用“友链”页的模板创建一个“工具”页
 
 首先新建一个页面：`npx hexo new page tools`
 
-这样就有了 `example.top/tools/`的页面
+这样就有了 `example.top/tools/` 的页面
 
-再找到`icon-tools`的图标：https://blog.csdn.net/Xiaoming782893687/article/details/90744911
+再找到 `icon-tools` 的图标：https://blog.csdn.net/Xiaoming782893687/article/details/90744911
 
-实际操作是：在`custom_css`一栏中加入`- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单`menu:`一栏中加入`- { key: "tools", link: "/tools/", icon: "iconfont icon-tools" }`
+实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "tools", link: "/tools/", icon: "iconfont icon-tools" }`
 
-在博客目录内的`/source/tools/index.md`的Front-matter加入`layout: links`，这会引入主题目录中的模板：`/layout/links.ejs`，主要是：
-
-```ejs
-page.title = theme.links.title || __('links.title')
-page.subtitle = theme.links.subtitle || __('links.subtitle')
-page.banner_img = theme.links.banner_img
-```
+在博客目录内的 `/source/tools/index.md` 的 Front-matter 加入 `layout: links`，这会引入主题目录中的模板：`/layout/links.ejs`
 
 于是开始设置`_config.fluid.yml`：
 
 ```
 links:
-  enable: false
+  enable: true
   banner_img: (your_picture)
   banner_img_height: 60
   banner_mask_alpha: 0.3
@@ -150,15 +188,15 @@ links:
 
 ```yaml
 links:
-  title: tools
-  subtitle: tools
+  title: Tools
+  subtitle: Tools
 ```
 
 ### 如何在导航栏菜单创建一个 Github 链接
 
-和创建“工具”方法类似，这次需要找到`icon-github`（自带图标太小了）的图标
+和创建“工具”方法类似，这次需要找到 `icon-github`（自带图标太小了）的图标
 
-实际操作是：在`custom_css`一栏中加入`- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单`menu:`一栏中加入`- { key: "Github", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }`即可
+实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_brhhjh3wx87.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "Github", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }` 即可
 
 ### 加入特效：鼠标点击有小红心
 
@@ -225,13 +263,13 @@ function(e, t, a) {
 
 ### 插入网易云音乐
 
-在网易云音乐的网页版上选择一首音乐（不能是VIP音乐），点进页面`https://music.163.com/#/song?id=(music_id)`后选择“生成外链播放器”，“自动播放”一栏自选，再复制HTML代码：
+在网易云音乐的网页版上选择一首音乐（不能是VIP音乐），点进页面 `https://music.163.com/#/song?id=(music_id)` 后选择“生成外链播放器”，“自动播放”一栏自选，再复制HTML代码：
 
 ```html
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=0&height=66"></iframe>
 ```
 
-直接粘贴到Markdown文件内即可
+直接粘贴到 Markdown 文件内即可
 
 ### 部署到 Github
 
@@ -250,11 +288,13 @@ deploy:
   branch: [branch] # default is "main"
 ```
 
-运行 `hexo clean && hexo deploy`，查看 `(user_name).github.io`（并检查是否会被重定向到`example.top`） 上的网页是否部署成功
+运行 `npx hexo clean && npx hexo deploy`，查看 `(user_name).github.io` 上的网页是否部署成功
+
+注意此时原有的自定义域名会被覆盖掉，如果 Github Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
 
 ### LaTeX Test
 
-```
+```latex
 This is a equation $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
@@ -365,17 +405,7 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 
 格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的`/source/images/`下
 
-![](../images/catalina.jpg)
-
-### 超链接测试
-
-https://blog.csdn.net/Xiaoming782893687/article/details/90744911
-
-https://zhuanlan.zhihu.com/p/69211731
-
-### 音乐测试
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=0&height=66"></iframe>
+![](../images/reimu_0.jpg)
 
 ### 尚未实现的功能
 

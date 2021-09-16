@@ -12,7 +12,6 @@
     "version": "5.4.0"
   },
   "dependencies": {
-    "aplayer": "^1.10.1",
     "hexo": "^5.0.0",
     "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
@@ -23,8 +22,7 @@
     "hexo-renderer-kramed": "^0.1.4",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
-    "hexo-tag-aplayer": "^3.0.4",
-    "hexo-theme-landscape": "^0.0.3",
-    "meting": "^2.0.1"
+    "hexo-theme-fluid": "^1.8.11",
+    "hexo-theme-landscape": "^0.0.3"
   }
 }
