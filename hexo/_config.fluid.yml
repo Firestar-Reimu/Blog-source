@@ -394,20 +394,6 @@ footer:
     pv_format: "总访问量 {} 次"
     uv_format: "总访客数 {} 人"
 
-  # 国内大陆服务器的备案信息
-  # For Chinese mainland website policy, other areas keep disable
-  beian:
-    enable: false
-    # ICP证号
-    icp_text: 京ICP证123456号
-    # 公安备案号，不填则只显示ICP
-    police_text: 京公网安备12345678号
-    # 公安备案的编号，用于URL跳转查询
-    police_code: 12345678
-    # 公安备案的图片. 为空时不显示备案图片
-    police_icon: /img/police_beian.png
-
-
 #---------------------------
 # 首页
 # Home Page
@@ -415,7 +401,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/reimu.jpg
+  banner_img: /img/reimu_1.jpg
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -507,8 +493,6 @@ post:
     # Post date, based on `date` field in front-matter, if not set, based on create date of .md file
     date:
       enable: true
-      # 格式参照 ISO-8601 日期格式化
-      # ISO-8601 date format
       # See: http://momentjs.cn/docs/#/parsing/string-format/
       format: "YYYY-MM-DD H:mm:ss"
 
@@ -624,154 +608,6 @@ post:
     # See: http://mermaid-js.github.io/mermaid/
     options: { theme: 'default' }
 
-  # 评论插件
-  # Comment plugin
-  comments:
-    enable: false
-    # 指定的插件，需要同时设置对应插件的必要参数
-    # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: disqus
-
-
-#---------------------------
-# 评论插件
-# Comment plugins
-#
-# 开启评论需要先设置上方 `post: comments: enable: true`，然后根据 `type` 设置下方对应的评论插件参数
-# Enable comments need to be set `post: comments: enable: true`, then set the corresponding comment plugin parameters below according to `type`
-#---------------------------
-
-# Utterances
-# 基于 GitHub Issues
-# Based on GitHub Issues
-# See: https://utteranc.es
-utterances:
-  repo:
-  issue_term: pathname
-  label: utterances
-  theme: github-light
-  theme_dark: github-dark
-  crossorigin: anonymous
-
-# Disqus
-# 基于第三方的服务，国内用户直接使用容易被墙，建议配合 Disqusjs
-# Based on third-party service
-# See: https://disqus.com
-disqus:
-  shortname:
-  # 以下为 Disqusjs 支持, 国内用户如果想使用 Disqus 建议配合使用
-  # The following are Disqusjs configurations, please ignore if DisqusJS is not required
-  # See: https://github.com/SukkaW/DisqusJS
-  disqusjs: false
-  apikey:
-
-# Gitalk
-# 基于 GitHub Issues
-# Based on GitHub Issues
-# See: https://github.com/gitalk/gitalk#options
-gitalk:
-  clientID:
-  clientSecret:
-  repo:
-  owner:
-  admin: ['name']
-  language: zh-CN
-  labels: ['Gitalk']
-  perPage: 10
-  pagerDirection: last
-  distractionFreeMode: false
-  createIssueManually: true
-  # 默认 proxy 可能会失效，解决方法请见下方链接
-  # The default proxy may be invalid, refer to the links for solutions
-  # https://github.com/gitalk/gitalk/issues/429
-  # https://github.com/Zibri/cloudflare-cors-anywhere
-  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token
-
-# Valine
-# 基于 LeanCloud
-# Based on LeanCloud
-# See: https://valine.js.org/
-valine:
-  appId:
-  appKey:
-  placeholder: 说点什么
-  path: window.location.pathname
-  avatar: retro
-  meta: ['nick', 'mail', 'link']
-  pageSize: 10
-  lang: zh-CN
-  highlight: false
-  recordIP: false
-  serverURLs: ''
-  emojiCDN:
-  emojiMaps:
-  enableQQ: false
-  requiredFields: []
-
-# Waline
-# 从 Valine 衍生而来，额外增加了服务端和多种功能
-# Derived from Valine, with self-hosted service and new features
-# See: https://waline.js.org/
-waline:
-  serverURL: ''
-  placeholder: 说点什么
-  path: window.location.pathname
-  avatar: retro
-  meta: ['nick', 'mail', 'link']
-  pageSize: 10
-  lang: zh-CN
-  highlight: true
-  avatarCDN: ''
-  avatarForce: false
-  requiredFields: []
-  emojiCDN:
-  emojiMaps:
-  anonymous:
-
-# 畅言 Changyan
-# 基于第三方的服务
-# Based on third-party service, insufficient support for regions outside China
-# http://changyan.kuaizhan.com
-changyan:
-  appid: ''
-  appkey: ''
-
-# 来必力 Livere
-# 基于第三方的服务
-# Based on third-party service
-# See: https://www.livere.com
-livere:
-  uid: ''
-
-# Remark42
-# 需要自托管服务端
-# Based on self-hosted service
-# See: https://remark42.com
-remark42:
-  host:
-  site_id:
-  max_shown_comments: 10
-  locale: zh
-  components: ['embed']
-
-# Twikoo
-# 基于腾讯云开发
-# Based on Tencent CloudBase
-# See: https://twikoo.js.org
-twikoo:
-  envId:
-  region: ap-shanghai
-  path: window.location.pathname
-
-# Cusdis
-# 基于第三方服务或自托管服务
-# Based on third-party or self-hosted service
-# See https://cusdis.com
-cusdis:
-  host:
-  app_id:
-  lang: zh-cn
 
 #---------------------------
 # 归档页
@@ -859,8 +695,8 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/Sierra.jpg
-  banner_img_height: 60
+  banner_img: /img/OrionStreams.jpg # FireballAlberta NGC289 OrionStreams
+  banner_img_height: 30
   banner_mask_alpha: 0.3
 
 
@@ -871,7 +707,7 @@ page:
 page404:
   enable: true
   banner_img: /img/reimu_404.jpg
-  banner_img_height: 80
+  banner_img_height: 90
   banner_mask_alpha: 0.3
   subtitle: "Page not found"
 
@@ -882,7 +718,7 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/Whales.jpg
+  banner_img: /img/Galaxy.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -898,7 +734,7 @@ links:
 
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
-  onerror_avatar: /img/tools-fill.svg
+  onerror_avatar: "/img/user.svg"
 
   # 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字
   # Custom content at the bottom of the links

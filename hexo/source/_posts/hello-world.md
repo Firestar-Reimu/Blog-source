@@ -3,10 +3,10 @@ title: Hello World
 date: 2021-09-06 12:00:00
 math: true
 category:
-- 教程
+  - 教程
 tag:
-- Hello World
-- Blog
+  - Hello World
+  - Blog
 index_img: /img/Purple_Flower.jpg
 banner_img: /img/Purple_Flower.jpg
 ---
@@ -15,7 +15,7 @@ banner_img: /img/Purple_Flower.jpg
 
 ### 申请 Github Pages
 
-新建一个repo，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 Github 仓库用来存放博客的源代码（可选）
+新建一个 repo，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 Github 仓库用来存放博客的源代码（可选）
 
 ### 申请域名
 
@@ -31,7 +31,7 @@ banner_img: /img/Purple_Flower.jpg
 TTL选择“10分钟”
 ```
 
-再去名为 `(user_name).github.io` 的repo，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 Github 的网络检测后就可以使用。
+再去名为 `(user_name).github.io` 的 repo，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 Github 的网络检测后就可以使用。
 
 此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top` 试一试，如果能显示`README.md` 中的内容则设置成功。
 
@@ -39,11 +39,11 @@ TTL选择“10分钟”
 
 我选择用 [Hexo](https://hexo.io/zh-cn/index.html)
 
-建议在Linux上搭建，而不用Windows
+建议在 Linux 上搭建，而不用 Windows
 
 下载 Node-js 和 npm ：`sudo pacman -S nodejs npm`
 
-下载 Hexo 的方法如下：（推荐全局下载或用 `npm install hexo` 下载于一个单独的文件夹中）
+下载 Hexo 的方法如下：（推荐如下的全局下载方案）
 
 ```bash
 mkdir ~/.npm-global
@@ -54,10 +54,10 @@ npm config set prefix '~/.npm-global'
 
 最后输入：
 
-````bash
+```bash
 source ~/.profile
 npm install -g hexo-cli
-````
+```
 
 找一个空文件夹 `(hexo_folder)`，运行：
 
@@ -67,7 +67,7 @@ cd (hexo_folder)
 npm install
 ```
 
-所有的npm和hexo命令都要在`(hexo_folder)`（下文称为“**博客目录**”）下执行
+所有的 npm 和 hexo 命令都要在`(hexo_folder)`（下文称为“**博客目录**”）下执行
 
 部署：`npx hexo clean && npx hexo deploy`
 
@@ -84,7 +84,15 @@ pretty_urls:
   trailing_html: false
 ```
 
-每篇文章的Markdown文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
+文章按时间正序排列：
+
+```yaml
+index_generator:
+  order_by: date
+
+```
+
+每篇文章的 Markdown 文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
 
 ```
 title: Hello World
@@ -109,7 +117,7 @@ npm install --save hexo-theme-fluid
 
 这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-fluid`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update --save hexo-theme-fluid`
 
-Fluid配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
+Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 
 在`(hexo_folder)/_config.yml`下修改：`theme:fluid`
 
@@ -119,17 +127,17 @@ Fluid配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 
 以后如果修改任何主题配置，都只需修改 `_config.fluid.yml` 的配置即可。
 
-*   更改用于浏览器标签的图标：`favicon: /img/favicon.png`，`apple_touch_icon`同步修改
+- 更改用于浏览器标签的图标：`favicon: /img/favicon.png`，`apple_touch_icon`同步修改
 
-*   `force_https: true`
+- `force_https: true`
 
-*   代码高亮：`highlightjs: style: "Vs"`
+- 代码高亮：`highlightjs: style: "Vs"`
 
-*   打字机打印速度：`typespeed: 64`，不开启循环播放
+- 打字机打印速度：`typespeed: 64`，不开启循环播放
 
-*   为文章内容中的标题添加锚图标：`icon: "§"`
+- 为文章内容中的标题添加锚图标：`icon: "§"`
 
-*   主题字体配置：
+- 主题字体配置：
 
 ```
     font:
@@ -138,19 +146,19 @@ Fluid配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
       code_font_size: 100%
 ```
 
-*   导航栏左侧的标题：`blog_title: "Home"`
+- 导航栏左侧的标题：`blog_title: "Home"`
 
-*   每个页面的 Banner 头图：`banner_img` ，自选
+- 每个页面的 Banner 头图：`banner_img` ，自选
 
-*   首页副标题（slogan）的独立设置：`slogan: text: ` 自选
+- 首页副标题（slogan）的独立设置：`slogan: text: ` 自选
 
-*   自动截取文章摘要：`auto_excerpt: enable: false`
+- 自动截取文章摘要：`auto_excerpt: enable: false`
 
-*   隐藏版权声明：`copyright: enable: false`
+- 隐藏版权声明：`copyright: enable: false`
 
-*   Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式
+- Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式
 
-*   关于页中 `icons` 一项只保留 Github
+- 关于页中 `icons` 一项只保留 Github
 
 ### 如何用“友链”页的模板创建一个“工具”页
 
@@ -201,72 +209,115 @@ links:
 ### 加入特效：鼠标点击有小红心
 
 在主题目录下的 `/source/js` 文件夹中新建文件 `love.js`，在 `love.js` 文件中添加以下代码：（修改过，更新了已经弃用的部分，详见[这里](https://segmentfault.com/a/1190000007215988)）
+
 ```js
-!
-function(e, t, a) {
-    function n() {
-        c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),
-        o(),
-        r()
+!(function (e, t, a) {
+  function n() {
+    c(
+      ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
+    ),
+      o(),
+      r();
+  }
+  function r() {
+    for (var e = 0; e < d.length; e++)
+      d[e].alpha <= 0
+        ? (t.body.removeChild(d[e].el), d.splice(e, 1))
+        : (d[e].y--,
+          (d[e].scale += 0.004),
+          (d[e].alpha -= 0.013),
+          (d[e].el.style.cssText =
+            "left:" +
+            d[e].x +
+            "px;top:" +
+            d[e].y +
+            "px;opacity:" +
+            d[e].alpha +
+            ";transform:scale(" +
+            d[e].scale +
+            "," +
+            d[e].scale +
+            ") rotate(45deg);background:" +
+            d[e].color +
+            ";z-index:99999"));
+    requestAnimationFrame(r);
+  }
+  function o() {
+    var t = "function" == typeof e.onclick && e.onclick;
+    e.onclick = function (e) {
+      t && t(), i(e);
+    };
+  }
+  function i(e) {
+    var a = t.createElement("div");
+    (a.className = "heart"),
+      d.push({
+        el: a,
+        x: e.clientX - 5,
+        y: e.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: s(),
+      }),
+      t.body.appendChild(a);
+  }
+  function c(e) {
+    var a = t.createElement("style");
+    try {
+      a.appendChild(t.createTextNode(e));
+    } catch (t) {
+      a.styleSheet.cssText = e;
     }
-    function r() {
-        for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
-        requestAnimationFrame(r)
-    }
-    function o() {
-        var t = "function" == typeof e.onclick && e.onclick;
-        e.onclick = function(e) {
-            t && t(),
-            i(e)
-        }
-    }
-    function i(e) {
-        var a = t.createElement("div");
-        a.className = "heart",
-        d.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: s()
-        }),
-        t.body.appendChild(a)
-    }
-    function c(e) {
-        var a = t.createElement("style");
-        try {
-            a.appendChild(t.createTextNode(e))
-        } catch(t) {
-            a.styleSheet.cssText = e
-        }
-        t.getElementsByTagName("head")[0].appendChild(a)
-    }
-    function s() {
-        return "rgb(" + ~~ (255 * Math.random()) + "," + ~~ (255 * Math.random()) + "," + ~~ (255 * Math.random()) + ")"
-    }
-    var d = [];
-    e.requestAnimationFrame = function() {
-        return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame ||
-        function(e) {
-            setTimeout(e, 1e3 / 60)
-        }
-    } (),
-    n()
-} (window, document);
+    t.getElementsByTagName("head")[0].appendChild(a);
+  }
+  function s() {
+    return (
+      "rgb(" +
+      ~~(255 * Math.random()) +
+      "," +
+      ~~(255 * Math.random()) +
+      "," +
+      ~~(255 * Math.random()) +
+      ")"
+    );
+  }
+  var d = [];
+  (e.requestAnimationFrame = (function () {
+    return (
+      e.requestAnimationFrame ||
+      e.webkitRequestAnimationFrame ||
+      e.mozRequestAnimationFrame ||
+      e.oRequestAnimationFrame ||
+      e.msRequestAnimationFrame ||
+      function (e) {
+        setTimeout(e, 1e3 / 60);
+      }
+    );
+  })()),
+    n();
+})(window, document);
 ```
+
 在主题目录下的``\layout\layout.ejs` 文件末尾添加以下代码：
 
-````ejs
+```ejs
 <script type="text/javascript" src="/js/love.js"></script>
-````
+```
 
 ### 插入网易云音乐
 
-在网易云音乐的网页版上选择一首音乐（不能是VIP音乐），点进页面 `https://music.163.com/#/song?id=(music_id)` 后选择“生成外链播放器”，“自动播放”一栏自选，再复制HTML代码：
+在网易云音乐的网页版上选择一首音乐（不能是 VIP 音乐），点进页面 `https://music.163.com/#/song?id=(music_id)` 后选择“生成外链播放器”，“自动播放”一栏自选，再复制 HTML 代码：
 
 ```html
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=0&height=66"></iframe>
+<iframe
+  frameborder="no"
+  border="0"
+  marginwidth="0"
+  marginheight="0"
+  width="330"
+  height="86"
+  src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=0&height=66"
+></iframe>
 ```
 
 直接粘贴到 Markdown 文件内即可
@@ -340,7 +391,9 @@ $$
 \end{align*}
 $$
 ```
+
 This is a equation $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
+
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
 $$
@@ -405,9 +458,9 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 
 格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的`/source/images/`下
 
-![](../images/reimu_0.jpg)
+![](../images/hello_world_reimu.jpg)
 
 ### 尚未实现的功能
 
-*   Aplayer
-*   樱花特效
+- Aplayer
+- 樱花特效

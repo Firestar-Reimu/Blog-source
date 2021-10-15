@@ -1,7 +1,7 @@
 ---
 title: 时间计算器
 date: 2021-09-13 16:00:00
-layout: false
+banner_img: /img/OrionStreams.jpg
 ---
 
 https://www.aavso.org/computing-jd
@@ -10,49 +10,45 @@ https://docs.astropy.org/en/stable/time/index.html
 
 https://cheeseburgerim.space/2021/02/12/BUPWBP/
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data calculator</title>
-    <link rel="stylesheet" href="./time-calculator/style.css">
-</head>
-<body>{text-align:center}
-    <main>
-        <form action="" id="date-form">
-            <input id="date1" type="date">
-            <input id="date2" type="date">
-            <select name="time-unit" id="time-unit">
-                <option value="Yoctoseconds">Yoctoseconds</option>
-                <option value="Zeptoseconds">Zeptoseconds</option>
-                <option value="Attoseconds">Attoseconds</option>
-                <option value="Femtoseconds">Femtoseconds</option>
-                <option value="Picoseconds">Picoseconds</option>
-                <option value="Nanoseconds">Nanoseconds</option>
-                <option value="Microseconds">Microseconds</option>
-                <option value="Milliseconds">Milliseconds</option>
-                <option value="Seconds">Seconds</option>
-                <option value="Minutes">Minutes</option>
-                <option value="Hours">Hours</option>
-                <option value="Days" Selected>Days</option>
-                <option value="Weeks">Weeks</option>
-                <option value="Months">Months</option>
-                <option value="Years">Years</option>
-                <option value="Decades">Decades</option>
-                <option value="Centuries">Centuries</option>
-                <option value="Millennium">Millennium</option>
-                <option value="Megayear">Megayear</option>
-                <option value="Gigayear">Gigayear</option>
-            </select>
-        </form>
-        <span id="years">Years: </span>
-        <span id="months">Months: </span>
-        <span id="weeks">Weeks: </span>
-        <span id="days">Days: </span>
-        <span id="converted">Converted to selected unit: </span>
-    </main>
-    <script src="./time-calculator/app.js"></script>
-</body>
-</html>
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <title>Date Calculator</title>
+    </head>
+    <body{text-align:center}>
+    
+    <table align="center">
+      <tr>
+        <th>年</td>
+        <th>月</td>
+        <th>日</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="year" /></td>
+        <td><input type="text" id="month" /></td>
+        <td><input type="text" id="day" /></td>
+      </tr>
+    </table>
 
+    <table align="center">
+      <tr>
+        <th>时</td>
+        <th>分</td>
+        <th>秒</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="hour" /></td>
+        <td><input type="text" id="minute" /></td>
+        <td><input type="text" id="second" /></td>
+      </tr>
+    </table>
+
+    {% raw %}
+    <script src="./app.js"></script>
+    {% endraw %}
+
+    <button value="submit" onclick="showTime()">Click Me!</button><br />
+    <input id="Time" /><br />
+
+  </body>
+</html>
