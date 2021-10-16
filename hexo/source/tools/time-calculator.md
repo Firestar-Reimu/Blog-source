@@ -4,13 +4,21 @@ date: 2021-10-15 22:00:00
 banner_img: /img/OrionStreams.jpg
 ---
 
+
+
+## 本页面功能未完成！
+
+-   [x] 未完成
+-   [ ] 未完善
+-   [ ] 小修小补（卷/美化）
+
+### 参考：
+
 https://www.aavso.org/computing-jd
 
 https://docs.astropy.org/en/stable/time/index.html
 
-https://cheeseburgerim.space/2021/02/12/BUPWBP/
-
-Update: 2021-10-16 11:04:16
+Update: 2021-10-16 11:24:00
 
 <html>
 
@@ -32,7 +40,7 @@ Update: 2021-10-16 11:04:16
             <td><input type="text" id="day" /></td>
         </tr>
     </table>
-
+    
     <table align="center" width="40%">
         <tr>
             <th>时</td>
@@ -45,16 +53,16 @@ Update: 2021-10-16 11:04:16
             <td><input type="text" id="second" /></td>
         </tr>
     </table>
-
+    
     <script function showTime() { var year=document.getElementById("year").value; var
         month=document.getElementById("month").value; var day=document.getElementById("day").value; var
         hour=document.getElementById("hour").value; var minute=document.getElementById("minute").value; var
         second=document.getElementById("second").value; var Time=document.getElementById("Time"); Time.value=year + "/"
         + month + "/" + day + " " + hour + ":" + minute + ":" + second; }></script>
-
+    
     <button value="submit" onclick="showTime()">Click Me!</button><br />
     <input id="Time" /><br />
-
+    
     <script>
         function startTime() {
             var today = new Date();
@@ -73,13 +81,13 @@ Update: 2021-10-16 11:04:16
             return i;
         }
     </script>
-
+    
     </head>
-
+    
     <body onload="startTime()">
-
+    
         <div align="center" id="clock"></div>
-
+    
     </body>
 
 </html>
