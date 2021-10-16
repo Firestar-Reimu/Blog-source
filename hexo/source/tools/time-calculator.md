@@ -14,9 +14,9 @@ banner_img: /img/OrionStreams.jpg
 
 ### 参考：
 
-https://www.aavso.org/computing-jd
+https://www.aavso.org/computing-jd/
 
-https://docs.astropy.org/en/stable/time/index.html
+https://docs.astropy.org/en/stable/time/index.html/
 
 Update: 2021-10-16 11:24:00
 
