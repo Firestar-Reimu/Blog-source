@@ -16,15 +16,15 @@
   <meta name="description" content="">
   <meta name="author" content="Firestar">
   <meta name="keywords" content="">
-  <meta name="description" content="Date Calculator                              年             月             日                                                                                                   时             分">
+  <meta name="description" content="Date Calculator                                   年             月             日                                                                                                       时">
 <meta property="og:type" content="website">
 <meta property="og:title" content="page.title">
 <meta property="og:url" content="https://blog.firestar-reimu.top/tools/time-calculator/time-calculator">
 <meta property="og:site_name" content="Firestar 的幻想乡">
-<meta property="og:description" content="Date Calculator                              年             月             日                                                                                                   时             分">
+<meta property="og:description" content="Date Calculator                                   年             月             日                                                                                                       时">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-16T02:57:55.889Z">
-<meta property="article:modified_time" content="2021-10-16T02:57:55.889Z">
+<meta property="article:published_time" content="2021-10-20T06:11:49.576Z">
+<meta property="article:modified_time" content="2021-10-20T06:11:49.576Z">
 <meta property="article:author" content="Firestar">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -229,12 +229,13 @@
 
 <article class="page-content">
   <html>
-
+<div class="markdown-body">
 <head>
     <meta charset="utf-8" />
     <title>Date Calculator</title>
 </head>
-<body{text-align:center}>
+<body>
+    <div align="center">
 
     <table align="center" width="40%">
         <tr>
@@ -248,7 +249,7 @@
             <td><input type="text" id="day" /></td>
         </tr>
     </table>
-
+    
     <table align="center" width="40%">
         <tr>
             <th>时</td>
@@ -261,16 +262,22 @@
             <td><input type="text" id="second" /></td>
         </tr>
     </table>
-
-    <script function showTime() { var year=document.getElementById("year").value; var
-        month=document.getElementById("month").value; var day=document.getElementById("day").value; var
-        hour=document.getElementById("hour").value; var minute=document.getElementById("minute").value; var
-        second=document.getElementById("second").value; var Time=document.getElementById("Time"); Time.value=year + "/"
-        + month + "/" + day + " " + hour + ":" + minute + ":" + second; }></script>
-
+    
+    <script>
+        function showTime() { 
+            var year=document.getElementById("year").value; 
+            var month=document.getElementById("month").value;
+            var day=document.getElementById("day").value; 
+            var hour=document.getElementById("hour").value; 
+            var minute=document.getElementById("minute").value; 
+            var second=document.getElementById("second").value; 
+            var Time=document.getElementById("Time"); 
+            Time.value=year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second; }
+    </script>
+    
     <button value="submit" onclick="showTime()">Click Me!</button><br />
     <input id="Time" /><br />
-
+    
     <script>
         function startTime() {
             var today = new Date();
@@ -289,16 +296,18 @@
             return i;
         }
     </script>
-
-    </head>
-
-    <body onload="startTime()">
-
-        <div align="center" id="clock"></div>
-
+    </div>
+    
     </body>
-
+    
+    <body onload="startTime()">
+    
+    <div align="center" id="clock"></div>
+    
+    </body>
+</div>
 </html>
+
 
   
 </article>

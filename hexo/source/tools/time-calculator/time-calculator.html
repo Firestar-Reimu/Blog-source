@@ -1,10 +1,11 @@
 <html>
-
+<div class="markdown-body">
 <head>
     <meta charset="utf-8" />
     <title>Date Calculator</title>
 </head>
-<body{text-align:center}>
+<body>
+    <div align="center">
 
     <table align="center" width="40%">
         <tr>
@@ -18,7 +19,7 @@
             <td><input type="text" id="day" /></td>
         </tr>
     </table>
-
+    
     <table align="center" width="40%">
         <tr>
             <th>时</td>
@@ -31,16 +32,22 @@
             <td><input type="text" id="second" /></td>
         </tr>
     </table>
-
-    <script function showTime() { var year=document.getElementById("year").value; var
-        month=document.getElementById("month").value; var day=document.getElementById("day").value; var
-        hour=document.getElementById("hour").value; var minute=document.getElementById("minute").value; var
-        second=document.getElementById("second").value; var Time=document.getElementById("Time"); Time.value=year + "/"
-        + month + "/" + day + " " + hour + ":" + minute + ":" + second; }></script>
-
+    
+    <script>
+        function showTime() { 
+            var year=document.getElementById("year").value; 
+            var month=document.getElementById("month").value;
+            var day=document.getElementById("day").value; 
+            var hour=document.getElementById("hour").value; 
+            var minute=document.getElementById("minute").value; 
+            var second=document.getElementById("second").value; 
+            var Time=document.getElementById("Time"); 
+            Time.value=year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second; }
+    </script>
+    
     <button value="submit" onclick="showTime()">Click Me!</button><br />
     <input id="Time" /><br />
-
+    
     <script>
         function startTime() {
             var today = new Date();
@@ -59,13 +66,14 @@
             return i;
         }
     </script>
-
-    </head>
-
-    <body onload="startTime()">
-
-        <div align="center" id="clock"></div>
-
+    </div>
+    
     </body>
-
+    
+    <body onload="startTime()">
+    
+    <div align="center" id="clock"></div>
+    
+    </body>
+</div>
 </html>

@@ -6,9 +6,9 @@ banner_img: /img/OrionStreams.jpg
 
 ## 本页面功能未完成！
 
--   [x] 未完成
--   [ ] 未完善
--   [ ] 小修小补（卷/美化）
+- [x] 未完成
+- [ ] 未完善
+- [ ] 小修小补（卷/美化）
 
 ### 参考：
 
@@ -16,15 +16,16 @@ https://www.aavso.org/computing-jd/
 
 https://docs.astropy.org/en/stable/time/index.html/
 
-Update: 2021-10-16 11:24:00
+Update: 2021-10-20 14:12
 
 <html>
-
+<div class="markdown-body">
 <head>
     <meta charset="utf-8" />
     <title>Date Calculator</title>
 </head>
-<body{text-align:center}>
+<body>
+    <div align="center">
 
     <table align="center" width="40%">
         <tr>
@@ -52,11 +53,17 @@ Update: 2021-10-16 11:24:00
         </tr>
     </table>
     
-    <script function showTime() { var year=document.getElementById("year").value; var
-        month=document.getElementById("month").value; var day=document.getElementById("day").value; var
-        hour=document.getElementById("hour").value; var minute=document.getElementById("minute").value; var
-        second=document.getElementById("second").value; var Time=document.getElementById("Time"); Time.value=year + "/"
-        + month + "/" + day + " " + hour + ":" + minute + ":" + second; }></script>
+    <script>
+        function showTime() { 
+            var year=document.getElementById("year").value; 
+            var month=document.getElementById("month").value;
+            var day=document.getElementById("day").value; 
+            var hour=document.getElementById("hour").value; 
+            var minute=document.getElementById("minute").value; 
+            var second=document.getElementById("second").value; 
+            var Time=document.getElementById("Time"); 
+            Time.value=year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second; }
+    </script>
     
     <button value="submit" onclick="showTime()">Click Me!</button><br />
     <input id="Time" /><br />
@@ -79,13 +86,14 @@ Update: 2021-10-16 11:24:00
             return i;
         }
     </script>
+    </div>
     
-    </head>
+    </body>
     
     <body onload="startTime()">
     
-        <div align="center" id="clock"></div>
+    <div align="center" id="clock"></div>
     
     </body>
-
+</div>
 </html>
