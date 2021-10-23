@@ -69,10 +69,6 @@ npm install
 
 所有的 npm 和 hexo 命令都要在`(hexo_folder)`（下文称为“**博客目录**”）下执行
 
-部署：`npx hexo clean && npx hexo deploy`
-
-调试：`npx hexo s --debug`
-
 全局配置的官方指南在[这里](https://hexo.io/zh-cn/docs/)，在 `(hexo_folder)/_config.yml` 下修改：
 
 ```yaml
@@ -89,7 +85,6 @@ pretty_urls:
 ```yaml
 index_generator:
   order_by: date
-
 ```
 
 每篇文章的 Markdown 文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
@@ -162,7 +157,7 @@ Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 
 ### 如何用“友链”页的模板创建一个“工具”页
 
-首先新建一个页面：`npx hexo new page tools`
+首先新建一个页面：`npx hexo new page tools`，注意发表文章要将模板 `page` 改为 `post`
 
 这样就有了 `example.top/tools/` 的页面
 
@@ -322,7 +317,7 @@ links:
 
 直接粘贴到 Markdown 文件内即可
 
-### 部署到 Github
+### 调试并部署到 Github
 
 安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
 
@@ -339,7 +334,9 @@ deploy:
   branch: [branch] # default is "main"
 ```
 
-运行 `npx hexo clean && npx hexo deploy`，查看 `(user_name).github.io` 上的网页是否部署成功
+调试：`npx hexo s --debug`
+
+部署：`npx hexo clean && npx hexo deploy`，查看 `(user_name).github.io` 上的网页是否部署成功
 
 注意此时原有的自定义域名会被覆盖掉，如果 Github Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
 

@@ -695,7 +695,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/OrionStreams.jpg # FireballAlberta NGC289 OrionStreams
+  banner_img: /img/OrionStreams.jpg
   banner_img_height: 30
   banner_mask_alpha: 0.3
 
