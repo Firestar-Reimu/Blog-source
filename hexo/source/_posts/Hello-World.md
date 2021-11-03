@@ -382,7 +382,7 @@ $$
     &= T+V \\
     &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
     &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{1}{2}A\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{1}{2}D\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + B\frac{(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
     &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
     &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
 \end{align*}
@@ -429,7 +429,7 @@ $$
     &= T+V \\
     &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
     &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{1}{2}A\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{1}{2}D\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + B\frac{(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
     &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
     &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
 \end{align*}
