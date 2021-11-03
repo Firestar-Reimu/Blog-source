@@ -41,19 +41,17 @@ banner_img: /img/OrionStreams.jpg
     </select>
 </form>
 <br>
-</div>
 
-{% raw %}
-<table align="center" width="40%">
+<table>
     <tr>
         <th>年</td>
         <th>月</td>
         <th>日</td>
     </tr>
     <tr>
-        <td><input type="text" id="year" /></td>
-        <td><input type="text" id="month" /></td>
-        <td><input type="text" id="day" /></td>
+        <td><input type="text" id="year" size="5"/></td>
+        <td><input type="text" id="month" size="5"/></td>
+        <td><input type="text" id="day" size="5"/></td>
     </tr>
     <tr>
         <th>时</td>
@@ -61,14 +59,12 @@ banner_img: /img/OrionStreams.jpg
         <th>秒</td>
     </tr>
     <tr>
-        <td><input type="text" id="hour" /></td>
-        <td><input type="text" id="minute" /></td>
-        <td><input type="text" id="second" /></td>
+        <td><input type="text" id="hour" size="5"/></td>
+        <td><input type="text" id="minute" size="5"/></td>
+        <td><input type="text" id="second" size="5"/></td>
     </tr>
 </table>
-{% endraw %}
 
-<div align="center">
 <button value="submit" onclick="time_to_JD()">Convert to JD</button>
 
 <input id="JD" />
