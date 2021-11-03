@@ -16,15 +16,15 @@
   <meta name="description" content="">
   <meta name="author" content="Firestar">
   <meta name="keywords" content="">
-  <meta name="description" content="时间计算器                                        UTC             UTC+1             UTC+2             UTC+3             UTC+4             UTC+5             UTC+6             UTC+7             U">
+  <meta name="description" content="UTC         UTC+1         UTC+2         UTC+3         UTC+4         UTC+5         UTC+6         UTC+7         UTC+8         UTC+9         UTC+10         UTC+11         UTC+12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="时间计算器">
 <meta property="og:url" content="https://blog.firestar-reimu.top/tools/Time-Calculator/">
 <meta property="og:site_name" content="Firestar 的幻想乡">
-<meta property="og:description" content="时间计算器                                        UTC             UTC+1             UTC+2             UTC+3             UTC+4             UTC+5             UTC+6             UTC+7             U">
+<meta property="og:description" content="UTC         UTC+1         UTC+2         UTC+3         UTC+4         UTC+5         UTC+6         UTC+7         UTC+8         UTC+9         UTC+10         UTC+11         UTC+12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-03T01:37:10.022Z">
+<meta property="article:modified_time" content="2021-11-03T02:16:28.941Z">
 <meta property="article:author" content="Firestar">
 <meta property="article:tag" content="Calculator">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,90 +255,86 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-11-03 9:37:10
+                  本文最后更新于：2021-11-03 10:16:28
                 
               </p>
             
             <div class="markdown-body">
-              <html>
-<div class="markdown-body">
-<head>
-    <meta charset="utf-8" />
-    <title>时间计算器</title>
-    <script src="../../js/time-calculator.js"></script>
-</head>
-<body>
-    <div class="markdown-body" align="center">
+              <script src="../../js/time-calculator.js"></script>
 
-    <form>
-        <select name="timezone" id="timezone">
-            <option value="0">UTC</option>
-            <option value="1">UTC+1</option>
-            <option value="2">UTC+2</option>
-            <option value="3">UTC+3</option>
-            <option value="4">UTC+4</option>
-            <option value="5">UTC+5</option>
-            <option value="6">UTC+6</option>
-            <option value="7">UTC+7</option>
-            <option value="8">UTC+8</option>
-            <option value="9">UTC+9</option>
-            <option value="10">UTC+10</option>
-            <option value="11">UTC+11</option>
-            <option value="12">UTC+12</option>
-            <option value="-1">UTC-1</option>
-            <option value="-2">UTC-2</option>
-            <option value="-3">UTC-3</option>
-            <option value="-4">UTC-4</option>
-            <option value="-5">UTC-5</option>
-            <option value="-6">UTC-6</option>
-            <option value="-7">UTC-7</option>
-            <option value="-8">UTC-8</option>
-            <option value="-9">UTC-9</option>
-            <option value="-10">UTC-10</option>
-            <option value="-11">UTC-11</option>
-            <option value="-12">UTC-12</option>
-        </select>
-    </form>
+<div align="center">
+<form>
+    <select name="timezone" id="timezone">
+        <option value="0">UTC</option>
+        <option value="1">UTC+1</option>
+        <option value="2">UTC+2</option>
+        <option value="3">UTC+3</option>
+        <option value="4">UTC+4</option>
+        <option value="5">UTC+5</option>
+        <option value="6">UTC+6</option>
+        <option value="7">UTC+7</option>
+        <option value="8">UTC+8</option>
+        <option value="9">UTC+9</option>
+        <option value="10">UTC+10</option>
+        <option value="11">UTC+11</option>
+        <option value="12">UTC+12</option>
+        <option value="-1">UTC-1</option>
+        <option value="-2">UTC-2</option>
+        <option value="-3">UTC-3</option>
+        <option value="-4">UTC-4</option>
+        <option value="-5">UTC-5</option>
+        <option value="-6">UTC-6</option>
+        <option value="-7">UTC-7</option>
+        <option value="-8">UTC-8</option>
+        <option value="-9">UTC-9</option>
+        <option value="-10">UTC-10</option>
+        <option value="-11">UTC-11</option>
+        <option value="-12">UTC-12</option>
+    </select>
+</form>
+</div>
 
-    <div align="center">
-    <table align="center">
-        <tr>
-            <td>年</td>
-            <td><input type="text" id="year" /></td>
-            <td>时</td>
-            <td><input type="text" id="hour" /></td>
-        </tr>
-        <tr>
-            <td>月</td>
-            <td><input type="text" id="month" /></td>
-            <td>分</td>
-            <td><input type="text" id="minute" /></td>
-        </tr>
-        <tr>
-            <td>日</td>
-            <td><input type="text" id="day" /></td>
-            <td>秒</td>
-            <td><input type="text" id="second" /></td>
-        </tr>
-    </table>
-    </div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">年</th>
+<th style="text-align:center">月</th>
+<th style="text-align:center">日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><input type="text" id="year" /></td>
+<td style="text-align:center"><input type="text" id="month" /></td>
+<td style="text-align:center"><input type="text" id="day" /></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>时</strong></td>
+<td style="text-align:center"><strong>分</strong></td>
+<td style="text-align:center"><strong>秒</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><input type="text" id="hour" /></td>
+<td style="text-align:center"><input type="text" id="minute" /></td>
+<td style="text-align:center"><input type="text" id="second" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div align="center">
+<button value="submit" onclick="time_to_JD()">Convert to JD</button>
 
-    <button value="submit" onclick="time_to_JD()">Convert to JD</button>
-    <input id="JD" />
+<input id="JD" />
 
-    <body onload="time_now()">
-
-    <div align="center" id="clock"></div>
-
-    </body>
-
-    <button value="submit" onclick="time_now_to_JD()">Convert current time to JD</button>
-
-    <input id="JD_now" />
-
-    </div>
+<body onload="time_now()">
+<div align="center" id="clock"></div>
 </body>
-</html>
+
+<button value="submit" onclick="time_now_to_JD()">Convert current time to JD</button>
+
+<input id="JD_now" />
+</div>
 
             </div>
             <hr>
