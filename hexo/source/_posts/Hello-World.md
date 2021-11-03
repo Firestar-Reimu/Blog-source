@@ -122,10 +122,6 @@ Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 
 在博客目录下创建 `_config.fluid.yml` 文件，将主题目录下的 `_config.yml`复制过去，以后如果修改任何主题配置，都只需修改 `_config.fluid.yml` 的配置即可，其优先级比主题目录下的 `_config.yml`高。
 
-[ (opens new window)](https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml) 内容复制过去。
-
-以后如果修改任何主题配置，都只需修改 `_config.fluid.yml` 的配置即可。
-
 - 更改用于浏览器标签的图标：`favicon: /img/favicon.png`，`apple_touch_icon`同步修改
 
 - `force_https: true`
@@ -139,10 +135,10 @@ Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 - 主题字体配置：
 
 ```
-    font:
-      font_size: 16px
-      font_family: Noto Sans CJK SC, sans-serif
-      code_font_size: 100%
+font:
+    font_size: 16px
+    font_family: Noto Sans CJK SC, sans-serif
+    code_font_size: 100%
 ```
 
 - 导航栏左侧的标题：`blog_title: "Home"`
@@ -396,7 +392,7 @@ $$
 This is a equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$. Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$.
 
 $$
-\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
+\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L'}{\partial \dot{p}}\right) - \frac{\partial L'}{\partial p} = 0
 $$
 
 $$
@@ -463,5 +459,5 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 
 ### 尚未实现的功能
 
-- Aplayer
-- 樱花特效
+- [x] Aplayer
+- [x] 樱花特效
