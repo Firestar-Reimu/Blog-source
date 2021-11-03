@@ -103,7 +103,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:1900011604/1900011604.github.io.git
+  repo: git@github.com:Firestar-Reimu/firestar-reimu.github.io.git
   # example, https://github.com/hexojs/hexojs.github.io
   branch: master
   ignore_hidden: false

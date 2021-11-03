@@ -16,11 +16,11 @@ banner_img: /img/Manjaro.jpg
 ThinkPad 系统信息：
 
 ```
-OS: Manjaro 21.1.2 Pahvo
-Kernel: x86_64 Linux 5.14.2-1-MANJARO
+OS: Manjaro 21.2.0 Qonos
+Kernel: x86_64 Linux 5.14.13-1-MANJARO
 Shell: bash 5.1.8
 Resolution: 2560x1600
-DE: KDE 5.85.0 / Plasma 5.22.5
+DE: KDE 5.87.0 / Plasma 5.23.1
 WM: KWin
 GTK Theme: Breeze [GTK2/3]
 Icon Theme: breath2
@@ -43,25 +43,25 @@ CPU: Intel Core i5-8250U @ 8x 3.4GHz
 GPU: Mesa Intel(R) UHD Graphics 620 (KBL GT2)
 ```
 
-**说明：Surface 专有部分自2021.9.5起不再更新，内核终止于 x86_64 Linux 5.14.0-0-MANJARO/x86_64 Linux 5.13.13-arch1-3-surface**
+**说明：Surface 专有部分自 2021.9.5 起不再更新，内核终止于 x86_64 Linux 5.14.0-0-MANJARO/x86_64 Linux 5.13.13-arch1-3-surface**
 
 ## **Windows 的准备工作**
 
 ### **为 Manjaro 系统分区**
 
-右键点击开始菜单，选择”磁盘管理”，分出一块空分区，建议不小于64GB
+右键点击开始菜单，选择”磁盘管理”，分出一块空分区，建议不小于 64GB
 
 ### **关闭快速启动**
 
-Windows 工具 –> 控制面板 >>> 电源选项 >>> 选择电源按钮的功能 >>> 更改当前不可用的设置 >>> 关闭快速启动 >>> 保存修改
+Windows 工具 >> 控制面板 >> 电源选项 >> 选择电源按钮的功能 >> 更改当前不可用的设置 >> 关闭快速启动 >> 保存修改
 
-### **ThinkPad: 进入 UEFI 设置**
+### **ThinkPad: UEFI 设置**
 
 启动 ThinkPad 时按 `Enter` 打断正常开机，然后按下 `Fn+Esc` 解锁 `Fn` 按钮，再按 `F1` 进入 UEFI 设置
 
-Security >>> Secure Boot >>> Off
+Security >> Secure Boot >> Off
 
-### **Surface: 进入 UEFI 设置**
+### **Surface: UEFI 设置**
 
 关闭 Surface，然后等待大约 10 秒钟以确保其处于关闭状态
 
@@ -69,7 +69,19 @@ Security >>> Secure Boot >>> Off
 
 屏幕上会显示 Microsoft 或 Surface 徽标，继续按住调高音量按钮，显示 UEFI 屏幕后，松开此按钮
 
-Security >>> Secure Boot >>> Disabled（第三个选项）
+Security >> Secure Boot >> Disabled（第三个选项）
+
+Boot Configuration >> Configure boot device order 中可以调整和删除启动顺序
+
+具体参考下列网址：
+
+如何使用 Surface UEFI
+
+https://support.microsoft.com/zh-cn/surface/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-surface-uefi-df2c8942-dfa0-859d-4394-95f45eb1c3f9
+
+### 删除多余的 Windows 启动项
+
+如果在电脑上装有多个 Windows，则系统只会选择其中一个在 Windows Boot Manager 中启动，若要删除多余的启动项，在 Windows 的“系统配置”（搜索框中输入 `msconfig` 或在“Windows 工具”中选择）的“引导”页面即可删除
 
 ### **制作启动盘**
 
@@ -87,17 +99,17 @@ https://github.com/manjaro-plasma/download/releases （KDE Plasma 版本）
 
 https://github.com/manjaro/release-review/releases （所有官方版本）
 
-#### **刻录启动盘**
+#### **刻录 USB 启动盘**
 
-注意启动盘要用 USB，如果用移动硬盘会无法被识别
+推荐使用 [Ventoy](https://www.ventoy.net/cn/index.html)，可以在 Windows/Linux 上使用，方法是下载安装包后解压、安装到 USB 上，之后直接将 ISO 镜像拷贝到 USB 中即可选择镜像文件进行登录系统，支持多个系统镜像登录
 
-推荐使用 [Etcher](https://www.balena.io/etcher/)，在 Linux（下载 Appimage 或从 AUR 上用包管理器下载 `balena-etcher`）和 Windows（下载 EXE 可执行文件）上均能使用（但无法刻录 Windows 系统镜像），Github 项目地址在 https://github.com/balena-io/etcher
+Linux 上也可以使用 [Etcher](https://www.balena.io/etcher/)，在 Linux（下载 Appimage 或从 AUR 上用包管理器下载 `balena-etcher`）和 Windows（下载 EXE 可执行文件）上均能使用（但无法刻录 Windows 系统镜像），Github 项目地址在 https://github.com/balena-io/etcher
 
 Windows 上还可以用 [Rufus](https://rufus.ie/zh/)，速度与 Etcher 相当且支持 Windows 和 Linux 系统镜像，但无法在 Linux 上使用（只提供 Windows 版 EXE 可执行文件），Github 项目地址在 https://github.com/pbatard/rufus
 
 ### **ThinkPad：安装 Manjaro**
 
-设置 >>> 恢复 >>> 立即重新启动 >>> USB HDD
+设置 >> 恢复 >> 立即重新启动 >> USB HDD
 
 或按照以下步骤直接从 USB 启动:
 
@@ -105,7 +117,7 @@ Windows 上还可以用 [Rufus](https://rufus.ie/zh/)，速度与 Etcher 相当�
 
 ### **Surface：安装 Manjaro**
 
-设置 >>> 恢复 >>> 立即重新启动 >>> USB Storage
+设置 >> 恢复 >> 立即重新启动 >> USB Storage
 
 或按照以下步骤直接从 USB 启动:
 
@@ -139,9 +151,9 @@ Windows 上还可以用 [Rufus](https://rufus.ie/zh/)，速度与 Etcher 相当�
 
 ### **电源与开机设置**
 
-系统设置 >>> 电源管理 >>> 节能 >>> 勾选“按键事件处理” >>> 合上笔记本盖时 >>> 选择“关闭屏幕” >>> 勾选“即使已连接外部显示器”
+系统设置 >> 电源管理 >> 节能 >> 勾选“按键事件处理” >> 合上笔记本盖时 >> 选择“关闭屏幕” >> 勾选“即使已连接外部显示器”
 
-系统设置 >>> 开机与关机 >>> 桌面会话 >>> 登入时 >>> 选择“以空会话启动”
+系统设置 >> 开机与关机 >> 桌面会话 >> 登入时 >> 选择“以空会话启动”
 
 #### **与电源管理相关的常见英文名词**
 
@@ -149,11 +161,11 @@ Sleep：睡眠，Suspend：挂起，Reboot：重启，Shutdown：关机，Logout
 
 ### **高分辨率设置**
 
-ThinkPad 的屏幕分辨率是2560×1600，而 Surface 的屏幕分辨率是2736×1824，需要配置高分屏优化：
+ThinkPad 的屏幕分辨率是 2560×1600，而 Surface 的屏幕分辨率是 2736×1824，需要配置高分屏优化：
 
-系统设置 >>> 显示和监控 >>> 显示配置 >>> 分辨率 >>> 全局缩放 >>> 200%
+系统设置 >> 显示和监控 >> 显示配置 >> 分辨率 >> 全局缩放 >> 200%
 
-系统设置 >>> 光标 >>> 大小 >>> 36
+系统设置 >> 光标 >> 大小 >> 36
 
 然后重启电脑
 
@@ -163,11 +175,11 @@ ThinkPad 的屏幕分辨率是2560×1600，而 Surface 的屏幕分辨率是2736
 
 为打开方便，可以采用 i3wm 的默认快捷键打开 Konsole：
 
-系统设置 >>> 快捷键 >>> 添加应用程序 >>> Konsole >>> Konsole 的快捷键设为 `Meta+Return`（即“Windows 徽标键 + Enter 键”）
+系统设置 >> 快捷键 >> 添加应用程序 >> Konsole >> Konsole 的快捷键设为 `Meta+Return`（即“Windows 徽标键 + Enter 键”）
 
 #### **Konsole/Yakuake 快捷键**
 
-设置 >>> 配置键盘快捷键 >>> 复制改为 `Ctrl+C` ，粘贴改为 `Ctrl+V`
+设置 >> 配置键盘快捷键 >> 复制改为 `Ctrl+C` ，粘贴改为 `Ctrl+V`
 
 ### **选择镜像并更改更新分支**
 
@@ -258,7 +270,7 @@ sudo pacman -S base-devel
 
 #### **启用 pamac 的 AUR 支持**
 
-添加/删除软件 >>> 右上角 ··· >>> 首选项 >>> AUR >>> 启用 AUR 支持
+添加/删除软件 >> 右上角 ··· >> 首选项 >> AUR >> 启用 AUR 支持
 
 然后就可以用 pamac 的图形界面获取 AUR 软件包，或者用命令 `pamac build` 及 `pamac install` 获取 AUR 的软件包。
 
@@ -279,9 +291,12 @@ yay -P -g
 
 ### **Arch Linux CN 软件源**
 
-在 `/etc/pacman.conf` 文件末尾添加以下两行以启用上海交大镜像：
+在 `/etc/pacman.conf` 文件末尾添加以下两行以启用上海交大镜像（注意一定要写第一行的 `[archlinuxcn]`）：
 
-    Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
+```
+[archlinuxcn]
+Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
+```
 
 之后执行下面的命令安装 archlinuxcn-keyring 包导入 GPG key
 
@@ -392,7 +407,7 @@ sudo mhwd -r pci video-linux
 sudo mhwd -i pci video-modesetting
 ```
 
-**重启后会发现许多窗口和图标变小，建议先调整全局缩放为100%，重新启动，再调至200%，再重启**
+**重启后会发现许多窗口和图标变小，建议先调整全局缩放为 100%，重新启动，再调至 200%，再重启**
 
 ### **Surface：Linux-Surface 内核安装（可选）**
 
@@ -414,8 +429,10 @@ sudo pacman-key --finger 56C464BAAC421453sudo pacman-key --lsign-key 56C464BAAC4
 
 在 `/etc/pacman.conf` 里面添加：
 
-    [linux-surface]
-    Server = https://pkg.surfacelinux.com/arch/
+```
+[linux-surface]
+Server = https://pkg.surfacelinux.com/arch/
+```
 
 然后更新软件库并下载：
 
@@ -440,13 +457,15 @@ KDE 上原生的相机应用是 Kamoso，也可以使用 GNOME 上的相机应�
 
 **Firefox 启用触屏需要在 `/etc/environment` 中写入 `MOZ_USE_XINPUT2=1`，然后重新启动，并在 about:config 中设置 `apz.allow_zooming` 和 `apz.allow_zooming_out` 为 `true`；Visual Studio Code 启用触屏需要更改 `/usr/share/applications/visual-studio-code.desktop`，在 `Exec` 一行中加入命令 `--touch-events`，这一般对以 Electron 为基础的软件有效**
 
-### **下载 vim**
+### **vim 安装与配置**
 
-建议先下载 vim，方便之后编辑各种文件：
+建议先安装 vim，方便之后编辑各种文件：
 
 ```bash
 sudo pacman -S vim
 ```
+
+vim 的配置文件主要有 `/usr/share/vim/vimfiles/archlinux.vim`，`/etc/vimrc` 和 `/home/(user_name)/.vimrc`，建议直接修改 `/etc/vimrc`，这样不会覆盖 `/usr/share/vim/vimfiles/archlinux.vim` 上定义的默认配置（语法高亮等）
 
 ### **GNU nano 配置**
 
@@ -464,7 +483,7 @@ nano 的配置文件在 `/etc/nanorc`，可以通过取消注释设置选项配�
 
 取消注释所有的 `Key bindings` 选项可以启用更常用的快捷键设定
 
-**用 nano 编辑后保存的步骤是 `Ctrl+W` （Write Out） >>> `Enter` >>> `Ctrl+Q` （Exit），如果用默认的快捷键设置，则为 `Ctrl+O` （Write Out） >>> `Enter` >>> `Ctrl+X` （Exit）**
+**用 nano 编辑后保存的步骤是 `Ctrl+W` （Write Out） >> `Enter` >> `Ctrl+Q` （Exit），如果用默认的快捷键设置，则为 `Ctrl+O` （Write Out） >> `Enter` >> `Ctrl+X` （Exit）**
 
 ### **更改 visudo 默认编辑器为 vim**
 
@@ -476,7 +495,9 @@ sudo visudo
 
 在开头的一个空行键入：
 
-    Defaults editor=/usr/bin/vim
+```
+Defaults editor=/usr/bin/vim
+```
 
 按 `Esc` 进入命令模式，再按 `:x` 保存，按 `Enter` 退出
 
@@ -490,7 +511,9 @@ sudo EDITOR=vim visudo
 
 在最后一行（空行）按 `i` 进入输入模式，加上这一行：
 
-    Defaults:(user_name) !authenticate
+```
+Defaults:(user_name) !authenticate
+```
 
 进入命令模式，保存退出即可
 
@@ -500,7 +523,9 @@ sudo EDITOR=vim visudo
 
 在 `~/.bashrc` 的最后添加一行：
 
-    export LANG=en_US.UTF-8
+```
+export LANG=en_US.UTF-8
+```
 
 如果使用 zsh，则去掉 `~/.zshrc` 中这一行的注释即可
 
@@ -508,7 +533,7 @@ sudo EDITOR=vim visudo
 
 #### **双系统时间不同步**
 
-系统设置 >>> 时间和日期 >>> 自动设置时间和日期
+系统设置 >> 时间和日期 >> 自动设置时间和日期
 
 在 Manjaro 上设置硬件时间为 UTC：
 
@@ -524,9 +549,9 @@ reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation
 
 这一步需要在 Powershell（管理员）中执行
 
-#### **Manjaro 数字时钟设置24小时制**
+#### **Manjaro 数字时钟设置 24 小时制**
 
-右键点击“数字时钟” >>> 配置数字时钟 >>> 时间显示 >>> 24小时制
+右键点击“数字时钟” >> 配置数字时钟 >> 时间显示 >> 24 小时制
 
 #### **添加 TUNA 网络授时服务**
 
@@ -552,7 +577,7 @@ https://wiki.archlinux.org/title/Silent_boot
 sudo vim /etc/default/grub
 ```
 
-将 `GRUB_CMDLINE_LINUX_DEFAULT` 的值改为 `"quiet loglevel=3 udev.log_priority=3"` 
+将 `GRUB_CMDLINE_LINUX_DEFAULT` 的值改为 `"quiet loglevel=3 udev.log_priority=3"`
 
 编辑 fsck:
 
@@ -575,8 +600,10 @@ sudo systemctl edit --full systemd-fsck@.service
 
 分别在 `Service` 一段中编辑 `StandardOutput` 和 `StandardError` 如下：
 
-    StandardOutput=null
-    StandardError=journal+console
+```
+StandardOutput=null
+StandardError=journal+console
+```
 
 最后执行
 
@@ -588,7 +615,9 @@ sudo update-grub
 
 创建文件 `/etc/modprobe.d/watchdog.conf`，并写入：
 
-    blacklist iTCO_wdtblacklist iTCO_vendor_support
+```
+blacklist iTCO_wdtblacklist iTCO_vendor_support
+```
 
 这样可以屏蔽掉不需要的驱动，保存后执行：
 
@@ -610,7 +639,7 @@ https://zhuanlan.zhihu.com/p/107334179
 
 ### **动态 Swap 文件设置**
 
-**使用 swap 分区可能会缩短 SSD 的寿命，如果需要 swap 的话建议用 swap 文件，详见 [Swap（简体中文）- Arch Wiki](https://wiki.archlinux.org/index.php/Swap_(简体中文)#交换文件)**
+**使用 swap 分区可能会缩短 SSD 的寿命，如果需要 swap 的话建议用 swap 文件，详见 [Swap（简体中文）- Arch Wiki](<https://wiki.archlinux.org/index.php/Swap_(简体中文)#交换文件>)**
 
 先下载 `systemd-swap` 软件包：
 
@@ -654,9 +683,11 @@ lsblk -f
 
 在输出结果中可以发现 Windows 的硬盘分区：
 
-    NAME       FSTYPE       LABEL   UUID
-    ├─(name_C) ntfs         C       (UUID_C)
-    ├─(name_D) ntfs         D       (UUID_D)
+```
+NAME       FSTYPE       LABEL   UUID
+├─(name_C) ntfs         C       (UUID_C)
+├─(name_D) ntfs         D       (UUID_D)
+```
 
 接着就来修改系统文件：
 
@@ -666,8 +697,10 @@ sudo vim /etc/fstab
 
 在最后加入这两行：
 
-    UUID=(UUID_C)                     /home/(user_name)/C    ntfs default 0 0
-    UUID=(UUID_D)                     /home/(user_name)/D    ntfs default 0 0
+```
+UUID=(UUID_C)                     /home/(user_name)/C    ntfs default 0 0
+UUID=(UUID_D)                     /home/(user_name)/D    ntfs default 0 0
+```
 
 重启电脑后，即可自动挂载
 
@@ -679,8 +712,10 @@ sudo vim /etc/fstab
 
 这相当于直接编辑 `/etc/fstab`，加入：
 
-    /dev/(name_C)                     /home/(user_name)/C    ntfs default 0 0
-    /dev/(name_D)                     /home/(user_name)/D    ntfs default 0 0
+```
+/dev/(name_C)                     /home/(user_name)/C    ntfs default 0 0
+/dev/(name_D)                     /home/(user_name)/D    ntfs default 0 0
+```
 
 好处是格式化磁盘后内核名称不变，依然可以挂载
 
@@ -688,7 +723,7 @@ sudo vim /etc/fstab
 
 **首先检查 Windows 中是否关闭了快速启动**
 
-关闭快速启动（Windows 工具 –> 控制面板 >>> 电源选项 >>> 选择电源按钮的功能 >>> 更改当前不可用的设置 >>> 关闭快速启动 >>> 保存修改）并重启电脑
+关闭快速启动（Windows 工具 –> 控制面板 >> 电源选项 >> 选择电源按钮的功能 >> 更改当前不可用的设置 >> 关闭快速启动 >> 保存修改）并重启电脑
 
 一般来讲是 Windows 开启了快速启动，或者进行了优化磁盘等操作导致的，若关闭快速启动不能解决问题，使用下面的方法：
 
@@ -728,6 +763,47 @@ sudo mount /dev/(partition_name) (mount_path)/(mount_folder)
 sudo ntfsfix /dev/(partition_name) && sudo mount /dev/(partition_name)(mount_path)/(mount_folder)
 ```
 
+### **系统分区改变导致时进入 GRUB Rescue 模式**
+
+此时会在开机时显示如下内容而无法进入选择系统的界面：
+
+```
+error: no such partition.
+Entering rescue mode...
+grub rescue>
+```
+
+此时执行 `ls`，显示如下：
+
+```
+((hd_number)) ((hd_number),(gpt_number))
+```
+
+其中硬盘编号 `(hd_number)` 从小到大排列（最小值为 0），分区编号 `(gpt_number)` 从大到小排列（最小值为 1）
+
+找到安装 Manjaro 的分区`((hd_number),(gpt_number))`，此时执行 `ls((hd_number),(gpt_number))`应该能看到 Manjaro 根目录下的所有文件和文件夹
+
+手动修改启动分区所在的位置：
+
+```bash
+set prefix=((hd_number),(gpt_number))/boot/grub
+```
+
+执行：
+
+```bash
+insmod normal
+normal
+```
+
+即可进入 GRUB 界面，从这里登录 Manjaro 系统，登录后执行：
+
+```
+sudo update-grub
+```
+
+以修复启动项
+
 ### **调整文件夹名称为英文**
 
 修改 `~/.config/user-dirs.dirs`，改为：
@@ -749,7 +825,9 @@ XDG_VIDEOS_DIR="$HOME/Videos"
 
 如果出现以下错误：
 
-    无法创建输入输出后端。klauncher 回应：装入“/usr/lib/qt/plugins/kf5/kio/trash.so”时出错
+```
+无法创建输入输出后端。klauncher 回应：装入“/usr/lib/qt/plugins/kf5/kio/trash.so”时出错
+```
 
 说明 Qt 还在内存中保留着旧版 Dolphin，此时可以重启/重新登录，或执行：
 
@@ -759,15 +837,15 @@ dbus-launch dolphin
 
 ### **SONY WH-1000XM3 耳机的蓝牙连接**
 
-长按耳机电源键约7秒即可进入配对模式，可以在蓝牙中配对
+长按耳机电源键约 7 秒即可进入配对模式，可以在蓝牙中配对
 
 ### **Logitech M590 鼠标的蓝牙连接**
 
 同一台电脑的 Windows 系统和 Manjaro 系统在鼠标上会被识别为两个设备
 
-如果 Windows 系统被识别为设备1，需要按滚轮后的圆形按钮切换至设备2
+如果 Windows 系统被识别为设备 1，需要按滚轮后的圆形按钮切换至设备 2
 
-长按圆形按钮直到灯2快速闪烁进入配对模式，可以在蓝牙中配对
+长按圆形按钮直到灯 2 快速闪烁进入配对模式，可以在蓝牙中配对
 
 #### **如果鼠标配对后屏幕光标无法移动**
 
@@ -787,7 +865,7 @@ bluetoothctl
 
 然后参考以下网站：
 
-Arch Wiki -- 关于Logitech BLE鼠标的问题
+Arch Wiki -- 关于 Logitech BLE 鼠标的问题
 
 https://wiki.archlinux.org/index.php/Bluetooth_mouse#Problems_with_the_Logitech_BLE_mouse_(M557,_M590,_anywhere_mouse_2,_etc)
 
@@ -868,13 +946,13 @@ sudo openconnect --protocol=nc --user (student_ID) https://vpn.pku.edu.cn
 
 #### **图形化界面连接 PKU Secure**
 
-Wi-Fi 安全 >>> 安全 >>> 企业 WPA/WPA2
+Wi-Fi 安全 >> 安全 >> 企业 WPA/WPA2
 
-Wi-Fi 安全 >>> 认证 >>> 受保护的 EAP（PEAP）
+Wi-Fi 安全 >> 认证 >> 受保护的 EAP（PEAP）
 
-PEAP 版本 >>> 自动
+PEAP 版本 >> 自动
 
-内部认证 >>> MSCHAPv2
+内部认证 >> MSCHAPv2
 
 输入用户名、密码即可连接
 
@@ -907,15 +985,19 @@ sudo vim /etc/tlp.conf
 
 若更改 CPU 频率，修改以下位置：
 
-    CPU_MIN_PERF_ON_AC=0
-    CPU_MAX_PERF_ON_AC=100
-    CPU_MIN_PERF_ON_BAT=0
-    CPU_MAX_PERF_ON_BAT=30
+```
+CPU_MIN_PERF_ON_AC=0
+CPU_MAX_PERF_ON_AC=100
+CPU_MIN_PERF_ON_BAT=0
+CPU_MAX_PERF_ON_BAT=30
+```
 
 若更改 CPU 睿频设置，修改以下位置：
 
-    CPU_BOOST_ON_AC=1
-    CPU_BOOST_ON_BAT=0
+```
+CPU_BOOST_ON_AC=1
+CPU_BOOST_ON_BAT=0
+```
 
 **不需要高性能的时候可以关闭睿频，这样 CPU 的频率就会限制在 1.9 GHz 以下，大幅增加续航、减少发热**
 
@@ -947,18 +1029,22 @@ balooctl disable
  yay -S axel
 ```
 
-编辑 `/etc/pacman.conf` 文件（在第21行）:
+编辑 `/etc/pacman.conf` 文件（在第 21 行）:
 
-    XferCommand = /usr/bin/axel -n 10 -o %o %u
+```
+XferCommand = /usr/bin/axel -n 10 -o %o %u
+```
 
-编辑 `/etc/makepkg.conf` 文件（在第11-16行）:
+编辑 `/etc/makepkg.conf` 文件（在第 11-16 行）:
 
-    DLAGENTS=('file::/usr/bin/curl -gqC - -o %o %u'
-    'ftp::/usr/bin/axel -n 10 -o %o %u'
-    'http::/usr/bin/axel -n 10 -o %o %u'
-    'https::/usr/bin/axel -n 10 -o %o %u'
-    'rsync::/usr/bin/rsync --no-motd -z %u %o'
-    'scp::/usr/bin/scp -C %u %o')
+```
+DLAGENTS=('file::/usr/bin/curl -gqC - -o %o %u'
+'ftp::/usr/bin/axel -n 10 -o %o %u'
+'http::/usr/bin/axel -n 10 -o %o %u'
+'https::/usr/bin/axel -n 10 -o %o %u'
+'rsync::/usr/bin/rsync --no-motd -z %u %o'
+'scp::/usr/bin/scp -C %u %o')
+```
 
 **注意某些软件包如 `rider` 和 `qqmusic-bin` 等下载源不支持 axel，启用多线程下载后可能会导致构建失败**
 
@@ -983,7 +1069,7 @@ git config --global user.email "(user_email)"
 
 Git 使用教程参考以下网址：
 
-菜鸟教程 -- Git教程
+菜鸟教程 -- Git 教程
 
 https://www.runoob.com/git/git-tutorial.html
 
@@ -1011,7 +1097,7 @@ ssh-add ~/.ssh/id_ed25519
 
 #### **新增 SSH 密钥到 GitHub 帐户**
 
-通过 `cat ~/.ssh/id_ed25519.pub` 查看公钥并复制到 Github 账户下的“设置 >>> SSH and GPG keys”中
+通过 `cat ~/.ssh/id_ed25519.pub` 查看公钥并复制到 Github 账户下的“设置 >> SSH and GPG keys”中
 
 #### **测试 SSH 连接**
 
@@ -1023,7 +1109,7 @@ ssh -T git@github.com
 
 这一步要输入 `yes` 确定
 
-**注意 Linux 上和 Windows 上要用不同的密钥**
+**注意 Linux 上和 Windows 上用的是不同的密钥**
 
 ## **一些有用的命令总结**
 
@@ -1149,25 +1235,29 @@ https://www.pling.com/browse/cat/309/order/latest/
 
 ### **添加用户图标**
 
-系统设置 >>> 用户账户 >>> 图像
+系统设置 >> 用户账户 >> 图像
 
 ### **开机登录美化**
 
-开机与关机 >>> 登录屏幕（SDDM） >>> Breeze 或者 Fluent
+开机与关机 >> 登录屏幕（SDDM） >> Breeze 或者 Fluent
 
-外观 >>> 欢迎屏幕 >>> Snowy Night Miku、Manjaro Linux Reflection Splashscreen、ManjaroLogo Black、Plasma 5 Manjaro Splashscreen White Blur
+外观 >> 欢迎屏幕 >> Snowy Night Miku、Manjaro Linux Reflection Splashscreen、ManjaroLogo Black、Plasma 5 Manjaro Splashscreen White Blur
 
 **现在新设计的登录屏幕（SDDM）和欢迎屏幕已经非常美观且改进了翻译问题，最方便的方法就是登录屏幕（SDDM）选择 Breath 2，欢迎屏幕选择 Breath2 2021**
 
-#### **SDDM 时间显示调整为24小时制**
+#### **SDDM 时间显示调整为 24 小时制**
 
-更改 `/usr/share/sddm/themes/(theme_name)/components/Clock.qml` 中的 `Qt.formatTime` 一行：
+更改 `/usr/share/sddm/themes/(theme_name)/components/Clock.qml` 或 `/usr/share/sddm/themes/(theme_name)/Clock.qml` 中的 `Qt.formatTime` 一行：
 
-    text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
+```
+text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
+```
 
 将其改为：
 
-    text: Qt.formatTime(timeSource.data["Local"]["DateTime"], "hh:mm:ss")
+```
+text: Qt.formatTime(timeSource.data["Local"]["DateTime"], "hh:mm:ss")
+```
 
 保存重启即可
 
@@ -1179,10 +1269,10 @@ KDE 桌面的 Mac 化
 
 https://www.cnblogs.com/luoshuitianyi/p/10587788.html
 
-其中 Plasma 主题、GTK主题和图标主题分别选择：
-    Plasma Theme: Mojave-CT
-    GTK Theme: Mojave-light-alt [GTK2/3]
-    Icon Theme: La Capitaine
+其中 Plasma 主题、GTK 主题和图标主题分别选择：
+Plasma Theme: Mojave-CT
+GTK Theme: Mojave-light-alt [GTK2/3]
+Icon Theme: La Capitaine
 
 KDE 桌面美化指南
 
@@ -1190,27 +1280,21 @@ https://acherstyx.github.io/2020/06/30/KDE%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%E
 
 Latte-Dock 的推荐设置：
 
-行为：位置 >>> 底部，可见性 >>> 自动隐藏，延迟 >>> 显示 >>> none
+行为：位置 >> 底部，可见性 >> 自动隐藏，延迟 >> 显示 >> none
 
-外观：绝对大小 >>> 96，背景大小 >>> 10%
+外观：绝对大小 >> 96，背景大小 >> 10%
 
-**不想使用 Mac 风格主题但又想使用浅色主题时，建议使用 Manjaro 新官方主题 Breath2 2021（也有深浅搭配和深色主题可选）或 KDE 官方主题 Breeze，并将终端（Konsole 和 Yakuake）主题改为“白底黑字”，背景透明度选择20%**
+**不想使用 Mac 风格主题但又想使用浅色主题时，建议使用 Manjaro 新官方主题 Breath2 2021（也有深浅搭配和深色主题可选）或 KDE 官方主题 Breeze，并将终端（Konsole 和 Yakuake）主题改为“白底黑字”，背景透明度选择 20%**
 
 #### **配置桌面小部件**
 
-右键点击桌面 >>> 添加部件 >>> 获取新部件 >>> 下载新 Plasma 部件
+右键点击桌面 >> 添加部件 >> 获取新部件 >> 下载新 Plasma 部件
 
 在这里可以下载桌面小部件，并在“添加部件”处添加，例如 Simple System Monitor
 
-#### bash 配置
-
-在 `~/.bashrc` 中找到 `PS1` 一行，加入 `\t` 即可添加 24 小时格式的时、分、秒显示，更多设置可以参考下列网址：
-
-https://bashrcgenerator.com/
-
 #### **zsh 与 Oh-My-Zsh 配置（可选）**
 
-Konsole >>> 设置 >>> 编辑当前方案 >>> 常规 >>> 命令 >>> `usr/bin/zsh`
+Konsole >> 设置 >> 编辑当前方案 >> 常规 >> 命令 >> `usr/bin/zsh`
 
 安装 Oh-My-Zsh，执行：（不推荐用包管理器安装）
 
@@ -1232,19 +1316,27 @@ vim ~/.zshrc
 
 选择 Oh-My-Zsh 主题：
 
-    ZSH_THEME="geoffgarside"
+```
+ZSH_THEME="geoffgarside"
+```
 
 选择 Oh-My-Zsh 插件：
 
-    plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
 
 更新 Oh-My-Zsh，执行：
 
-    omz update
+```
+omz update
+```
 
 卸载 Oh-My-Zsh，执行:
 
-    uninstall_oh_my_zsh
+```
+uninstall_oh_my_zsh
+```
 
 **如果遇到开关机的时候报错：`\[FAILED] failed to start pkgfile database update`，卸载 `manjaro-zsh-config`，这会卸载 `zsh` 及其所有依赖，然后重新安装 `zsh`**
 
@@ -1278,9 +1370,11 @@ echo GRUB_DISABLE_OS_PROBER=false | sudo tee -a /etc/default/grub && sudo update
 sudo vim /etc/pacman.conf
 ```
 
-去掉 `Color` 前面的注释，并在下一行添加：
+去掉 `Color` 前面的注释，并在下一行加入：
 
-    ILoveCandy
+```
+ILoveCandy
+```
 
 即可添加吃豆人彩蛋
 
@@ -1308,9 +1402,17 @@ gpg --keyserver p80.pool.sks-keyservers.net --recv-keys (pgp_key)
 
 再重新安装软件即可
 
+### **安装软件后在开始菜单中找不到图标**
+
+执行命令：
+
+```
+sudo update-desktop-database
+```
+
 ### **语言包**
 
-系统设置 >>> 语言包 >>> 右上角点击“已安装的软件包”安装语言包
+系统设置 >> 语言包 >> 右上角点击“已安装的软件包”安装语言包
 
 ### **Kate 插件下载**
 
@@ -1322,7 +1424,7 @@ yay -S aspell hspell libvoikko
 
 ### **字体安装**
 
-Manjaro 支持直接右键安装 TTF 和 OTF 字体，但不支持 TTC 字体集，系统字体安装的默认文件夹为 `/usr/share/fonts`
+Manjaro KDE 支持直接在 Dolphin 的右键菜单中安装 TTF 和 OTF 字体，但不支持 TTC 字体集，TTC 字体集可以在系统字体安装的默认文件夹 `/usr/share/fonts` 中用命令 `fc-cache -fv` 安装
 
 **注意不管是 Windows 还是 Manjaro Linux 都要将字体“为所有用户安装”，尤其是 Windows 11 右键直接安装是安装到个人用户目录 `C:\Users\user_name\AppData\Local\Microsoft\Windows\Fonts` 而非系统目录 `C:\Windows\Fonts`**
 
@@ -1379,7 +1481,7 @@ sudo vim /etc/fonts/conf.d/64-language-selector-prefer.conf
 <fontconfig>
     <alias>
         <family>sans-serif</family>
-        <prefer>            
+        <prefer>
             <family>Noto Sans CJK SC</family>
             <family>Noto Sans CJK TC</family>
             <family>Noto Sans CJK HK</family>
@@ -1422,7 +1524,7 @@ sudo vim /etc/fonts/conf.d/64-language-selector-prefer.conf
 yay -S fcitx5 fcitx5-chinese-addons manjaro-asian-input-support-fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool
 ```
 
-如果无法启动输入法，在系统设置 >>> 区域设置 >>> 输入法 >>> 添加输入法中手动添加“拼音”
+如果无法启动输入法，在系统设置 >> 区域设置 >> 输入法 >> 添加输入法中手动添加“拼音”
 
 对应的 git 版本为：（需要使用 Arch Linux CN 源）
 
@@ -1485,9 +1587,9 @@ sudo debtap -u
 sudo debtap (package_name).deb
 ```
 
-系统会询问三个问题：文件名随便写，协议写 `GPL` 即可，编辑文件直接按 `Enter` 跳过 
+系统会询问三个问题：文件名随便写，协议写 `GPL` 即可，编辑文件直接按 `Enter` 跳过
 
-此处会生成一个 `tar.zst` 包，双击打开（右键用“软件安装程序”打开）即可安装 
+此处会生成一个 `tar.zst` 包，双击打开（右键用“软件安装程序”打开）即可安装
 
 ### **安装 TeX Live**
 
@@ -1529,9 +1631,11 @@ sudo perl install-tl -gui text
 
 用大写字母命令控制安装：
 
-    D >>> 1 >>> 输入要安装 TeX Live 的位置（TEXDIR） >>> R
-    O >>> P >>> L >>> 都选择默认位置（按 Enter） >>> R
-    I
+```
+D >> 1 >> 输入要安装 TeX Live 的位置（TEXDIR） >> R
+O >> L >> 都选择默认位置（按 Enter） >> R
+I
+```
 
 TEXDIR 建议选择 `/home/(user_name)/` 下的文件夹以方便查看和修改，TEXMFLOCAL 会随 TEXDIR 自动更改
 
@@ -1554,35 +1658,35 @@ sudo tlmgr --repository http://www.texlive.info/tlgpg/ install tlgpg
 yay -S texstudio
 ```
 
-帮助 >>> 检查 LaTeX 安装信息
+帮助 >> 检查 LaTeX 安装信息
 
 如果能检测到 LaTeX，说明 TeX Live 安装成功，开始设置
 
-选项 >>> 设置 TeXstudio
+选项 >> 设置 TeXstudio
 
 首先在左下角勾选“显示高级选项”
 
-常规 >>> 会话 >>> 取消勾选“启动时恢复上一次会话”（可选）
+常规 >> 会话 >> 取消勾选“启动时恢复上一次会话”（可选）
 
-菜单 >>> 数学 >>> `\frac{}{}` >>> `\frac{%|}{}`
+菜单 >> 数学 >> `\frac{}{}` >> `\frac{%|}{}`
 
-菜单 >>> 数学 >>> `\frac{}{}` >>> `\frac{%|}{}`
+菜单 >> 数学 >> `\frac{}{}` >> `\frac{%|}{}`
 
-快捷键 >>> 数学 >>> 数学字体格式 >>> 罗马字体 >>> 当前快捷键 >>> `Alt+Shift+R`
+快捷键 >> 数学 >> 数学字体格式 >> 罗马字体 >> 当前快捷键 >> `Alt+Shift+R`
 
-编辑器 >>> 缩进模式 >>> 自动增加或减少缩进
+编辑器 >> 缩进模式 >> 自动增加或减少缩进
 
-编辑器 >>> 缩进模式 >>> 勾选“将缩进替换为空格”和“将文本中的制表符（Tab）替换为空格”
+编辑器 >> 缩进模式 >> 勾选“将缩进替换为空格”和“将文本中的制表符（Tab）替换为空格”
 
-编辑器 >>> 显示行号 >>> 所有行号
+编辑器 >> 显示行号 >> 所有行号
 
-编辑器 >>> 取消勾选“行内检查”
+编辑器 >> 取消勾选“行内检查”
 
-高级编辑器 >>> 自动保存所有文件 >>> 1分钟
+高级编辑器 >> 自动保存所有文件 >> 1 分钟
 
-高级编辑器 >>> 破解/变通 >>> 取消勾选“自动选择最佳显示选项”，并勾选“禁用字符宽度缓存”和“关闭固定位置模式”
+高级编辑器 >> 破解/变通 >> 取消勾选“自动选择最佳显示选项”，并勾选“禁用字符宽度缓存”和“关闭固定位置模式”
 
-补全 >>> 取消勾选“输入参数”
+补全 >> 取消勾选“输入参数”
 
 ### **Thunderbird 配置**
 
@@ -1590,11 +1694,11 @@ yay -S texstudio
 
 进入首选项界面调整显示：
 
-首选项 >>> 常规 >>> Thunderbird 起始页 >>> 清空并取消勾选
+首选项 >> 常规 >> Thunderbird 起始页 >> 清空并取消勾选
 
-首选项 >>> 常规 >>> 默认搜索引擎 >>> 改为 Bing
+首选项 >> 常规 >> 默认搜索引擎 >> 改为 Bing
 
-首选项 >>> 隐私与安全 >>> 邮件内容 >>> 勾选“允许消息中的远程内容”
+首选项 >> 隐私与安全 >> 邮件内容 >> 勾选“允许消息中的远程内容”
 
 右键点击上方邮件工具栏，选择“自定义”，自行配置即可
 
@@ -1602,9 +1706,9 @@ yay -S texstudio
 
 点击邮箱帐号，配置“账户设置”如下：
 
-服务器 >>> 服务器设置 >>> 每隔1分钟检查一次新消息
+服务器 >> 服务器设置 >> 每隔 1 分钟检查一次新消息
 
-服务器 >>> 服务器设置 >>> 在删除消息时 >>> 立即删除
+服务器 >> 服务器设置 >> 在删除消息时 >> 立即删除
 
 ### **Python 安装与配置**
 
@@ -1640,7 +1744,7 @@ Miniconda -- Conda documentation
 
 https://docs.conda.io/en/latest/miniconda.html
 
-或者在[清华大学镜像站](https://mirrors.tuna.tsinghua.edu.cn/#)点击右侧的“获取下载链接”按钮，在“应用软件” >>> Conda 里面选择
+或者在[清华大学镜像站](https://mirrors.tuna.tsinghua.edu.cn/#)点击右侧的“获取下载链接”按钮，在“应用软件” >> Conda 里面选择
 
 安装过程参考以下网址：（Miniconda 和 Anaconda 的安装步骤相同）
 
@@ -1742,9 +1846,9 @@ conda list
 
 #### **Spyder 配置**
 
-通用 >>> 显示器分辨率 >>> 普通
+通用 >> 显示器分辨率 >> 自定义高分辨率缩放 >> 1.0
 
-外观 >>> 语法高亮主题 >>> IDLE
+外观 >> 语法高亮主题 >> IDLE
 
 编辑选定的方案：
 
@@ -1772,13 +1876,15 @@ conda list
 链接：#55ff00
 ```
 
-编辑器 >>> 勾选“显示标签栏”、“显示缩进指导”、“显示行号”、“高亮显示当前行”、“高亮显示当前 Cell”，并把“高亮延迟时间”设定为100毫秒
+编辑器 >> 勾选“显示标签栏”、“显示缩进指导”、“显示行号”、“高亮显示当前行”、“高亮显示当前 Cell”，并把“高亮延迟时间”设定为 100 毫秒
 
 用 Spyder 打开某个文件需要在终端中输入：
 
 ```bash
 spyder (file_path)/(file_name)
 ```
+
+**目前 Spyder 还不支持 Fcitx/Fcitx5 输入中文字符**
 
 ### **Vim 安装插件**
 
@@ -1823,7 +1929,7 @@ yay -S vscodium-bin
 yay -S code-git
 ```
 
-下载扩展：Python（会自动下载 Pylance、Jupyter 和 Jupyter Keymap），Markdown All in One，LaTeX Workshop，C/C++，Rainbow Brackets
+下载扩展：Python（会自动下载 Pylance、Jupyter 等扩展），Markdown All in One，LaTeX Workshop，C/C++，Rainbow Brackets，Prettier - Code formatter
 
 扩展保存在 `~/.vscode/extensions/` 文件夹内
 
@@ -1831,7 +1937,7 @@ yay -S code-git
 
 如果图标美化后 Visual Studio Code 图标变成圆形，想恢复原图标，更改路径如下：
 
-程序启动器 >>> 编辑应用程序 >>> Visual Studio Code >>> 点击图标更改 >>> 其他图标
+程序启动器 >> 编辑应用程序 >> Visual Studio Code >> 点击图标更改 >> 其他图标
 
 其图标位置在 `/usr/share/icons/visual-studio-code.png`
 
@@ -1847,7 +1953,7 @@ yay -S code-git
 
 #### **Latex Workshop 插件设置**
 
-若想在 LaTeX Workshop 里面添加 `frac` 命令的快捷键为 `Ctrl+M Ctrl+F`，则添加一段：
+若想在 LaTeX Workshop 里面添加 `\frac{}{}` 命令的快捷键为 `Ctrl+M Ctrl+F`，则添加一段：
 
 ```json
 {
@@ -1910,7 +2016,9 @@ var squigglyBracketsColor = ["#aa00aa", "#009900", "#996600"];
 
 在 `/home/(user_name)/.config/Typora/themes/` 中自己写一个 CSS 文件（可以复制其中一个默认主题，重命名后更改）
 
-找到 `#write` 一行，将 `max-width` 改为 `1200px`
+找到 `body` 一行，将 `font-family` 改成自己想要的字体
+
+找到 `tt` 一行，将 `font-family` 改成自己想要的等宽字体（`monospace`）
 
 ### **SAOImageDS9 安装**
 
@@ -1954,9 +2062,9 @@ yay -S deepin-wine-wechat
 
 #### **deepin-wine-wechat 高分辨率适配调整**
 
-用命令 `/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%的放大率：
+用命令 `/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于 200% 的放大率：
 
-Graphics >>> Screen Resolution >>> 192 dpi
+Graphics >> Screen Resolution >> 192 dpi
 
 其余基于 Deepin Wine 的软件（如腾讯会议）也是类似的处理方法，将 `com.qq.weixin.deepin` 换成对应的文件夹名称即可（都在 `/opt/apps/` 目录下）
 
@@ -1970,9 +2078,9 @@ yay -S com.tencent.deepin.meeting
 
 高分辨率适配调整：
 
-用命令 `/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于200%的放大率：
+用命令 `/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg` 调出 Wine Configuration，对于 200% 的放大率：
 
-Graphics >>> Screen Resolution >>> 192 dpi
+Graphics >> Screen Resolution >> 192 dpi
 
 ### **音乐软件安装**
 
@@ -2087,7 +2195,7 @@ https://www.microsoft.com/zh-cn/software-download/windows10ISO
 
 https://support.microsoft.com/zh-cn/help/4023531/surface-how-to-use-surface-uefi
 
-Win 10 环境下安装 Manjaro KDE（双系统） 
+Win 10 环境下安装 Manjaro KDE（双系统）
 
 https://www.cnblogs.com/Jaywhen-xiang/p/11561661.html
 
@@ -2151,7 +2259,7 @@ https://jakting.com/archives/ubuntu-rw-windows-files.html
 
 https://zhuanlan.zhihu.com/p/107334179
 
-Manjaro Linux Forum -- Connect to internet from command-line as a beginner 
+Manjaro Linux Forum -- Connect to internet from command-line as a beginner
 
 https://forum.manjaro.org/t/howto-connect-to-internet-from-command-line-as-a-beginner/
 
