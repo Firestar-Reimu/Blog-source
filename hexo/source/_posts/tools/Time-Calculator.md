@@ -40,13 +40,33 @@ banner_img: /img/OrionStreams.jpg
         <option value="-12">UTC-12</option>
     </select>
 </form>
+<br>
 </div>
 
-|               年                |                月                 |                日                 |
-| :-----------------------------: | :-------------------------------: | :-------------------------------: |
-| <input type="text" id="year" /> | <input type="text" id="month" />  |  <input type="text" id="day" />   |
-|             **时**              |              **分**               |              **秒**               |
-| <input type="text" id="hour" /> | <input type="text" id="minute" /> | <input type="text" id="second" /> |
+{% raw %}
+<table align="center" width="40%">
+    <tr>
+        <th>年</td>
+        <th>月</td>
+        <th>日</td>
+    </tr>
+    <tr>
+        <td><input type="text" id="year" /></td>
+        <td><input type="text" id="month" /></td>
+        <td><input type="text" id="day" /></td>
+    </tr>
+    <tr>
+        <th>时</td>
+        <th>分</td>
+        <th>秒</td>
+    </tr>
+    <tr>
+        <td><input type="text" id="hour" /></td>
+        <td><input type="text" id="minute" /></td>
+        <td><input type="text" id="second" /></td>
+    </tr>
+</table>
+{% endraw %}
 
 <div align="center">
 <button value="submit" onclick="time_to_JD()">Convert to JD</button>
