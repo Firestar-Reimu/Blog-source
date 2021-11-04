@@ -363,9 +363,9 @@ npx hexo clean && npx hexo deploy
 
 ### LaTeX Test
 
-This is a equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$. Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$.
+This is an equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
 
-This is a equation: ` $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$ `. Another Example: ` $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$ `.
+Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$
 
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
