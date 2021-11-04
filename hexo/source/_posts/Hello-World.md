@@ -25,7 +25,7 @@ banner_img: /img/Purple_Flower.jpg
 
 ```
 记录类型：CNAME；
-主机记录自选，(我这里选择的是 blog，因为 www 经常无法与 GitHub Pages 联通）；
+主机记录自选（我这里选择的是 blog，因为 www 经常无法与 GitHub Pages 连接）；
 解析线路选择默认；
 记录值选择(user_name).github.io；
 TTL选择“10分钟”

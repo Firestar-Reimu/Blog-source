@@ -24,7 +24,7 @@
 <meta property="og:description" content="在 ThinkPad X13 2021 Intel&#x2F;Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南ThinkPad 系统信息： 12345678910OS: Manjaro 21.2.0 QonosKernel: x86_64 Linux 5.14.13-1-MANJAROShell: bash 5.1.8Resolution">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-04T09:27:22.302Z">
+<meta property="article:modified_time" content="2021-11-04T16:32:54.334Z">
 <meta property="article:author" content="Firestar">
 <meta property="article:tag" content="Manjaro">
 <meta property="article:tag" content="Linux">
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-11-04 17:27:22
+                  本文最后更新于：2021-11-05 0:32:54
                 
               </p>
             
@@ -317,14 +317,14 @@
 <h4 id="Konsole-Yakuake-快捷键"><a href="#Konsole-Yakuake-快捷键" class="headerlink" title="Konsole/Yakuake 快捷键"></a><strong>Konsole/Yakuake 快捷键</strong></h4><p>设置 &gt;&gt; 配置键盘快捷键 &gt;&gt; 复制改为 <code>Ctrl+C</code> ，粘贴改为 <code>Ctrl+V</code></p>
 <h3 id="选择镜像并更改更新分支"><a href="#选择镜像并更改更新分支" class="headerlink" title="选择镜像并更改更新分支"></a><strong>选择镜像并更改更新分支</strong></h3><p>选择镜像：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -i -c China<br></code></pre></td></tr></table></figure>
-<p>更新分支 <code>(branch)</code> 可以选择 stable/testing/unstable，更改更新分支的命令为：（不要漏掉 <code>--api</code>）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors --api --set-branch (branch)<br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p>更新分支 <code>(branch)</code> 可以选择 stable/testing/unstable，更改更新分支的命令为：（不要漏掉 <code>-a</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -aS (branch)<br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
 <p>获取更新分支的命令为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors --get-branch<br></code></pre></td></tr></table></figure>
-<p>选择镜像并更改更新分支的命令即为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors --api --set-branch (branch) -i -c China<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -G<br></code></pre></td></tr></table></figure>
+<p>选择镜像并更改更新分支的命令则为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -aS (branch) -ic China<br></code></pre></td></tr></table></figure>
 <p><strong>一般建议选择上海交大的镜像，其更新频率最高且支持全部三个更新分支，如果在北京大学访问上海交大镜像源较慢可以考虑用更快的清华大学镜像源</strong></p>
-<h3 id="包管理器"><a href="#包管理器" class="headerlink" title="包管理器"></a>包管理器</h3><p>Manjaro 常用的包管理器有 pacman、pamac 和 yay，其使用教程参考以下网址：</p>
+<h3 id="包管理器"><a href="#包管理器" class="headerlink" title="包管理器"></a>包管理器</h3><p>Manjaro 常用的包管理器有 pacman 和 pamac，其使用教程参考以下网址：</p>
 <p>Manjaro Wiki — Pacman Overview</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pacman_Overview">https://wiki.manjaro.org/index.php/Pacman_Overview</a></p>
 <p>Manjaro Wiki — Pacman-mirrors</p>
@@ -333,11 +333,7 @@
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Pacman">https://wiki.archlinux.org/index.php/Pacman</a></p>
 <p>Manjaro Wiki — Pamac</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pamac">https://wiki.manjaro.org/index.php/Pamac</a></p>
-<p>GitHub — Yay</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Jguer/yay">https://github.com/Jguer/yay</a></p>
-<p>其中 pacman 和 pamac 是预装的，“添加/删除软件”就是 pamac 的 GUI 版本，而 yay 需要自己下载：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S yay<br></code></pre></td></tr></table></figure>
-<p>yay 的命令一般和 pacman 一样，只是将 <code>sudo pacman</code> 替换成 <code>yay</code></p>
+<p>其中 pacman 和 pamac 是预装的，“添加/删除软件”就是 pamac 的 GUI 版本</p>
 <p>硬件管理的包管理器是 mhwd 和 mhwd-kernel，其使用教程参考以下网址：</p>
 <p>Manjaro Wiki — Manjaro Hardware Detection Overview</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview">https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview</a></p>
@@ -349,15 +345,13 @@
 <h3 id="AUR"><a href="#AUR" class="headerlink" title="AUR"></a><strong>AUR</strong></h3><h4 id="安装-base-devel"><a href="#安装-base-devel" class="headerlink" title="安装 base-devel"></a><strong>安装 base-devel</strong></h4><p>AUR 上的某些 PKGBUILD 会默认你已经安装 <code>base-devel</code> 组的所有软件包而不将它们写入构建依赖。为了避免在构建过程中出现一些奇怪的错误，建议先安装 <code>base-devel</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S base-devel<br></code></pre></td></tr></table></figure>
 <h4 id="启用-pamac-的-AUR-支持"><a href="#启用-pamac-的-AUR-支持" class="headerlink" title="启用 pamac 的 AUR 支持"></a><strong>启用 pamac 的 AUR 支持</strong></h4><p>添加/删除软件 &gt;&gt; 右上角 ··· &gt;&gt; 首选项 &gt;&gt; AUR &gt;&gt; 启用 AUR 支持</p>
-<p>然后就可以用 pamac 的图形界面获取 AUR 软件包，或者用命令 <code>pamac build</code> 及 <code>pamac install</code> 获取 AUR 的软件包。</p>
-<h4 id="yay-反向代理配置"><a href="#yay-反向代理配置" class="headerlink" title="yay 反向代理配置"></a><strong>yay 反向代理配置</strong></h4><p>执行以下命令以启用清华的 AUR 反向代理:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay --aururl <span class="hljs-string">&quot;https://aur.tuna.tsinghua.edu.cn&quot;</span> --save<br>yay -Syyu<br></code></pre></td></tr></table></figure>
-<p>修改的配置文件位于 <code>~/.config/yay/config.json</code> ，还可通过以下命令查看修改过的配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -P -g<br></code></pre></td></tr></table></figure>
+<p>然后就可以用 pamac 的图形界面获取 AUR 软件包，或者用命令 <code>pamac build</code> 及 <code>pamac install</code> 获取 AUR 的软件包</p>
+<p><strong>注意 pacman 不支持 AUR</strong></p>
 <h3 id="Arch-Linux-CN-软件源"><a href="#Arch-Linux-CN-软件源" class="headerlink" title="Arch Linux CN 软件源"></a><strong>Arch Linux CN 软件源</strong></h3><p>在 <code>/etc/pacman.conf</code> 文件末尾添加以下两行以启用上海交大镜像（注意一定要写第一行的 <code>[archlinuxcn]</code>）：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[archlinuxcn]<br>Server = https:<span class="hljs-regexp">//mi</span>rrors.sjtug.sjtu.edu.cn<span class="hljs-regexp">/archlinux-cn/</span><span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
 <p>之后执行下面的命令安装 archlinuxcn-keyring 包导入 GPG key</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Sy archlinuxcn-keyring<br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p>这样就开启了 pacman 和 pamac 对 Arch Linux CN 的支持</p>
 <p>由于 Manjaro 的更新滞后于 Arch，使用 Arch Linux CN 仓库可能会出现“部分更新”的情况，导致某些软件包损坏</p>
 <p>建议切换到 testing 或 unstable 分支以尽量跟进 Arch 的更新</p>
 <h4 id="搜索软件包"><a href="#搜索软件包" class="headerlink" title="搜索软件包"></a><strong>搜索软件包</strong></h4><p>在 <code>pamac</code> 上可以执行：</p>
@@ -368,13 +362,12 @@
 <p>Downgrading Packages — ArchWiki</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Downgrading_packages_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/title/Downgrading_packages_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
 <h4 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a><strong>清理缓存</strong></h4><p>清理全部软件安装包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -Scc<br></code></pre></td></tr></table></figure>
-<p>或者：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac clean<br></code></pre></td></tr></table></figure>
 <p>删除软件包时清理设置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -Rn (package_name)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Rn (package_name)<br></code></pre></td></tr></table></figure>
 <p>清理无用的孤立软件包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -Rsn $(pacman -Qdtq)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Rsn $(pacman -Qdtq)<br></code></pre></td></tr></table></figure>
+<p>若显示 <code>error: no targets specified (use -h for help)</code> 则说明没有孤立软件包需要清理</p>
 <p>或者：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac remove -o<br></code></pre></td></tr></table></figure>
 <p>若不小心终止了 <code>pacman</code> 进程，则需要先删除 <code>/var/lib/pacman/db.lck</code> 才能再次启动 <code>pacman</code></p>
@@ -399,11 +392,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -s https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \| sudo pacman-key --add -<br></code></pre></td></tr></table></figure>
 <p>如果出现错误或没有响应，一般是网络问题，可能要等待几分钟，建议先配置好 VPN 再装内核</p>
 <p>接着输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-key --finger 56C464BAAC421453sudo pacman-key --lsign-key 56C464BAAC421453<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-key --finger 56C464BAAC421453<br>sudo pacman-key --lsign-key 56C464BAAC421453<br></code></pre></td></tr></table></figure>
 <p>在 <code>/etc/pacman.conf</code> 里面添加：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[linux-surface]<br>Server = https:<span class="hljs-regexp">//</span>pkg.surfacelinux.com<span class="hljs-regexp">/arch/</span><br></code></pre></td></tr></table></figure>
 <p>然后更新软件库并下载：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Syyu<br>sudo pacman -S linux-surface linux-surface-headers iptsd<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Syyu<br>sudo pacman -S linux-surface linux-surface-headers iptsd-git<br></code></pre></td></tr></table></figure>
 <p>启动触屏：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> iptsd<br></code></pre></td></tr></table></figure>
 <p>启动相机参考以下网址：（相机功能仍在开发中，可能出现配置失败的情况）</p>
@@ -474,7 +467,7 @@
 <p>需要修改的文件是 <code>/etc/hosts</code>，Windows 下对应的文件位置为： <code>C:\Windows\System32\drivers\etc\hosts</code> （注意这里是反斜杠）</p>
 <h3 id="动态-Swap-文件设置"><a href="#动态-Swap-文件设置" class="headerlink" title="动态 Swap 文件设置"></a><strong>动态 Swap 文件设置</strong></h3><p><strong>使用 swap 分区可能会缩短 SSD 的寿命，如果需要 swap 的话建议用 swap 文件，详见 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Swap_(简体中文">Swap（简体中文）- Arch Wiki</a>#交换文件&gt;)</strong></p>
 <p>先下载 <code>systemd-swap</code> 软件包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S systemd-swap<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S systemd-swap<br></code></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/systemd/swap.conf</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/systemd/swap.conf<br></code></pre></td></tr></table></figure>
 <p>去掉 <code>swapfc_enabled</code> 前的注释并设置为 <code>swapfc_enabled=1</code> ，保存并关闭</p>
@@ -540,7 +533,7 @@
 <p>长按圆形按钮直到灯 2 快速闪烁进入配对模式，可以在蓝牙中配对</p>
 <h4 id="如果鼠标配对后屏幕光标无法移动"><a href="#如果鼠标配对后屏幕光标无法移动" class="headerlink" title="如果鼠标配对后屏幕光标无法移动"></a><strong>如果鼠标配对后屏幕光标无法移动</strong></h4><p>一般可以直接删除设备重新配对，如果失败则按照下面步骤操作：</p>
 <p>首先要安装 <code>bluez-utils</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S bluez-utils<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S bluez-utils<br></code></pre></td></tr></table></figure>
 <p>在终端中输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bluetoothctl<br></code></pre></td></tr></table></figure>
 <p>然后参考以下网站：</p>
@@ -589,8 +582,8 @@
 <p>右键点击顶栏，选择“添加部件”，找到 Intel P-state and CPU-Freq Manager 并添加在顶栏即可</p>
 <h3 id="禁用-baloo（可选）"><a href="#禁用-baloo（可选）" class="headerlink" title="禁用 baloo（可选）"></a><strong>禁用 baloo（可选）</strong></h3><p><code>baloo</code> 是 KDE 的文件索引服务，能加快文件搜索的速度，但可能会时不时产生大量硬盘读写而导致图形界面卡顿。可以用下面的命令禁用之：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">balooctl <span class="hljs-built_in">disable</span><br></code></pre></td></tr></table></figure>
-<h3 id="为-pacman-和-yay-启用多线程下载（可选）"><a href="#为-pacman-和-yay-启用多线程下载（可选）" class="headerlink" title="为 pacman 和 yay 启用多线程下载（可选）"></a><strong>为 pacman 和 yay 启用多线程下载（可选）</strong></h3><p>执行下面的命令下载 axel</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S axel<br></code></pre></td></tr></table></figure>
+<h3 id="为-pacman-启用多线程下载（可选）"><a href="#为-pacman-启用多线程下载（可选）" class="headerlink" title="为 pacman 启用多线程下载（可选）"></a><strong>为 pacman 启用多线程下载（可选）</strong></h3><p>执行下面的命令下载 axel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S axel<br></code></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/pacman.conf</code> 文件（在第 21 行）:</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">XferCommand = <span class="hljs-regexp">/usr/</span>bin/axel -n <span class="hljs-number">10</span> -o %o %u<br></code></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/makepkg.conf</code> 文件（在第 11-16 行）:</p>
@@ -649,7 +642,7 @@
 <p>Wallpapers Manjaro — pling.com</p>
 <p><a target="_blank" rel="noopener" href="https://www.pling.com/browse/cat/309/order/latest/">https://www.pling.com/browse/cat/309/order/latest/</a></p>
 <p>默认的壁纸保存位置为 <code>/usr/share/wallpapers/</code></p>
-<p>还可以使用包管理器（pacman/yay/pamac）下载壁纸，用“添加/删除软件”或 <code>pamac search wallpaper</code> 查找</p>
+<p>还可以使用包管理器（pacman/sudo pacman/pamac）下载壁纸，用“添加/删除软件”或 <code>pamac search wallpaper</code> 查找</p>
 <p>右键点击桌面得到桌面菜单，点击“配置桌面和壁纸”即可选择想要的壁纸，位置建议选择“缩放并裁剪”</p>
 <h3 id="添加用户图标"><a href="#添加用户图标" class="headerlink" title="添加用户图标"></a><strong>添加用户图标</strong></h3><p>系统设置 &gt;&gt; 用户账户 &gt;&gt; 图像</p>
 <h3 id="开机登录美化"><a href="#开机登录美化" class="headerlink" title="开机登录美化"></a><strong>开机登录美化</strong></h3><p>开机与关机 &gt;&gt; 登录屏幕（SDDM） &gt;&gt; Breeze 或者 Fluent</p>
@@ -702,7 +695,7 @@
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ILoveCandy</span><br></code></pre></td></tr></table></figure>
 <p>即可添加吃豆人彩蛋</p>
 <h3 id="安装-KDE-的-Wayland-支持（不推荐）"><a href="#安装-KDE-的-Wayland-支持（不推荐）" class="headerlink" title="安装 KDE 的 Wayland 支持（不推荐）"></a><strong>安装 KDE 的 Wayland 支持（不推荐）</strong></h3><p>与 Xorg 相比，Wayland 对触屏的支持更佳，但某些应用在 Wayland 上会有兼容性问题，目前 KDE 对 Wayland 的支持处于能用但还不太完善的状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S plasma-wayland-session<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S plasma-wayland-session<br></code></pre></td></tr></table></figure>
 <p>安装后即可在登录界面选择 Wayland 会话</p>
 <h2 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a><strong>下载软件</strong></h2><p><strong>能用包管理器的尽量用包管理器安装！</strong></p>
 <h3 id="PGP-密钥无法导入"><a href="#PGP-密钥无法导入" class="headerlink" title="PGP 密钥无法导入"></a><strong>PGP 密钥无法导入</strong></h3><p>如果安装软件时需要导入 PGP 密钥而发生 <code>gpg: 从公钥服务器接收失败：一般错误</code> 的问题，将 PGP 密钥复制下来并运行：</p>
@@ -712,7 +705,7 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql">sudo <span class="hljs-keyword">update</span>-desktop-<span class="hljs-keyword">database</span><br></code></pre></td></tr></table></figure>
 <h3 id="语言包"><a href="#语言包" class="headerlink" title="语言包"></a><strong>语言包</strong></h3><p>系统设置 &gt;&gt; 语言包 &gt;&gt; 右上角点击“已安装的软件包”安装语言包</p>
 <h3 id="Kate-插件下载"><a href="#Kate-插件下载" class="headerlink" title="Kate 插件下载"></a><strong>Kate 插件下载</strong></h3><p>下载 Kate 插件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S aspell hspell libvoikko<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S aspell hspell libvoikko<br></code></pre></td></tr></table></figure>
 <h3 id="字体安装"><a href="#字体安装" class="headerlink" title="字体安装"></a><strong>字体安装</strong></h3><p>Manjaro KDE 支持直接在 Dolphin 的右键菜单中安装 TTF 和 OTF 字体，但不支持 TTC 字体集，TTC 字体集可以在系统字体安装的默认文件夹 <code>/usr/share/fonts</code> 中用命令 <code>fc-cache -fv</code> 安装</p>
 <p><strong>注意不管是 Windows 还是 Manjaro Linux 都要将字体“为所有用户安装”，尤其是 Windows 11 右键直接安装是安装到个人用户目录 <code>C:\Users\user_name\AppData\Local\Microsoft\Windows\Fonts</code> 而非系统目录 <code>C:\Windows\Fonts</code></strong></p>
 <h3 id="安装微软字体"><a href="#安装微软字体" class="headerlink" title="安装微软字体"></a><strong>安装微软字体</strong></h3><p>安装方法如下：</p>
@@ -720,7 +713,7 @@
 <p>这样就可以安装微软雅黑、宋体、黑体等字体了</p>
 <p><strong>注意需要排除掉 MS Gothic、Yu Gothic 和 Malgun Gothic 字体，因它们只有部分日/韩文汉字字形（与中文汉字字形一样的会被排除，最后导致部分中文汉字显示为日/韩文字形）</strong></p>
 <h3 id="安装-Google-Noto-字体"><a href="#安装-Google-Noto-字体" class="headerlink" title="安装 Google Noto 字体"></a><strong>安装 Google Noto 字体</strong></h3><p>命令行安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S noto-fonts noto-fonts-cjk<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S noto-fonts noto-fonts-cjk<br></code></pre></td></tr></table></figure>
 <p>所有语言字体的下载地址如下：</p>
 <p>Google Noto Fonts</p>
 <p><a target="_blank" rel="noopener" href="https://www.google.com/get/noto/">https://www.google.com/get/noto/</a></p>
@@ -735,25 +728,25 @@
 <p>保存退出即可</p>
 <p><strong>另一种处理方法是只安装简体中文字体，比如 Noto Sans SC（注意没有 CJK）</strong></p>
 <h3 id="安装中文输入法"><a href="#安装中文输入法" class="headerlink" title="安装中文输入法"></a><strong>安装中文输入法</strong></h3><p>推荐使用 Fcitx5:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx5 fcitx5-chinese-addons manjaro-asian-input-support-fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5 fcitx5-chinese-addons manjaro-asian-input-support-fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool<br></code></pre></td></tr></table></figure>
 <p>如果无法启动输入法，在系统设置 &gt;&gt; 区域设置 &gt;&gt; 输入法 &gt;&gt; 添加输入法中手动添加“拼音”</p>
 <p>对应的 git 版本为：（需要使用 Arch Linux CN 源）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx5-git fcitx5-chinese-addons-git manjaro-asian-input-support-fcitx5 fcitx5-gtk-git fcitx5-qt5-git fcitx5-configtool-git<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5-git fcitx5-chinese-addons-git manjaro-asian-input-support-fcitx5 fcitx5-gtk-git fcitx5-qt5-git fcitx5-configtool-git<br></code></pre></td></tr></table></figure>
 <p>可以添加词库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki<br></code></pre></td></tr></table></figure>
 <p>一个稳定的替代版本是 Fcitx 4.2.9.8-1：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx-im fcitx-configtool fcitx-cloudpinyin manjaro-asian-input-support-fcitx<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-im fcitx-configtool fcitx-cloudpinyin manjaro-asian-input-support-fcitx<br></code></pre></td></tr></table></figure>
 <p>可以配合 googlepinyin 或 sunpinyin 使用，即执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx-googlepinyin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-googlepinyin<br></code></pre></td></tr></table></figure>
 <p>或者：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S fcitx-sunpinyin<br></code></pre></td></tr></table></figure>
-<p>也可以用 <code>yay -S sunpinyin</code> 安装 Sunpinyin</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-sunpinyin<br></code></pre></td></tr></table></figure>
+<p>也可以用 <code>sudo pacman -S sunpinyin</code> 安装 Sunpinyin</p>
 <p><strong>安装输入法之后需要重启电脑才能生效</strong></p>
-<h3 id="安装其它软件"><a href="#安装其它软件" class="headerlink" title="安装其它软件"></a><strong>安装其它软件</strong></h3><p>以下命令中的 <code>yay -S</code> 也可以在“添加/删除软件”（即 pamac）中搜索安装，或者用 <code>pamac install</code> 安装（需要使用 AUR 和 Archlinux CN 软件仓库）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S geogebra stellarium typora v2ray qv2ray-dev-git vlc thunderbird qbittorrent baidunetdisk-bin<br></code></pre></td></tr></table></figure>
+<h3 id="安装其它软件"><a href="#安装其它软件" class="headerlink" title="安装其它软件"></a><strong>安装其它软件</strong></h3><p>以下命令中的 <code>pamac install</code> 也可以在“添加/删除软件”（即 pamac）中搜索安装，如果不是 AUR 仓库中的软件，也可以用 <code>sudo pacman -S</code> 安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install geogebra stellarium typora v2ray qv2ray-dev-git vlc thunderbird qbittorrent baidunetdisk-bin<br></code></pre></td></tr></table></figure>
 <p><strong>这里的 qv2ray-dev-git 一定要选择 Archlinux CN 软件源的版本</strong></p>
 <h4 id="用-debtap-安装-deb-包（不推荐）"><a href="#用-debtap-安装-deb-包（不推荐）" class="headerlink" title="用 debtap 安装 .deb 包（不推荐）"></a><strong>用 debtap 安装 <code>.deb</code> 包（不推荐）</strong></h4><p>首先要下载并更新 debtap 包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S debtap<br>sudo debtap -u<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install debtap<br>sudo debtap -u<br></code></pre></td></tr></table></figure>
 <p><strong>运行 <code>sudo debtap -u</code> 时建议连接北京大学校园网</strong></p>
 <p>进入含有 <code>.deb</code> 安装包的文件夹，输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo debtap (package_name).deb<br></code></pre></td></tr></table></figure>
@@ -764,7 +757,7 @@
 <p>打开终端，运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mount -t iso9660 -o ro,loop,noauto (texlive_path)/texlive.iso /mnt<br></code></pre></td></tr></table></figure>
 <h4 id="使用图形界面安装"><a href="#使用图形界面安装" class="headerlink" title="使用图形界面安装"></a><strong>使用图形界面安装</strong></h4><p>首先要检查是否安装 tcl 和 tk：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S tcl tk<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install tcl tk<br></code></pre></td></tr></table></figure>
 <p>进入镜像文件夹，运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo perl install-tl -gui<br></code></pre></td></tr></table></figure>
 <p>即可在图形界面下载 TeX Live（如果不加 <code>sudo</code> 则只能将其安装到 <code>/home/(user_name)/</code> 下的文件夹且无法勾选 Create symlinks in standard directories: 一项），高级设置需要点击左下角的 Advanced 按钮</p>
@@ -779,7 +772,7 @@
 <p>可以运行 <code>tex --version</code> 检查是否安装成功，若成功应显示 TeX 的版本号、TeX Live 的版本号和版权信息</p>
 <p>还可以运行 <code>tlmgr --version</code> 和 <code>texdoc (package_name)</code> （选择常见的宏包名称如 <code>texdoc ctex</code>）检查是否安装成功</p>
 <h3 id="TeXstudio-安装与配置（可选）"><a href="#TeXstudio-安装与配置（可选）" class="headerlink" title="TeXstudio 安装与配置（可选）"></a><strong>TeXstudio 安装与配置（可选）</strong></h3><p>安装 TeXstudio：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S texstudio<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install texstudio<br></code></pre></td></tr></table></figure>
 <p>帮助 &gt;&gt; 检查 LaTeX 安装信息</p>
 <p>如果能检测到 LaTeX，说明 TeX Live 安装成功，开始设置</p>
 <p>选项 &gt;&gt; 设置 TeXstudio</p>
@@ -858,15 +851,15 @@
 <h3 id="Vim-安装插件"><a href="#Vim-安装插件" class="headerlink" title="Vim 安装插件"></a><strong>Vim 安装插件</strong></h3><p>执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> (github_repository_URL) ~/.vim/pack/(plugin_name)/start/(plugin_name)<br>vim -u NONE -c <span class="hljs-string">&quot;helptags ~/.vim/pack/(plugin_name)/start/(plugin_name)/doc&quot;</span> -c q<br></code></pre></td></tr></table></figure>
 <h3 id="Visual-Studio-Code-安装与配置"><a href="#Visual-Studio-Code-安装与配置" class="headerlink" title="Visual Studio Code 安装与配置"></a><strong>Visual Studio Code 安装与配置</strong></h3><h4 id="Visual-Studio-Code-安装"><a href="#Visual-Studio-Code-安装" class="headerlink" title="Visual Studio Code 安装"></a><strong>Visual Studio Code 安装</strong></h4><p>发行版维护者从开源代码构建的版本，可以用 <code>code</code> 命令打开（缺点是图标被重新设计过，且更新落后于微软官方版）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S code<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install code<br></code></pre></td></tr></table></figure>
 <p>微软官方的二进制包（包含部分私有的组件），同样可以用 <code>code</code> 命令打开（如果不介意私有组件而且不习惯 Code - OSS 的图标，个人推荐首选此项）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S visual-studio-code-bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install visual-studio-code-bin<br></code></pre></td></tr></table></figure>
 <p>内测版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S visual-studio-code-insiders<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install visual-studio-code-insiders<br></code></pre></td></tr></table></figure>
 <p>第三方发布的从开源代码构建的二进制包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S vscodium-bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install vscodium-bin<br></code></pre></td></tr></table></figure>
 <p>从最新的开源代码构建：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S code-git<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install code-git<br></code></pre></td></tr></table></figure>
 <p>下载扩展：Python（会自动下载 Pylance、Jupyter 等扩展），Markdown All in One，LaTeX Workshop，C/C++，Rainbow Brackets，Prettier - Code formatter</p>
 <p>扩展保存在 <code>~/.vscode/extensions/</code> 文件夹内</p>
 <h4 id="Visual-Studio-Code-图标更改（可选）"><a href="#Visual-Studio-Code-图标更改（可选）" class="headerlink" title="Visual Studio Code 图标更改（可选）"></a><strong>Visual Studio Code 图标更改（可选）</strong></h4><p>如果图标美化后 Visual Studio Code 图标变成圆形，想恢复原图标，更改路径如下：</p>
@@ -894,26 +887,26 @@
 <p>找到 <code>body</code> 一行，将 <code>font-family</code> 改成自己想要的字体</p>
 <p>找到 <code>tt</code> 一行，将 <code>font-family</code> 改成自己想要的等宽字体（<code>monospace</code>）</p>
 <h3 id="SAOImageDS9-安装"><a href="#SAOImageDS9-安装" class="headerlink" title="SAOImageDS9 安装"></a><strong>SAOImageDS9 安装</strong></h3><p>推荐选择二进制包 <code>ds9-bin</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S ds9-bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install ds9-bin<br></code></pre></td></tr></table></figure>
 <h3 id="Github-Desktop-安装（可选）"><a href="#Github-Desktop-安装（可选）" class="headerlink" title="Github Desktop 安装（可选）"></a><strong>Github Desktop 安装（可选）</strong></h3><p>推荐选择二进制包 <code>github-desktop-bin</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S github-desktop-bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install github-desktop-bin<br></code></pre></td></tr></table></figure>
 <p>登录时要创建一个密钥环，密钥设为 Github 密码即可</p>
 <h3 id="WPS-安装（可选）"><a href="#WPS-安装（可选）" class="headerlink" title="WPS 安装（可选）"></a><strong>WPS 安装（可选）</strong></h3><p>运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts<br></code></pre></td></tr></table></figure>
 <h3 id="微信安装"><a href="#微信安装" class="headerlink" title="微信安装"></a><strong>微信安装</strong></h3><p>极简版（原生适配高分辨率屏幕，不需要 wine/deepin-wine 即可运行；但是功能较少，不支持截屏和“订阅号消息”，且对大文件传输的支持不佳）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S wechat-uos<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install wechat-uos<br></code></pre></td></tr></table></figure>
 <p>功能较多，和最新的 Windows 电脑版同步更新，但依赖 deepin-wine，且暂不支持“截屏时隐藏当前窗口”的版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S deepin-wine-wechat<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install deepin-wine-wechat<br></code></pre></td></tr></table></figure>
 <h4 id="deepin-wine-wechat-高分辨率适配调整"><a href="#deepin-wine-wechat-高分辨率适配调整" class="headerlink" title="deepin-wine-wechat 高分辨率适配调整"></a><strong>deepin-wine-wechat 高分辨率适配调整</strong></h4><p>用命令 <code>/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg</code> 调出 Wine Configuration，对于 200% 的放大率：</p>
 <p>Graphics &gt;&gt; Screen Resolution &gt;&gt; 192 dpi</p>
 <p>其余基于 Deepin Wine 的软件（如腾讯会议）也是类似的处理方法，将 <code>com.qq.weixin.deepin</code> 换成对应的文件夹名称即可（都在 <code>/opt/apps/</code> 目录下）</p>
 <h3 id="会议软件安装"><a href="#会议软件安装" class="headerlink" title="会议软件安装"></a><strong>会议软件安装</strong></h3><p>腾讯会议：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S com.tencent.deepin.meeting<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install com.tencent.deepin.meeting<br></code></pre></td></tr></table></figure>
 <p>高分辨率适配调整：</p>
 <p>用命令 <code>/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg</code> 调出 Wine Configuration，对于 200% 的放大率：</p>
 <p>Graphics &gt;&gt; Screen Resolution &gt;&gt; 192 dpi</p>
-<h3 id="音乐软件安装"><a href="#音乐软件安装" class="headerlink" title="音乐软件安装"></a><strong>音乐软件安装</strong></h3><h4 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a><strong>网易云音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S netease-cloud-music<br></code></pre></td></tr></table></figure>
-<h4 id="QQ-音乐"><a href="#QQ-音乐" class="headerlink" title="QQ 音乐"></a><strong>QQ 音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S qqmusic-bin<br></code></pre></td></tr></table></figure>
+<h3 id="音乐软件安装"><a href="#音乐软件安装" class="headerlink" title="音乐软件安装"></a><strong>音乐软件安装</strong></h3><h4 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a><strong>网易云音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install netease-cloud-music<br></code></pre></td></tr></table></figure>
+<h4 id="QQ-音乐"><a href="#QQ-音乐" class="headerlink" title="QQ 音乐"></a><strong>QQ 音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install qqmusic-bin<br></code></pre></td></tr></table></figure>
 <p>默认是暗色主题，右上角皮肤键（衣服图案）可以更改为亮色主题</p>
 <h3 id="Geant4-安装"><a href="#Geant4-安装" class="headerlink" title="Geant4 安装"></a><strong>Geant4 安装</strong></h3><h4 id="从源代码安装-Geant4"><a href="#从源代码安装-Geant4" class="headerlink" title="从源代码安装 Geant4"></a><strong>从源代码安装 Geant4</strong></h4><p>从官网上下载源代码压缩包：</p>
 <p>Geant4 — Download</p>
@@ -925,13 +918,13 @@
 <h4 id="检验是否安装成功"><a href="#检验是否安装成功" class="headerlink" title="检验是否安装成功"></a><strong>检验是否安装成功</strong></h4><p>打开 <code>(Geant4_directory)/share/Geant4-(version_number)/examples/basic/B1</code>，执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir build<br><span class="hljs-built_in">cd</span> ./build<br>cmake ..<br>make -j8<br>./exampleB1<br></code></pre></td></tr></table></figure>
 <p>如果出现图形交互界面，说明安装成功</p>
-<h3 id="Surface：能用上触控笔的软件（可选）"><a href="#Surface：能用上触控笔的软件（可选）" class="headerlink" title="Surface：能用上触控笔的软件（可选）"></a><strong>Surface：能用上触控笔的软件（可选）</strong></h3><h4 id="绘画"><a href="#绘画" class="headerlink" title="绘画"></a><strong>绘画</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S krita<br></code></pre></td></tr></table></figure>
+<h3 id="Surface：能用上触控笔的软件（可选）"><a href="#Surface：能用上触控笔的软件（可选）" class="headerlink" title="Surface：能用上触控笔的软件（可选）"></a><strong>Surface：能用上触控笔的软件（可选）</strong></h3><h4 id="绘画"><a href="#绘画" class="headerlink" title="绘画"></a><strong>绘画</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install krita<br></code></pre></td></tr></table></figure>
 <h4 id="手写笔记"><a href="#手写笔记" class="headerlink" title="手写笔记"></a><strong>手写笔记</strong></h4><p>可以选择 Xournal++ 或者 Write</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S xournalpp<br>yay -S write_stylus<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install xournalpp<br>pamac install write_stylus<br></code></pre></td></tr></table></figure>
 <h3 id="Surface：屏幕键盘（可选）"><a href="#Surface：屏幕键盘（可选）" class="headerlink" title="Surface：屏幕键盘（可选）"></a><strong>Surface：屏幕键盘（可选）</strong></h3><p>目前最受欢迎的屏幕键盘应该是 OnBoard</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S onboard<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install onboard<br></code></pre></td></tr></table></figure>
 <p>但 OnBoard 在 Wayland 上无法使用。如果需要在 Wayland 会话中使用屏幕键盘，推荐安装 CellWriter</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S cellwriter<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install cellwriter<br></code></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><strong>参考资料</strong></h2><p>BitLocker 恢复密钥</p>
 <p><a target="_blank" rel="noopener" href="https://account.microsoft.com/devices/recoverykey?refd=account.microsoft.com">https://account.microsoft.com/devices/recoverykey?refd=account.microsoft.com</a></p>
 <p>Windows 10 如何关闭快速启动</p>
@@ -958,8 +951,8 @@
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Pacman">https://wiki.archlinux.org/index.php/Pacman</a></p>
 <p>Manjaro Wiki — Pamac</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pamac">https://wiki.manjaro.org/index.php/Pamac</a></p>
-<p>GitHub — Yay</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Jguer/yay">https://github.com/Jguer/yay</a></p>
+<p>GitHub — sudo pacman</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Jguer/sudo">https://github.com/Jguer/sudo</a> pacman</p>
 <p>Manjaro Wiki — Manjaro Hardware Detection Overview</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview">https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview</a></p>
 <p>Manjaro Wiki — Configure Graphics Cards</p>
@@ -1008,7 +1001,7 @@
 <p><a target="_blank" rel="noopener" href="https://tuna.moe/help/ntp/">https://tuna.moe/help/ntp/</a></p>
 <p>SJTUG 软件源镜像服务</p>
 <p><a target="_blank" rel="noopener" href="https://mirrors.sjtug.sjtu.edu.cn/#/">https://mirrors.sjtug.sjtu.edu.cn/#/</a></p>
-<p>Manjaro 为包管理器 pacman 和 yaourt/yay 添加多线程下载</p>
+<p>Manjaro 为包管理器 pacman 和 yaourt/sudo pacman 添加多线程下载</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dc90000/article/details/101752743?utm_medium=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase&amp;depth_1-utm_source=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase">https://blog.csdn.net/dc90000/article/details/101752743?utm_medium=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase&amp;depth_1-utm_source=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase</a></p>
 <p>ArchWiki — Microsoft fonts（简体中文）</p>
 <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Microsoft_fonts_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/index.php/Microsoft_fonts_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
@@ -1062,12 +1055,6 @@
                   </div>
                 
               </div>
-              
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
               
               
                 <div class="post-prevnext">

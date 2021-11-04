@@ -476,6 +476,11 @@ post:
     # Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings
     collapseDepth: 0
 
+  # 版权声明，会显示在每篇文章的结尾
+  # Copyright, will be displayed at the end of each post
+  copyright:
+    enable: false
+
   # 文章底部上一篇下一篇功能
   # Link to previous/next post
   prev_next:
