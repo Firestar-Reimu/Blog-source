@@ -178,7 +178,7 @@ Renderer.prototype.listitem = function(text) {
 
 在博客目录内的 `/source/tools/index.md` 的 Front-matter 加入 `layout: links`，这会引入主题目录中的模板：`/layout/links.ejs`
 
-于是开始设置`_config.fluid.yml`：
+于是开始设置 `_config.fluid.yml`：
 
 ```yaml
 links:
@@ -304,7 +304,7 @@ links:
 })(window, document);
 ```
 
-在主题目录下的``\layout\layout.ejs` 文件末尾 `<!-- SCRIPTS -->` 一段中添加以下代码：
+在主题目录下的 `\layout\layout.ejs` 文件末尾 `<!-- SCRIPTS -->` 一段中添加以下代码：
 
 ```ejs
 <script type="text/javascript" src="/js/love.js"></script>
