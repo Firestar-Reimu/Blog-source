@@ -13,9 +13,9 @@ banner_img: /img/Purple_Flower.jpg
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=1&height=66"></iframe>
 
-### 申请 Github Pages
+### 申请 GitHub Pages
 
-新建一个 repo，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 Github 仓库用来存放博客的源代码（可选）
+新建一个 repository，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 GitHub 仓库用来存放博客的源代码（可选）
 
 ### 申请域名
 
@@ -25,13 +25,13 @@ banner_img: /img/Purple_Flower.jpg
 
 ```
 记录类型：CNAME；
-主机记录自选，(我这里选择的是 blog，因为 www 经常无法与Github Pages联通）；
+主机记录自选，(我这里选择的是 blog，因为 www 经常无法与 GitHub Pages 联通）；
 解析线路选择默认；
 记录值选择(user_name).github.io；
 TTL选择“10分钟”
 ```
 
-再去名为 `(user_name).github.io` 的 repo，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 Github 的网络检测后就可以使用。
+再去名为 `(user_name).github.io` 的 repository，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用。
 
 此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top` 试一试，如果能显示`README.md` 中的内容则设置成功。
 
@@ -41,7 +41,7 @@ TTL选择“10分钟”
 
 建议在 Linux 上搭建，而不用 Windows
 
-下载 Node-js 和 npm ：`sudo pacman -S nodejs npm`
+下载 Node-js 和 npm：`sudo pacman -S nodejs npm`
 
 下载 Hexo 的方法如下：（推荐如下的全局下载方案）
 
@@ -52,7 +52,7 @@ npm config set prefix '~/.npm-global'
 
 然后在 `~/.profile` 中加入一行：`export PATH=~/.npm-global/bin:$PATH`
 
-最后输入：
+最后输入：（npm 5.0.0 开始，默认安装不需要 `–-save` 选项，已经可以自动执行）
 
 ```bash
 source ~/.profile
@@ -72,7 +72,7 @@ npm install
 全局配置的官方指南在[这里](https://hexo.io/zh-cn/docs/)，在 `(hexo_folder)/_config.yml` 下修改：
 
 ```yaml
-url: https://example.top
+url: https://blog.example.top
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -80,16 +80,9 @@ pretty_urls:
   trailing_html: false
 ```
 
-文章按时间正序排列：
-
-```yaml
-index_generator:
-  order_by: date
-```
-
 添加文章：`npx hexo new post hello`，这生成 `blog.example.top/hello`
 
-在子文件夹下添加文章：`npx hexo new post --path hello/world`，这生成 `blog.example.top/hello/world`
+在子文件夹下添加文章：`npx hexo new post --path hello/me`，这生成 `blog.example.top/hello/me`
 
 每篇文章的 Markdown 文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
 
@@ -111,12 +104,18 @@ banner_img: /img/Purple_Flower.jpg
 我选择的是 [Fluid](https://hexo.fluid-dev.com/) 主题，安装方法：
 
 ```bash
-npm install --save hexo-theme-fluid
+npm install hexo-theme-fluid
 ```
 
-这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-fluid`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update --save hexo-theme-fluid`
+这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-fluid`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update hexo-theme-fluid`
 
-Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
+可以在 `(hexo_folder)/themes` 中创建软链接：
+
+```bash
+ln -s ../node_modules/hexo-theme-fluid/
+```
+
+Fluid 配置的官方指南在 https://hexo.fluid-dev.com/docs/guide/
 
 在`(hexo_folder)/_config.yml`下修改：`theme:fluid`
 
@@ -134,7 +133,7 @@ Fluid 配置的官方指南在https://hexo.fluid-dev.com/docs/guide/
 
 - 主题字体配置：
 
-```
+```yaml
 font:
     font_size: 16px
     font_family: Noto Sans CJK SC, sans-serif
@@ -142,6 +141,8 @@ font:
 ```
 
 - 导航栏左侧的标题：`blog_title: "Home"`
+
+- 关于页中 `icons` 一项只保留 GitHub
 
 - 每个页面的 Banner 头图：`banner_img` ，自选
 
@@ -151,9 +152,19 @@ font:
 
 - 隐藏版权声明：`copyright: enable: false`
 
-- Mathjax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式
+- MathJax 渲染（虽然慢但是支持比 Katex 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎为`hexo-renderer-kramed` 并删掉原有的 `hexo-renderer-marked` ，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式）。但是这样会修改丢失对 Markdown 复选框的支持，开启则需要将如下代码加入到本地的`(hexo_folder)/node_modules/hexo-renderer-kramed/lib/renderer.js`的第19行中（参考[这里](https://corecabin.cn/2021/08/14/solve-some-problems-of-hexo-renderer-kramed-rendering-conflicts/)），行内公式和行内代码冲突也可以参考[这里](https://corecabin.cn/2021/08/14/solve-some-problems-of-hexo-renderer-kramed-rendering-conflicts/)
 
-- 关于页中 `icons` 一项只保留 Github
+```js
+// Support To-Do List
+Renderer.prototype.listitem = function(text) {
+  if (/^\s*\[[x ]\]\s*/.test(text)) {
+    text = text.replace(/^\s*\[ \]\s*/, '<input type="checkbox"></input> ').replace(/^\s*\[x\]\s*/, '<input type="checkbox" checked></input> ');
+    return '<li style="list-style: none">' + text + '</li>\n';
+  } else {
+    return '<li>' + text + '</li>\n';
+  }
+};
+```
 
 ### 如何用“友链”页的模板创建一个“工具”页
 
@@ -169,7 +180,7 @@ font:
 
 于是开始设置`_config.fluid.yml`：
 
-```
+```yaml
 links:
   enable: true
   banner_img: (your_picture)
@@ -195,15 +206,15 @@ links:
   subtitle: Tools
 ```
 
-### 如何在导航栏菜单创建一个 Github 链接
+### 如何在导航栏菜单创建一个 GitHub 链接
 
 和创建“工具”方法类似，这次需要找到 `icon-github`（自带图标太小了）的图标
 
-实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_brhhjh3wx87.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "Github", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }` 即可
+实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_brhhjh3wx87.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "GitHub", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }` 即可
 
 ### 加入特效：鼠标点击有小红心
 
-在主题目录下的 `/source/js` 文件夹中新建文件 `love.js`，在 `love.js` 文件中添加以下代码：（修改过，更新了已经弃用的部分，详见[这里](https://segmentfault.com/a/1190000007215988)）
+在主题目录下的 `/source/js` 文件夹中新建文件 `love.js`，在 `love.js` 文件中添加以下代码：（修改过，更新了已经弃用的部分，原始代码参见[这里](https://segmentfault.com/a/1190000007215988)）
 
 ```js
 !(function (e, t, a) {
@@ -293,7 +304,7 @@ links:
 })(window, document);
 ```
 
-在主题目录下的``\layout\layout.ejs` 文件末尾添加以下代码：
+在主题目录下的``\layout\layout.ejs` 文件末尾 `<!-- SCRIPTS -->` 一段中添加以下代码：
 
 ```ejs
 <script type="text/javascript" src="/js/love.js"></script>
@@ -317,33 +328,45 @@ links:
 
 直接粘贴到 Markdown 文件内即可
 
-### 调试并部署到 Github
+### 调试并部署到 GitHub
 
 安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
 
 ```bash
-$ npm install hexo-deployer-git --save
+npm install hexo-deployer-git
 ```
 
-修改配置`_config.yml`：
+修改配置 `_config.yml`：
 
-```
+```yaml
 deploy:
   type: git
   repo: <repository url> # https://github.com/(user_name)/(user_name).github.io
-  branch: [branch] # default is "main"
+  branch: (branch_name) # default is "main"
 ```
 
-调试：`npx hexo s --debug`
+调试：
 
-部署：`npx hexo clean && npx hexo deploy`，查看 `(user_name).github.io` 上的网页是否部署成功
+```bash
+npx hexo s --debug
+```
 
-注意此时原有的自定义域名会被覆盖掉，如果 Github Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
+部署：
+
+```bash
+npx hexo clean && npx hexo deploy
+```
+
+查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
+
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
 
 ### LaTeX Test
 
-```latex
 This is a equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$. Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$.
+
+This is a equation: ` $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$ `. Another Example: ` $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$ `.
+
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
 $$
@@ -382,54 +405,7 @@ $$
     &= T+V \\
     &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
     &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{1}{2}A\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{1}{2}D\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + B\frac{(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
-    &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
-\end{align*}
-$$
-```
-
-This is a equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$. Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$.
-
-$$
-\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L'}{\partial \dot{p}}\right) - \frac{\partial L'}{\partial p} = 0
-$$
-
-$$
-\lim_{n\to+\infty}a^n = \left\{
-    \begin{aligned}
-        &0,\quad &|a|<1 \\
-        &N/A,\quad &|a|>1 \\
-        &1\quad &a=1 \\
-        &N/A,\quad &a=-1
-    \end{aligned}
-\right.
-$$
-
-$$
-\boldsymbol{a}\cdot(\boldsymbol{b}\times\boldsymbol{c}) = \boldsymbol{b}\cdot(\boldsymbol{c}\times\boldsymbol{a}) = \boldsymbol{c}\cdot(\boldsymbol{a}\times\boldsymbol{b})
-$$
-
-$$
-\begin{align*}
-    \partial_i r
-    &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
-    &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
-    &= \frac{x-x'}{r}
-\end{align*}
-$$
-
-$$
-I_r = \frac{1}{2\pi}\oint p_r \,\mathrm{d}r = \frac{1}{2\pi}\int_0^{2\pi} p_r \frac{\mathrm{d}r}{\mathrm{d}\theta}\,\mathrm{d}\theta = \frac{\lambda}{\omega} + \sqrt{2m\kappa}
-$$
-
-$$
-\begin{align*}
-    H
-    &= T+V \\
-    &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
-    &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{1}{2}A\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{1}{2}D\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + B\frac{(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
     &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
     &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
 \end{align*}
@@ -453,11 +429,12 @@ iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
 
 ### Picture Test
 
-格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的`/source/images/`下
+格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的 `/source/images/` 下
 
 ![](../images/hello_world_reimu.jpg)
 
-### 尚未实现的功能
+### 进阶功能
 
-- [x] Aplayer
-- [x] 樱花特效
+- [ ] Aplayer
+- [ ] 樱花特效
+- [ ] 点赞功能

@@ -44,9 +44,9 @@ banner_img: /img/OrionStreams.jpg
 
 <table>
     <tr>
-        <th>年</td>
-        <th>月</td>
-        <th>日</td>
+        <th>年</th>
+        <th>月</th>
+        <th>日</th>
     </tr>
     <tr>
         <td><input type="text" id="year" size="5"/></td>
@@ -54,9 +54,9 @@ banner_img: /img/OrionStreams.jpg
         <td><input type="text" id="day" size="5"/></td>
     </tr>
     <tr>
-        <th>时</td>
-        <th>分</td>
-        <th>秒</td>
+        <th>时</th>
+        <th>分</th>
+        <th>秒</th>
     </tr>
     <tr>
         <td><input type="text" id="hour" size="5"/></td>
@@ -67,7 +67,8 @@ banner_img: /img/OrionStreams.jpg
 
 <button value="submit" onclick="time_to_JD()">Convert to JD</button>
 
-<input id="JD" />
+<input id="JD" size="20"/>
+<br>
 
 <body onload="time_now()">
 <div align="center" id="clock"></div>
@@ -75,5 +76,5 @@ banner_img: /img/OrionStreams.jpg
 
 <button value="submit" onclick="time_now_to_JD()">Convert current time to JD</button>
 
-<input id="JD_now" />
+<input id="JD_now" size="20"/>
 </div>

@@ -1,5 +1,5 @@
 ---
-title: Manjaro KDE Installation
+title: Manjaro KDE 安装指南
 date: 2021-09-13 8:00:00
 math: true
 category:
@@ -11,7 +11,7 @@ index_img: /img/Manjaro.jpg
 banner_img: /img/Manjaro.jpg
 ---
 
-# **在 ThinkPad X13 Gen 2 Intel/Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南**
+# **在 ThinkPad X13 2021 Intel/Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南**
 
 ThinkPad 系统信息：
 
