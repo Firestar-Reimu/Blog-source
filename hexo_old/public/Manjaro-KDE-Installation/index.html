@@ -1,0 +1,1319 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Firestar">
+  <meta name="keywords" content="">
+  <meta name="description" content="在 ThinkPad X13 2021 Intel&#x2F;Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南ThinkPad 系统信息： 12345678OS: Manjaro 21.2.0 QonosKernel: x86_64 Linux 5.14.18-1-MANJAROShell: bash 5.1.8Resolution: 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro KDE 安装指南">
+<meta property="og:url" content="https://blog.firestar-reimu.top/Manjaro-KDE-Installation/">
+<meta property="og:site_name" content="Firestar 的幻想乡">
+<meta property="og:description" content="在 ThinkPad X13 2021 Intel&#x2F;Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南ThinkPad 系统信息： 12345678OS: Manjaro 21.2.0 QonosKernel: x86_64 Linux 5.14.18-1-MANJAROShell: bash 5.1.8Resolution: 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-16T03:25:14.123Z">
+<meta property="article:author" content="Firestar">
+<meta property="article:tag" content="Manjaro">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Manjaro KDE 安装指南 - Firestar 的幻想乡</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/vs.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2794470_ewg5czgn3cd.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_2794470_brhhjh3wx87.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.firestar-reimu.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":64,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Home</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tools/">
+                <i class="iconfont icon-tools"></i>
+                工具
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Firestar-Reimu">
+                <i class="iconfont icon-github"></i>
+                Github
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/Manjaro.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Manjaro KDE 安装指南">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-13 08:00" pubdate>
+        2021-09-13 8:00:00
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      38k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      118 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Manjaro KDE 安装指南</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021-11-16 11:25:14
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="在-ThinkPad-X13-2021-Intel-Surface-Pro-6-上安装-Manjaro-21-KDE-Plasma-Windows-11-双系统的指南"><a href="#在-ThinkPad-X13-2021-Intel-Surface-Pro-6-上安装-Manjaro-21-KDE-Plasma-Windows-11-双系统的指南" class="headerlink" title="在 ThinkPad X13 2021 Intel/Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南"></a><strong>在 ThinkPad X13 2021 Intel/Surface Pro 6 上安装 Manjaro 21 KDE Plasma + Windows 11 双系统的指南</strong></h1><p>ThinkPad 系统信息：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">OS</span>: Manjaro <span class="hljs-number">21</span>.<span class="hljs-number">2</span>.<span class="hljs-number">0</span> Qonos<br><span class="hljs-attribute">Kernel</span>: x<span class="hljs-number">86</span>_<span class="hljs-number">64</span> Linux <span class="hljs-number">5</span>.<span class="hljs-number">14</span>.<span class="hljs-number">18</span>-<span class="hljs-number">1</span>-MANJARO<br><span class="hljs-attribute">Shell</span>: bash <span class="hljs-number">5</span>.<span class="hljs-number">1</span>.<span class="hljs-number">8</span><br><span class="hljs-attribute">Resolution</span>: <span class="hljs-number">2560</span>x<span class="hljs-number">1600</span><br><span class="hljs-attribute">DE</span>: KDE <span class="hljs-number">5</span>.<span class="hljs-number">87</span>.<span class="hljs-number">0</span> / Plasma <span class="hljs-number">5</span>.<span class="hljs-number">23</span>.<span class="hljs-number">3</span><br><span class="hljs-attribute">WM</span>: KWin<br><span class="hljs-attribute">CPU</span>: <span class="hljs-number">11</span>th Gen Intel Core i<span class="hljs-number">7</span>-<span class="hljs-number">1165</span>G<span class="hljs-number">7</span> @ <span class="hljs-number">8</span>x <span class="hljs-number">4</span>.<span class="hljs-number">7</span>GHz<br><span class="hljs-attribute">GPU</span>: Mesa Intel(R) Xe Graphics (TGL GT<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<p>Surface 系统信息：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">OS</span>: Manjaro <span class="hljs-number">21</span>.<span class="hljs-number">1</span>.<span class="hljs-number">1</span> Pahvo<br><span class="hljs-attribute">Kernel</span>: x<span class="hljs-number">86</span>_<span class="hljs-number">64</span> Linux <span class="hljs-number">5</span>.<span class="hljs-number">14</span>.<span class="hljs-number">0</span>-<span class="hljs-number">0</span>-MANJARO/x<span class="hljs-number">86</span>_<span class="hljs-number">64</span> Linux <span class="hljs-number">5</span>.<span class="hljs-number">13</span>.<span class="hljs-number">13</span>-arch<span class="hljs-number">1</span>-<span class="hljs-number">3</span>-surface<br><span class="hljs-attribute">Shell</span>: bash <span class="hljs-number">5</span>.<span class="hljs-number">1</span>.<span class="hljs-number">8</span><br><span class="hljs-attribute">Resolution</span>: <span class="hljs-number">2736</span>x<span class="hljs-number">1824</span><br><span class="hljs-attribute">DE</span>: KDE <span class="hljs-number">5</span>.<span class="hljs-number">85</span>.<span class="hljs-number">0</span> / Plasma <span class="hljs-number">5</span>.<span class="hljs-number">22</span>.<span class="hljs-number">5</span><br><span class="hljs-attribute">WM</span>: KWin<br><span class="hljs-attribute">CPU</span>: Intel Core i<span class="hljs-number">5</span>-<span class="hljs-number">8250</span>U @ <span class="hljs-number">8</span>x <span class="hljs-number">3</span>.<span class="hljs-number">4</span>GHz<br><span class="hljs-attribute">GPU</span>: Mesa Intel(R) UHD Graphics <span class="hljs-number">620</span> (KBL GT<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<p><strong>说明：Surface 专有部分自 2021.9.5 起不再更新，内核终止于 x86_64 Linux 5.14.0-0-MANJARO/x86_64 Linux 5.13.13-arch1-3-surface</strong></p>
+<h2 id="Windows-的准备工作"><a href="#Windows-的准备工作" class="headerlink" title="Windows 的准备工作"></a><strong>Windows 的准备工作</strong></h2><h3 id="为-Manjaro-系统分区"><a href="#为-Manjaro-系统分区" class="headerlink" title="为 Manjaro 系统分区"></a><strong>为 Manjaro 系统分区</strong></h3><p>右键点击开始菜单，选择”磁盘管理”，分出一块空分区，建议不小于 64GB</p>
+<h3 id="关闭快速启动"><a href="#关闭快速启动" class="headerlink" title="关闭快速启动"></a><strong>关闭快速启动</strong></h3><p>Windows 工具 &gt;&gt; 控制面板 &gt;&gt; 电源选项 &gt;&gt; 选择电源按钮的功能 &gt;&gt; 更改当前不可用的设置 &gt;&gt; 关闭快速启动 &gt;&gt; 保存修改</p>
+<h3 id="ThinkPad-UEFI-设置"><a href="#ThinkPad-UEFI-设置" class="headerlink" title="ThinkPad: UEFI 设置"></a><strong>ThinkPad: UEFI 设置</strong></h3><p>启动 ThinkPad 时按 <code>Enter</code> 打断正常开机，然后按下 <code>Fn+Esc</code> 解锁 <code>Fn</code> 按钮，再按 <code>F1</code> 进入 UEFI 设置</p>
+<p>Security &gt;&gt; Secure Boot &gt;&gt; Off</p>
+<h3 id="Surface-UEFI-设置"><a href="#Surface-UEFI-设置" class="headerlink" title="Surface: UEFI 设置"></a><strong>Surface: UEFI 设置</strong></h3><p>关闭 Surface，然后等待大约 10 秒钟以确保其处于关闭状态</p>
+<p>长按 Surface 上的调高音量按钮，同时按下再松开电源按钮</p>
+<p>屏幕上会显示 Microsoft 或 Surface 徽标，继续按住调高音量按钮，显示 UEFI 屏幕后，松开此按钮</p>
+<p>Security &gt;&gt; Secure Boot &gt;&gt; Disabled（第三个选项）</p>
+<p>Boot Configuration &gt;&gt; Configure boot device order 中可以调整和删除启动顺序</p>
+<p>具体参考下列网址：</p>
+<p>如何使用 Surface UEFI</p>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/surface/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-surface-uefi-df2c8942-dfa0-859d-4394-95f45eb1c3f9">https://support.microsoft.com/zh-cn/surface/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-surface-uefi-df2c8942-dfa0-859d-4394-95f45eb1c3f9</a></p>
+<h3 id="删除多余的-Windows-启动项"><a href="#删除多余的-Windows-启动项" class="headerlink" title="删除多余的 Windows 启动项"></a>删除多余的 Windows 启动项</h3><p>如果在电脑上装有多个 Windows，则系统只会选择其中一个在 Windows Boot Manager 中启动，若要删除多余的启动项，在 Windows 的“系统配置”（搜索框中输入 <code>msconfig</code> 或在“Windows 工具”中选择）的“引导”页面即可删除</p>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a><strong>制作启动盘</strong></h3><h4 id="下载系统-ISO-镜像"><a href="#下载系统-ISO-镜像" class="headerlink" title="下载系统 ISO 镜像"></a><strong>下载系统 ISO 镜像</strong></h4><p>从 Manjaro 官网上下载：</p>
+<p><a target="_blank" rel="noopener" href="https://manjaro.org/downloads/official/kde/">https://manjaro.org/downloads/official/kde/</a> （KDE Plasma 版本）</p>
+<p><a target="_blank" rel="noopener" href="https://manjaro.org/get-manjaro/">https://manjaro.org/get-manjaro/</a> （所有官方版本）</p>
+<p>或者在 Github 上下载：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/manjaro-plasma/download/releases">https://github.com/manjaro-plasma/download/releases</a> （KDE Plasma 版本）</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/manjaro/release-review/releases">https://github.com/manjaro/release-review/releases</a> （所有官方版本）</p>
+<h4 id="刻录-USB-启动盘"><a href="#刻录-USB-启动盘" class="headerlink" title="刻录 USB 启动盘"></a><strong>刻录 USB 启动盘</strong></h4><p>推荐使用 <a target="_blank" rel="noopener" href="https://www.ventoy.net/cn/index.html">Ventoy</a>，可以在 Windows/Linux 上使用，方法是下载安装包后解压、安装到 USB 上，之后直接将 ISO 镜像拷贝到 USB 中即可选择镜像文件进行登录系统，支持多个系统镜像登录</p>
+<p>Linux 上也可以使用 <a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">Etcher</a>，在 Linux（下载 Appimage 或从 AUR 上用包管理器下载 <code>balena-etcher</code>）和 Windows（下载 EXE 可执行文件）上均能使用（但无法刻录 Windows 系统镜像），Github 项目地址在 <a target="_blank" rel="noopener" href="https://github.com/balena-io/etcher">https://github.com/balena-io/etcher</a></p>
+<p>Windows 上还可以用 <a target="_blank" rel="noopener" href="https://rufus.ie/zh/">Rufus</a>，速度与 Etcher 相当且支持 Windows 和 Linux 系统镜像，但无法在 Linux 上使用（只提供 Windows 版 EXE 可执行文件），Github 项目地址在 <a target="_blank" rel="noopener" href="https://github.com/pbatard/rufus">https://github.com/pbatard/rufus</a></p>
+<h3 id="ThinkPad：安装-Manjaro"><a href="#ThinkPad：安装-Manjaro" class="headerlink" title="ThinkPad：安装 Manjaro"></a><strong>ThinkPad：安装 Manjaro</strong></h3><p>设置 &gt;&gt; 恢复 &gt;&gt; 立即重新启动 &gt;&gt; USB HDD</p>
+<p>或按照以下步骤直接从 USB 启动:</p>
+<p>启动 ThinkPad 时按 <code>Enter</code> 打断正常开机，然后按下 <code>Fn+Esc</code> 解锁 <code>Fn</code> 按钮，再按 <code>F12</code> 选择启动位置为 USB HDD</p>
+<h3 id="Surface：安装-Manjaro"><a href="#Surface：安装-Manjaro" class="headerlink" title="Surface：安装 Manjaro"></a><strong>Surface：安装 Manjaro</strong></h3><p>设置 &gt;&gt; 恢复 &gt;&gt; 立即重新启动 &gt;&gt; USB Storage</p>
+<p>或按照以下步骤直接从 USB 启动:</p>
+<p>关闭 Surface</p>
+<p>将可启动 U 盘插入 Surface 上的 USB 端口</p>
+<p>长按 Surface 上的调低音量按钮，同时按下并释放电源按钮，屏幕上会显示 Microsoft 或 Surface 徽标</p>
+<p>继续按住调低音量按钮，释放按钮后，徽标下方将显示旋转圆点，进入 UEFI 界面</p>
+<p>在 UEFI 界面内从 USB 启动</p>
+<h4 id="进入-Manjaro-Hello-窗口开始安装"><a href="#进入-Manjaro-Hello-窗口开始安装" class="headerlink" title="进入 Manjaro Hello 窗口开始安装"></a><strong>进入 Manjaro Hello 窗口开始安装</strong></h4><p>语言选择“简体中文”</p>
+<p>时区选择“Asia — Shanghai”</p>
+<p>键盘设置选择“Chinese — Default”</p>
+<p>安装时选择“替代一个分区”，并点击之前空出来的空分区</p>
+<p>或者手动挂载空分区，挂载点设为 <code>/</code>，标记为 <code>root</code>，手动挂载 UEFI 分区（即第一个分区 <code>dev/nvme0n1p1</code>，格式为 FAT32），不要格式化，挂载点设为 <code>/boot/efi</code>，标记为 <code>boot</code></p>
+<p>用户名建议全部用小写字母并与登录时的用户名一致</p>
+<p>设置密码，并勾选“为管理员使用相同的密码”</p>
+<h2 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a><strong>初始配置</strong></h2><h3 id="电源与开机设置"><a href="#电源与开机设置" class="headerlink" title="电源与开机设置"></a><strong>电源与开机设置</strong></h3><p>系统设置 &gt;&gt; 电源管理 &gt;&gt; 节能 &gt;&gt; 勾选“按键事件处理” &gt;&gt; 合上笔记本盖时 &gt;&gt; 选择“关闭屏幕” &gt;&gt; 勾选“即使已连接外部显示器”</p>
+<p>系统设置 &gt;&gt; 开机与关机 &gt;&gt; 桌面会话 &gt;&gt; 登入时 &gt;&gt; 选择“以空会话启动”</p>
+<h4 id="与电源管理相关的常见英文名词"><a href="#与电源管理相关的常见英文名词" class="headerlink" title="与电源管理相关的常见英文名词"></a><strong>与电源管理相关的常见英文名词</strong></h4><p>Sleep：睡眠，Suspend：挂起，Reboot：重启，Shutdown：关机，Logout：注销</p>
+<h3 id="高分辨率设置"><a href="#高分辨率设置" class="headerlink" title="高分辨率设置"></a><strong>高分辨率设置</strong></h3><p>ThinkPad 的屏幕分辨率是 2560×1600，而 Surface 的屏幕分辨率是 2736×1824，需要配置高分屏优化：</p>
+<p>系统设置 &gt;&gt; 显示和监控 &gt;&gt; 显示配置 &gt;&gt; 分辨率 &gt;&gt; 全局缩放 &gt;&gt; 200%</p>
+<p>系统设置 &gt;&gt; 光标 &gt;&gt; 大小 &gt;&gt; 36</p>
+<p>然后重启电脑</p>
+<h3 id="快捷键配置"><a href="#快捷键配置" class="headerlink" title="快捷键配置"></a><strong>快捷键配置</strong></h3><h4 id="全局快捷键"><a href="#全局快捷键" class="headerlink" title="全局快捷键"></a><strong>全局快捷键</strong></h4><p>为打开方便，可以采用 i3wm 的默认快捷键打开 Konsole：</p>
+<p>系统设置 &gt;&gt; 快捷键 &gt;&gt; 添加应用程序 &gt;&gt; Konsole &gt;&gt; Konsole 的快捷键设为 <code>Meta+Return</code>（即“Windows 徽标键 + Enter 键”）</p>
+<h4 id="Konsole-Yakuake-快捷键"><a href="#Konsole-Yakuake-快捷键" class="headerlink" title="Konsole/Yakuake 快捷键"></a><strong>Konsole/Yakuake 快捷键</strong></h4><p>设置 &gt;&gt; 配置键盘快捷键 &gt;&gt; 复制改为 <code>Ctrl+C</code> ，粘贴改为 <code>Ctrl+V</code></p>
+<h3 id="选择镜像并更改更新分支"><a href="#选择镜像并更改更新分支" class="headerlink" title="选择镜像并更改更新分支"></a><strong>选择镜像并更改更新分支</strong></h3><p>选择镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -ic China<br></code></pre></td></tr></table></figure>
+<p>更新分支 <code>(branch)</code> 可以选择 stable/stable-staging/testing/unstable，更改更新分支的命令为：（不要漏掉 <code>-a</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -aS (branch)<br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p>获取更新分支的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -G<br></code></pre></td></tr></table></figure>
+<p>选择镜像并更改更新分支的命令则为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-mirrors -aS (branch) -ic China<br></code></pre></td></tr></table></figure>
+<p><strong>一般建议选择上海交大的镜像，其更新频率最高且支持全部三个更新分支，如果在北京大学访问上海交大镜像源较慢可以考虑用更快的清华大学镜像源</strong></p>
+<h3 id="包管理器"><a href="#包管理器" class="headerlink" title="包管理器"></a>包管理器</h3><p>Manjaro 常用的包管理器有 pacman 和 pamac，其使用教程参考以下网址：</p>
+<p>Manjaro Wiki — Pacman Overview</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pacman_Overview">https://wiki.manjaro.org/index.php/Pacman_Overview</a></p>
+<p>Manjaro Wiki — Pacman-mirrors</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pacman-mirrors">https://wiki.manjaro.org/index.php/Pacman-mirrors</a></p>
+<p>ArchWiki — Pacman</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Pacman">https://wiki.archlinux.org/index.php/Pacman</a></p>
+<p>Manjaro Wiki — Pamac</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pamac">https://wiki.manjaro.org/index.php/Pamac</a></p>
+<p>其中 pacman 和 pamac 是预装的，“添加/删除软件”就是 pamac 的 GUI 版本</p>
+<p>硬件管理的包管理器是 mhwd 和 mhwd-kernel，其使用教程参考以下网址：</p>
+<p>Manjaro Wiki — Manjaro Hardware Detection Overview</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview">https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview</a></p>
+<p>Manjaro Wiki — Configure Graphics Cards</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Configure_Graphics_Cards">https://wiki.manjaro.org/index.php/Configure_Graphics_Cards</a></p>
+<p>Manjaro Wiki — Manjaro Kernels</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Kernels">https://wiki.manjaro.org/index.php/Manjaro_Kernels</a></p>
+<p>这两个也可以在 Manjaro Settings Manager （GUI 版本）中使用</p>
+<h3 id="AUR"><a href="#AUR" class="headerlink" title="AUR"></a><strong>AUR</strong></h3><h4 id="安装-base-devel"><a href="#安装-base-devel" class="headerlink" title="安装 base-devel"></a><strong>安装 base-devel</strong></h4><p>AUR 上的某些 PKGBUILD 会默认你已经安装 <code>base-devel</code> 组的所有软件包而不将它们写入构建依赖。为了避免在构建过程中出现一些奇怪的错误，建议先安装 <code>base-devel</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S base-devel<br></code></pre></td></tr></table></figure>
+<h4 id="启用-pamac-的-AUR-支持"><a href="#启用-pamac-的-AUR-支持" class="headerlink" title="启用 pamac 的 AUR 支持"></a><strong>启用 pamac 的 AUR 支持</strong></h4><p>添加/删除软件 &gt;&gt; 设置（右上角的三横线图标） &gt;&gt; 首选项 &gt;&gt; AUR &gt;&gt; 启用 AUR 支持</p>
+<p>然后就可以用 pamac 的图形界面获取 AUR 软件包，或者用命令 <code>pamac build</code> 及 <code>pamac install</code> 获取 AUR 的软件包</p>
+<p><strong>注意 pacman 不支持 AUR</strong></p>
+<h3 id="Arch-Linux-CN-软件源"><a href="#Arch-Linux-CN-软件源" class="headerlink" title="Arch Linux CN 软件源"></a><strong>Arch Linux CN 软件源</strong></h3><p>在 <code>/etc/pacman.conf</code> 文件末尾添加以下两行以启用清华大学镜像：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[archlinuxcn]<br>Server = https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/archlinuxcn/</span><span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
+<p>或上海交大镜像：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[archlinuxcn]<br>Server = https:<span class="hljs-regexp">//mi</span>rrors.sjtug.sjtu.edu.cn<span class="hljs-regexp">/archlinux-cn/</span><span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
+<p>之后执行下面的命令安装 archlinuxcn-keyring 包导入 GPG key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Sy archlinuxcn-keyring<br>sudo pacman -Syyu<br></code></pre></td></tr></table></figure>
+<p>这样就开启了 pacman 和 pamac 对 Arch Linux CN 的支持</p>
+<p>由于 Manjaro 的更新滞后于 Arch，使用 Arch Linux CN 仓库可能会出现“部分更新”的情况，导致某些软件包损坏</p>
+<p>建议切换到 testing 或 unstable 分支以尽量跟进 Arch 的更新</p>
+<p><strong>注意一定要写第一行的 <code>[archlinuxcn]</code>，安装 archlinuxcn-keyring 时要用 <code>-Sy</code> 安装（更新后安装）</strong></p>
+<h4 id="搜索软件包"><a href="#搜索软件包" class="headerlink" title="搜索软件包"></a><strong>搜索软件包</strong></h4><p>在 <code>pamac</code> 上可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac search (package_name)<br></code></pre></td></tr></table></figure>
+<h4 id="检查依赖关系"><a href="#检查依赖关系" class="headerlink" title="检查依赖关系"></a><strong>检查依赖关系</strong></h4><p>以树状图的形式展示某软件包的依赖关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pactree (package_name)<br></code></pre></td></tr></table></figure>
+<h4 id="降级软件包"><a href="#降级软件包" class="headerlink" title="降级软件包"></a><strong>降级软件包</strong></h4><p>在 <code>/var/cache/pacman/pkg/</code> 中找到旧软件包，双击打开安装实现手动降级，参考以下网址：</p>
+<p>Downgrading Packages — ArchWiki</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Downgrading_packages_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/title/Downgrading_packages_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<h4 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a><strong>清理缓存</strong></h4><p>清理全部软件安装包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac clean<br></code></pre></td></tr></table></figure>
+<p>删除软件包时清理设置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Rn (package_name)<br></code></pre></td></tr></table></figure>
+<p>清理无用的孤立软件包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Rsn $(pacman -Qdtq)<br></code></pre></td></tr></table></figure>
+<p>若显示 <code>error: no targets specified (use -h for help)</code> 则说明没有孤立软件包需要清理</p>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac remove -o<br></code></pre></td></tr></table></figure>
+<p>若不小心终止了 <code>pacman</code> 进程，则需要先删除 <code>/var/lib/pacman/db.lck</code> 才能再次启动 <code>pacman</code></p>
+<h4 id="从本地安装包安装软件"><a href="#从本地安装包安装软件" class="headerlink" title="从本地安装包安装软件"></a><strong>从本地安装包安装软件</strong></h4><p>pacman 有从本地安装包安装软件的功能，只需输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -U (package_path)/(package_name)<br></code></pre></td></tr></table></figure>
+<p><strong>重启后会发现许多窗口和图标变小，建议先调整全局缩放为 100%，重新启动，再调至 200%，再重启</strong></p>
+<h3 id="Vim-安装与配置"><a href="#Vim-安装与配置" class="headerlink" title="Vim 安装与配置"></a><strong>Vim 安装与配置</strong></h3><p>建议先安装 Vim，方便之后编辑各种文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S vim<br></code></pre></td></tr></table></figure>
+<p>Vim 的配置文件主要有 <code>/usr/share/vim/vimfiles/archlinux.vim</code>，<code>/etc/vimrc</code> 和 <code>/home/(user_name)/.vimrc</code>，建议直接修改 <code>/etc/vimrc</code>，这样不会覆盖 <code>/usr/share/vim/vimfiles/archlinux.vim</code> 上定义的默认配置（语法高亮等）</p>
+<p>Vim 安装插件的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> (github_repository_URL) ~/.vim/pack/(plugin_name)/start/(plugin_name)<br>vim -u NONE -c <span class="hljs-string">&quot;helptags ~/.vim/pack/(plugin_name)/start/(plugin_name)/doc&quot;</span> -c q<br></code></pre></td></tr></table></figure>
+<h3 id="GNU-nano-配置"><a href="#GNU-nano-配置" class="headerlink" title="GNU nano 配置"></a><strong>GNU nano 配置</strong></h3><p>nano 的配置文件在 <code>/etc/nanorc</code>，可以通过取消注释设置选项配置文件，如：</p>
+<p>取消注释 <code>set linenumbers</code> 可以显示行号</p>
+<p>取消注释 <code>set tabsize 8</code> 可以更改 Tab 键的长度，例如 <code>set tabsize 4</code></p>
+<p>取消注释 <code>set tabstospaces</code> 可以将 Tab 转换为空格</p>
+<p>取消注释 <code>set matchbrackets &quot;(&lt;[&#123;)&gt;]&#125;&quot;</code> 可以匹配括号</p>
+<p>取消注释 <code>include &quot;/usr/share/nano/*.nanorc&quot;</code> 一行和所有的颜色设置可以启用代码高亮</p>
+<p>取消注释所有的 <code>Key bindings</code> 选项可以启用更常用的快捷键设定</p>
+<p><strong>用 nano 编辑后保存的步骤是 <code>Ctrl+W</code> （Write Out） &gt;&gt; <code>Enter</code> &gt;&gt; <code>Ctrl+Q</code> （Exit），如果用默认的快捷键设置，则为 <code>Ctrl+O</code> （Write Out） &gt;&gt; <code>Enter</code> &gt;&gt; <code>Ctrl+X</code> （Exit）</strong></p>
+<h3 id="更改-visudo-默认编辑器为-Vim"><a href="#更改-visudo-默认编辑器为-Vim" class="headerlink" title="更改 visudo 默认编辑器为 Vim"></a><strong>更改 visudo 默认编辑器为 Vim</strong></h3><p>Manjaro 中 visudo 的默认编辑器是 Vi，若要改为 Vim，则首先在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo visudo<br></code></pre></td></tr></table></figure>
+<p>在开头的一个空行键入：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">Defaults editor=<span class="hljs-regexp">/usr/</span>bin/vim<br></code></pre></td></tr></table></figure>
+<p>按 <code>Esc</code> 进入命令模式，再按 <code>:x</code> 保存，按 <code>Enter</code> 退出</p>
+<p>如果想临时使用 Vim 作为编辑器，则输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo EDITOR=vim visudo<br></code></pre></td></tr></table></figure>
+<h3 id="sudo-免密码"><a href="#sudo-免密码" class="headerlink" title="sudo 免密码"></a><strong>sudo 免密码</strong></h3><p>在最后一行（空行）按 <code>i</code> 进入输入模式，加上这一行：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Defaults:</span>(user_name) !authenticate<br></code></pre></td></tr></table></figure>
+<p>进入命令模式，保存退出即可</p>
+<p><strong>注：如果想保留输入密码的步骤但是想在输入密码时显示星号，则加上一行 <code>Defaults env_reset,pwfeedback</code> 即可</strong></p>
+<h3 id="命令行界面输出语言为英语"><a href="#命令行界面输出语言为英语" class="headerlink" title="命令行界面输出语言为英语"></a><strong>命令行界面输出语言为英语</strong></h3><p>在 <code>~/.bashrc</code> 的最后添加一行：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">LANG</span>=en_US.UTF-8<br></code></pre></td></tr></table></figure>
+<p>如果使用 zsh，则去掉 <code>~/.zshrc</code> 中这一行的注释即可</p>
+<h3 id="Surface：Linux-Surface-内核安装（可选）"><a href="#Surface：Linux-Surface-内核安装（可选）" class="headerlink" title="Surface：Linux-Surface 内核安装（可选）"></a><strong>Surface：Linux-Surface 内核安装（可选）</strong></h3><p><strong>Manjaro 官方支持的最新的内核是 x86_64 Linux 5.14.0-0-MANJARO，从 Linux 5.13-MANJARO 开始已经支持 Surface 的电池组件（旧版内核不支持，无法显示电池电量状态），但不支持触屏</strong></p>
+<p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -s https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \| sudo pacman-key --add -<br></code></pre></td></tr></table></figure>
+<p>如果出现错误或没有响应，一般是网络问题，可能要等待几分钟，建议先配置好 VPN 再装内核</p>
+<p>接着输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman-key --finger 56C464BAAC421453<br>sudo pacman-key --lsign-key 56C464BAAC421453<br></code></pre></td></tr></table></figure>
+<p>在 <code>/etc/pacman.conf</code> 里面添加：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[linux-surface]<br>Server = https:<span class="hljs-regexp">//</span>pkg.surfacelinux.com<span class="hljs-regexp">/arch/</span><br></code></pre></td></tr></table></figure>
+<p>然后更新软件库并下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -Syyu<br>sudo pacman -S linux-surface linux-surface-headers iptsd-git<br></code></pre></td></tr></table></figure>
+<p>启动触屏：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> iptsd<br></code></pre></td></tr></table></figure>
+<p>启动相机参考以下网址：（相机功能仍在开发中，可能出现配置失败的情况）</p>
+<p>Linux-Surface — Camera Support</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/linux-surface/linux-surface/wiki/Camera-Support">https://github.com/linux-surface/linux-surface/wiki/Camera-Support</a></p>
+<p>KDE 上原生的相机应用是 Kamoso，也可以使用 GNOME 上的相机应用 Cheese</p>
+<p><strong>Firefox 启用触屏需要在 <code>/etc/environment</code> 中写入 <code>MOZ_USE_XINPUT2=1</code>，然后重新启动，并在 about:config 中设置 <code>apz.allow_zooming</code> 和 <code>apz.allow_zooming_out</code> 为 <code>true</code>；Visual Studio Code 启用触屏需要更改 <code>/usr/share/applications/visual-studio-code.desktop</code>，在 <code>Exec</code> 一行中加入命令 <code>--touch-events</code>，这一般对以 Electron 为基础的软件有效</strong></p>
+<h3 id="显卡驱动切换到-video-modesetting（可选）"><a href="#显卡驱动切换到-video-modesetting（可选）" class="headerlink" title="显卡驱动切换到 video-modesetting（可选）"></a><strong>显卡驱动切换到 video-modesetting（可选）</strong></h3><p>有时候打字时桌面卡死，只有鼠标能移动，但是无法点击</p>
+<p>可能是默认的 video-linux 显卡驱动的问题，已经有此类问题的报告和建议，参考以下网址：</p>
+<p>Arch Wiki — Cinnamon</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Cinnamon#Installation">https://wiki.archlinux.org/index.php/Cinnamon#Installation</a></p>
+<p>Arch Wiki — Intel Graphics</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Intel_graphics#Installation">https://wiki.archlinux.org/index.php/Intel_graphics#Installation</a></p>
+<p>KDE Community — Plasma 5.9 Errata</p>
+<p><a target="_blank" rel="noopener" href="https://community.kde.org/Plasma/5.9_Errata#Intel_GPUs">https://community.kde.org/Plasma/5.9_Errata#Intel_GPUs</a></p>
+<p>解决办法：</p>
+<p>卸载 video-linux：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mhwd -r pci video-linux<br></code></pre></td></tr></table></figure>
+<p>下载 video-modesetting：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mhwd -i pci video-modesetting<br></code></pre></td></tr></table></figure>
+<h3 id="时间设置"><a href="#时间设置" class="headerlink" title="时间设置"></a><strong>时间设置</strong></h3><h4 id="双系统时间不同步"><a href="#双系统时间不同步" class="headerlink" title="双系统时间不同步"></a><strong>双系统时间不同步</strong></h4><p>系统设置 &gt;&gt; 时间和日期 &gt;&gt; 自动设置时间和日期</p>
+<p>在 Manjaro 上设置硬件时间为 UTC：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo timedatectl set-local-rtc 0<br></code></pre></td></tr></table></figure>
+<p>并在 Windows 上设置硬件时间为 UTC，与 Manjaro 同步：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">reg add <span class="hljs-string">&quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot;</span> /v RealTimeIsUniversal /d <span class="hljs-number">1</span> /t REG_QWORD /f<br></code></pre></td></tr></table></figure>
+<p>这一步需要在 Powershell（管理员）中执行</p>
+<h4 id="Manjaro-数字时钟设置-24-小时制"><a href="#Manjaro-数字时钟设置-24-小时制" class="headerlink" title="Manjaro 数字时钟设置 24 小时制"></a><strong>Manjaro 数字时钟设置 24 小时制</strong></h4><p>右键点击“数字时钟” &gt;&gt; 配置数字时钟 &gt;&gt; 时间显示 &gt;&gt; 24 小时制</p>
+<h4 id="添加-TUNA-网络授时服务"><a href="#添加-TUNA-网络授时服务" class="headerlink" title="添加 TUNA 网络授时服务"></a><strong>添加 TUNA 网络授时服务</strong></h4><p>参考以下网址：</p>
+<p>TUNA NTP (网络授时) 服务使用说明</p>
+<p><a target="_blank" rel="noopener" href="https://tuna.moe/help/ntp/">https://tuna.moe/help/ntp/</a></p>
+<h3 id="关闭启动时的系统信息"><a href="#关闭启动时的系统信息" class="headerlink" title="关闭启动时的系统信息"></a><strong>关闭启动时的系统信息</strong></h3><p>参考以下网址：</p>
+<p>Silent Boot — ArchWiki</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Silent_boot">https://wiki.archlinux.org/title/Silent_boot</a></p>
+<p>主要是 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Silent_boot#Kernel_parameters">Kernel parameters</a> 和 <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Silent_boot#fsck">fsck</a> 两段</p>
+<p>编辑 Kernel parameters：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/default/grub<br></code></pre></td></tr></table></figure>
+<p>将 <code>GRUB_CMDLINE_LINUX_DEFAULT</code> 的值改为 <code>&quot;quiet loglevel=3 udev.log_priority=3&quot;</code></p>
+<p>编辑 fsck:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/mkinitcpio.conf<br></code></pre></td></tr></table></figure>
+<p>在 <code>HOOKS</code> 一行中将 <code>udev</code> 改为 <code>systemd</code>，保存后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mkinitcpio -P<br></code></pre></td></tr></table></figure>
+<p>再编辑 <code>systemd-fsck-root.service</code> 和 <code>systemd-fsck@.service</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl edit --full systemd-fsck-root.service<br>sudo systemctl edit --full systemd-fsck@.service<br></code></pre></td></tr></table></figure>
+<p>分别在 <code>Service</code> 一段中编辑 <code>StandardOutput</code> 和 <code>StandardError</code> 如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">StandardOutput</span>=null<br><span class="hljs-attr">StandardError</span>=journal+console<br></code></pre></td></tr></table></figure>
+<p>最后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo update-grub<br></code></pre></td></tr></table></figure>
+<h3 id="关闭重启时的-watchdog-提示"><a href="#关闭重启时的-watchdog-提示" class="headerlink" title="关闭重启时的 watchdog 提示"></a><strong>关闭重启时的 watchdog 提示</strong></h3><p>创建文件 <code>/etc/modprobe.d/watchdog.conf</code>，并写入：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-title">blacklist</span> iTCO_wdtblacklist iTCO_vendor_sup<span class="hljs-keyword">port</span><br></code></pre></td></tr></table></figure>
+<p>这样可以屏蔽掉不需要的驱动，保存后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo update-grub<br></code></pre></td></tr></table></figure>
+<p>再重启即可</p>
+<h3 id="zram-文件设置（可选）"><a href="#zram-文件设置（可选）" class="headerlink" title="zram 文件设置（可选）"></a><strong>zram 文件设置（可选）</strong></h3><p>对 zram 的介绍可以参考以下网址：</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Improving_performance_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#zram_%E6%88%96_zswap">https://wiki.archlinux.org/title/Improving_performance_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#zram_%E6%88%96_zswap</a></p>
+<p>先下载 <code>zram-generator</code> 软件包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S zram-generator<br></code></pre></td></tr></table></figure>
+<p>编辑 <code>/etc/systemd/zram-generator.conf</code>，写入：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[zram0]</span><br><span class="hljs-attr">host-memory-limit</span> = none<br><span class="hljs-attr">zram-size</span> = min(ram / <span class="hljs-number">2</span>, <span class="hljs-number">4096</span>)<br><span class="hljs-attr">compression-algorithm</span> = lzo-rle<br><span class="hljs-attr">fs-type</span> = ext4<br><span class="hljs-attr">mount-point</span> = /var/tmp<br></code></pre></td></tr></table></figure>
+<p>在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl daemon-reload<br>sudo systemctl start /dev/zram0<br></code></pre></td></tr></table></figure>
+<p>以启动 zram</p>
+<p>在终端中输入 <code>zramctl</code>，若能够输出 <code>NAME ALGORITHM DISKSIZE DATA COMPR TOTAL STREAMS MOUNTPOINT</code> 等信息，说明启动成功</p>
+<h3 id="Linux-挂载-Windows-磁盘"><a href="#Linux-挂载-Windows-磁盘" class="headerlink" title="Linux 挂载 Windows 磁盘"></a><strong>Linux 挂载 Windows 磁盘</strong></h3><p><strong>首先要确保设备加密和快速启动已经关闭</strong></p>
+<p>参考以下网址：</p>
+<p>Archwiki — fstab</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Fstab_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/title/Fstab_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<h4 id="使用-UUID"><a href="#使用-UUID" class="headerlink" title="使用 UUID"></a><strong>使用 UUID</strong></h4><p>官方推荐的方法是使用 UUID，以分别挂载 C 盘和 D 盘到 <code>/home/(user_name)/C</code> 和 <code>/home/(user_name)/D</code> 为例，在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lsblk -f<br></code></pre></td></tr></table></figure>
+<p>在输出结果中可以发现 Windows 的硬盘分区：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">NAME</span>       <span class="hljs-selector-tag">FSTYPE</span>       <span class="hljs-selector-tag">LABEL</span>   <span class="hljs-selector-tag">UUID</span><br>├─(name_C) <span class="hljs-selector-tag">ntfs</span>         <span class="hljs-selector-tag">C</span>       (UUID_C)<br>├─(name_D) <span class="hljs-selector-tag">ntfs</span>         <span class="hljs-selector-tag">D</span>       (UUID_D)<br></code></pre></td></tr></table></figure>
+<p>接着就来修改系统文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/fstab<br></code></pre></td></tr></table></figure>
+<p>在最后加入这两行：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gradle">UUID=(UUID_C)                     <span class="hljs-regexp">/home/</span>(user_name)/C    ntfs <span class="hljs-keyword">default</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br>UUID=(UUID_D)                     <span class="hljs-regexp">/home/</span>(user_name)/D    ntfs <span class="hljs-keyword">default</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p>重启电脑后，即可自动挂载</p>
+<p><strong>如果需要格式化 C 盘或 D 盘，先从 <code>/etc/fstab</code> 中删去这两行，再操作，之后磁盘的 <code>UUID</code> 会被更改，再编辑 <code>/etc/fstab</code> ，重启挂载即可</strong></p>
+<h4 id="使用图形化界面"><a href="#使用图形化界面" class="headerlink" title="使用图形化界面"></a><strong>使用图形化界面</strong></h4><p>在系统应用“KDE 分区管理器”中卸载 C 盘、D 盘，右键选择编辑挂载点，编辑为 <code>/home/(user_name)/C</code> 和 <code>/home/(user_name)/D</code>，执行即可</p>
+<p>这相当于直接编辑 <code>/etc/fstab</code>，加入：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-regexp">/dev/</span>(name_C)                     <span class="hljs-regexp">/home/</span>(user_name)/C    ntfs <span class="hljs-keyword">default</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br><span class="hljs-regexp">/dev/</span>(name_D)                     <span class="hljs-regexp">/home/</span>(user_name)/D    ntfs <span class="hljs-keyword">default</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p>好处是格式化磁盘后内核名称不变，依然可以挂载</p>
+<h4 id="如果-Windows-磁盘突然变成只读"><a href="#如果-Windows-磁盘突然变成只读" class="headerlink" title="如果 Windows 磁盘突然变成只读"></a><strong>如果 Windows 磁盘突然变成只读</strong></h4><p><strong>首先检查 Windows 中是否关闭了快速启动</strong></p>
+<p>关闭快速启动（Windows 工具 &gt;&gt; 控制面板 &gt;&gt; 电源选项 &gt;&gt; 选择电源按钮的功能 &gt;&gt; 更改当前不可用的设置 &gt;&gt; 关闭快速启动 &gt;&gt; 保存修改）并重启电脑</p>
+<p>一般来讲是 Windows 开启了快速启动，或者进行了优化磁盘等操作导致的，若关闭快速启动不能解决问题，使用下面的方法：</p>
+<p>检查占用进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo fuser -m -u /dev/(partition_name)<br></code></pre></td></tr></table></figure>
+<p>可以看到数字，就是占用目录的进程 PID，终止进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">kill</span> (PID_number)<br></code></pre></td></tr></table></figure>
+<p>卸载磁盘分区：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo umount /dev/(partition_name)<br></code></pre></td></tr></table></figure>
+<p>执行硬盘 NTFS 分区修复：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ntfsfix /dev/(partition_name)<br></code></pre></td></tr></table></figure>
+<p>再重新挂载即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mount /dev/(partition_name) (mount_path)/(mount_folder)<br></code></pre></td></tr></table></figure>
+<p>如果在 Dolphin 中已经成功卸载分区，则直接执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ntfsfix /dev/(partition_name) &amp;&amp; sudo mount /dev/(partition_name)(mount_path)/(mount_folder)<br></code></pre></td></tr></table></figure>
+<h3 id="系统分区改变导致时进入-GRUB-Rescue-模式"><a href="#系统分区改变导致时进入-GRUB-Rescue-模式" class="headerlink" title="系统分区改变导致时进入 GRUB Rescue 模式"></a><strong>系统分区改变导致时进入 GRUB Rescue 模式</strong></h3><p>此时会在开机时显示如下内容而无法进入选择系统的界面：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">error: </span>no such partition.<br>Entering rescue mode...<br>grub rescue&gt;<br></code></pre></td></tr></table></figure>
+<p>此时执行 <code>ls</code>，显示如下：</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">((<span class="hljs-name">hd_number</span>)) ((<span class="hljs-name">hd_number</span>),(<span class="hljs-name">gpt_number</span>))<br></code></pre></td></tr></table></figure>
+<p>其中硬盘编号 <code>(hd_number)</code> 从小到大排列（最小值为 0），分区编号 <code>(gpt_number)</code> 从大到小排列（最小值为 1）</p>
+<p>找到安装 Manjaro 的分区<code>((hd_number),(gpt_number))</code>，此时执行 <code>ls((hd_number),(gpt_number))</code>应该能看到 Manjaro 根目录下的所有文件和文件夹</p>
+<p>手动修改启动分区所在的位置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> prefix=((hd_number),(gpt_number))/boot/grub<br></code></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">insmod normal<br>normal<br></code></pre></td></tr></table></figure>
+<p>即可进入 GRUB 界面，从这里登录 Manjaro 系统，登录后执行：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">sudo update-grub</span><br></code></pre></td></tr></table></figure>
+<p>以修复启动项</p>
+<h3 id="调整文件夹名称为英文"><a href="#调整文件夹名称为英文" class="headerlink" title="调整文件夹名称为英文"></a><strong>调整文件夹名称为英文</strong></h3><p>修改 <code>~/.config/user-dirs.dirs</code>，改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">XDG_DESKTOP_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Desktop&quot;</span><br>XDG_DOCUMENTS_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Documents&quot;</span><br>XDG_DOWNLOAD_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Downloads&quot;</span><br>XDG_MUSIC_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Music&quot;</span><br>XDG_PICTURES_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Pictures&quot;</span><br>XDG_PUBLICSHARE_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Public&quot;</span><br>XDG_TEMPLATES_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Templates&quot;</span><br>XDG_VIDEOS_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Videos&quot;</span><br></code></pre></td></tr></table></figure>
+<p>并在 Dolphin 中按照上面的说明更改文件名</p>
+<h3 id="Dolphin-在更新后删除文件-文件夹报错"><a href="#Dolphin-在更新后删除文件-文件夹报错" class="headerlink" title="Dolphin 在更新后删除文件/文件夹报错"></a><strong>Dolphin 在更新后删除文件/文件夹报错</strong></h3><p>如果出现以下错误：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">无法创建输入输出后端。klauncher 回应：装入“<span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/qt/</span>plugins<span class="hljs-regexp">/kf5/</span>kio/trash.so”时出错<br></code></pre></td></tr></table></figure>
+<p>说明 Qt 还在内存中保留着旧版 Dolphin，此时可以重启/重新登录，或执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">dbus-launch dolphin<br></code></pre></td></tr></table></figure>
+<h3 id="SONY-WH-1000XM3-耳机的蓝牙连接"><a href="#SONY-WH-1000XM3-耳机的蓝牙连接" class="headerlink" title="SONY WH-1000XM3 耳机的蓝牙连接"></a><strong>SONY WH-1000XM3 耳机的蓝牙连接</strong></h3><p>长按耳机电源键约 7 秒即可进入配对模式，可以在蓝牙中配对</p>
+<h3 id="Logitech-M590-鼠标的蓝牙连接"><a href="#Logitech-M590-鼠标的蓝牙连接" class="headerlink" title="Logitech M590 鼠标的蓝牙连接"></a><strong>Logitech M590 鼠标的蓝牙连接</strong></h3><p>同一台电脑的 Windows 系统和 Manjaro 系统在鼠标上会被识别为两个设备</p>
+<p>如果 Windows 系统被识别为设备 1，需要按滚轮后的圆形按钮切换至设备 2</p>
+<p>长按圆形按钮直到灯 2 快速闪烁进入配对模式，可以在蓝牙中配对</p>
+<h4 id="如果鼠标配对后屏幕光标无法移动"><a href="#如果鼠标配对后屏幕光标无法移动" class="headerlink" title="如果鼠标配对后屏幕光标无法移动"></a><strong>如果鼠标配对后屏幕光标无法移动</strong></h4><p>一般可以直接删除设备重新配对，如果失败则按照下面步骤操作：</p>
+<p>首先要安装 <code>bluez-utils</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S bluez-utils<br></code></pre></td></tr></table></figure>
+<p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bluetoothctl<br></code></pre></td></tr></table></figure>
+<p>然后参考以下网站：</p>
+<p>Arch Wiki — 关于 Logitech BLE 鼠标的问题</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Bluetooth_mouse#Problems_with_the_Logitech_BLE_mouse_(M557,_M590,_anywhere_mouse_2,_etc">https://wiki.archlinux.org/index.php/Bluetooth_mouse#Problems_with_the_Logitech_BLE_mouse_(M557,_M590,_anywhere_mouse_2,_etc</a>)</p>
+<h3 id="解决用-root-登录没有声音的问题"><a href="#解决用-root-登录没有声音的问题" class="headerlink" title="解决用 root 登录没有声音的问题"></a><strong>解决用 root 登录没有声音的问题</strong></h3><p>在 <code>/root/.config/autostart/</code> 下创建一个 <code>pulseaudio.desktop</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /root/.config/autostart/pulseaudio.desktop<br></code></pre></td></tr></table></figure>
+<p>写入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">[Desktop Entry]<br>Encoding=UTF-8<br>Type=Application<br>Name=pulseaudio<br>Exec=pulseaudio --start --log-target=syslog<br>StartupNotify=<span class="hljs-literal">false</span><br>Terminal=<span class="hljs-literal">true</span><br>Hidden=<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<p>保存退出即可</p>
+<h3 id="切换图形化界面和命令行界面"><a href="#切换图形化界面和命令行界面" class="headerlink" title="切换图形化界面和命令行界面"></a><strong>切换图形化界面和命令行界面</strong></h3><p>登录时默认进入的是图形化界面，有时候开机后黑屏是图形化界面显示不出来所致，此时可以按快捷键 <code>Ctrl+Alt+Fn+(F2~F6)</code>进入<code>tty2 ~ tty6</code> 的任何一个命令行界面</p>
+<p>注意此时需要手动输入用户名和密码</p>
+<p>在命令行界面解决问题后，按快捷键 <code>Ctrl+Alt+Fn+F1</code> 可以转换回图形化界面</p>
+<h3 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a><strong>网络设置</strong></h3><h4 id="ping-命令"><a href="#ping-命令" class="headerlink" title="ping 命令"></a><strong>ping 命令</strong></h4><p>IP 地址和连接情况可以通过对域名 <code>ping</code> 得到，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ping -c (count_number) (website_destination)<br></code></pre></td></tr></table></figure>
+<p>表示对网站域名 <code>(website_destination)</code> 发送 <code>(count_number)</code> 次 <code>ping</code> 连通请求</p>
+<h4 id="命令行连接-PKU-Wi-Fi"><a href="#命令行连接-PKU-Wi-Fi" class="headerlink" title="命令行连接 PKU Wi-Fi"></a><strong>命令行连接 PKU Wi-Fi</strong></h4><p>方法一：命令行输入 <code>nmtui</code> 并按照终端上的图形界面一步一步操作</p>
+<p>方法二：使用 <code>nmcli</code>，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmcli device wifi connect PKU<br></code></pre></td></tr></table></figure>
+<p>通用的操作是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmcli device wifi connect (SSID) password (student_passowrd)<br></code></pre></td></tr></table></figure>
+<p>注意这里的 SSID 是 Wi-Fi 的名称（如 PKU 或 TP-LINK_XXX），不是 IP 地址或 MAC 地址</p>
+<h4 id="命令行连接-PKU-VPN"><a href="#命令行连接-PKU-VPN" class="headerlink" title="命令行连接 PKU VPN"></a><strong>命令行连接 PKU VPN</strong></h4><p>此处需要一直打开终端，故推荐使用 Yakuake</p>
+<p>按 <code>Fn+F12</code> 打开 Yakuake，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo openconnect --protocol=nc --user (student_ID) https://vpn.pku.edu.cn<br></code></pre></td></tr></table></figure>
+<p>输入密码即可连接</p>
+<p>之后可以按 <code>Fn+F12</code> 让它收起，不要关闭窗口（关闭窗口则 VPN 断开）</p>
+<h4 id="图形化界面连接-PKU-Secure"><a href="#图形化界面连接-PKU-Secure" class="headerlink" title="图形化界面连接 PKU Secure"></a><strong>图形化界面连接 PKU Secure</strong></h4><p>Wi-Fi 安全 &gt;&gt; 安全 &gt;&gt; 企业 WPA/WPA2</p>
+<p>Wi-Fi 安全 &gt;&gt; 认证 &gt;&gt; 受保护的 EAP（PEAP）</p>
+<p>PEAP 版本 &gt;&gt; 自动</p>
+<p>内部认证 &gt;&gt; MSCHAPv2</p>
+<p>输入用户名、密码即可连接</p>
+<h4 id="命令行连接-PKU-Secure"><a href="#命令行连接-PKU-Secure" class="headerlink" title="命令行连接 PKU Secure"></a><strong>命令行连接 PKU Secure</strong></h4><p>首先进入 <code>nmcli</code> 配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nmcli connection edit PKU\ Secure<br></code></pre></td></tr></table></figure>
+<p>在 <code>nmcli</code> 界面内输入：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">set</span> wifi-sec.key-mgmt <span class="hljs-comment">wpa-eap</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">ipv4.method auto</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">802-1x.eap peap</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">802-1x.phase2-auth mschapv2</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">802-1x.identity (student_ID)</span><br><span class="hljs-keyword">set</span> <span class="hljs-comment">802-1x.password (student_password)</span><br>save<br>activate<br></code></pre></td></tr></table></figure>
+<h4 id="hosts-文件设置（可选）"><a href="#hosts-文件设置（可选）" class="headerlink" title="hosts 文件设置（可选）"></a><strong>hosts 文件设置（可选）</strong></h4><p>参考以下网址：</p>
+<p>修改 hosts 解决 GitHub 访问失败</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107334179">https://zhuanlan.zhihu.com/p/107334179</a></p>
+<p>需要修改的文件是 <code>/etc/hosts</code>，Windows 下对应的文件位置为： <code>C:\Windows\System32\drivers\etc\hosts</code> （注意这里是反斜杠）</p>
+<h3 id="调整-CPU-频率（可选）"><a href="#调整-CPU-频率（可选）" class="headerlink" title="调整 CPU 频率（可选）"></a><strong>调整 CPU 频率（可选）</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/tlp.conf<br></code></pre></td></tr></table></figure>
+<p>若更改 CPU 频率，修改以下位置：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">CPU_MIN_PERF_ON_AC</span>=<span class="hljs-number">0</span><br><span class="hljs-attr">CPU_MAX_PERF_ON_AC</span>=<span class="hljs-number">100</span><br><span class="hljs-attr">CPU_MIN_PERF_ON_BAT</span>=<span class="hljs-number">0</span><br><span class="hljs-attr">CPU_MAX_PERF_ON_BAT</span>=<span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
+<p>若更改 CPU 睿频设置，修改以下位置：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">CPU_BOOST_ON_AC</span>=<span class="hljs-number">1</span><br><span class="hljs-attr">CPU_BOOST_ON_BAT</span>=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p><strong>不需要高性能的时候可以关闭睿频，这样 CPU 的频率就会限制在 1.9 GHz 以下，大幅增加续航、减少发热</strong></p>
+<p>保存、关闭，在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo tlp start<br></code></pre></td></tr></table></figure>
+<h4 id="显示-CPU-频率（可选）"><a href="#显示-CPU-频率（可选）" class="headerlink" title="显示 CPU 频率（可选）"></a><strong>显示 CPU 频率（可选）</strong></h4><p>安装 KDE 小部件：<a target="_blank" rel="noopener" href="https://github.com/jsalatas/plasma-pstate">Intel P-state and CPU-Freq Manager</a></p>
+<p>右键点击顶栏，选择“添加部件”，找到 Intel P-state and CPU-Freq Manager 并添加在顶栏即可</p>
+<h3 id="禁用-baloo（可选）"><a href="#禁用-baloo（可选）" class="headerlink" title="禁用 baloo（可选）"></a><strong>禁用 baloo（可选）</strong></h3><p><code>baloo</code> 是 KDE 的文件索引服务，能加快文件搜索的速度，但可能会时不时产生大量硬盘读写而导致图形界面卡顿。可以用下面的命令禁用之：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">balooctl <span class="hljs-built_in">disable</span><br></code></pre></td></tr></table></figure>
+<h3 id="为-pacman-启用多线程下载（可选）"><a href="#为-pacman-启用多线程下载（可选）" class="headerlink" title="为 pacman 启用多线程下载（可选）"></a><strong>为 pacman 启用多线程下载（可选）</strong></h3><p>执行下面的命令下载 axel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S axel<br></code></pre></td></tr></table></figure>
+<p>编辑 <code>/etc/pacman.conf</code> 文件（在第 21 行）:</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">XferCommand = <span class="hljs-regexp">/usr/</span>bin/axel -n <span class="hljs-number">10</span> -o %o %u<br></code></pre></td></tr></table></figure>
+<p>编辑 <code>/etc/makepkg.conf</code> 文件（在第 11-16 行）:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lisp">DLAGENTS=(&#x27;file:<span class="hljs-symbol">:/usr/bin/curl</span> -gqC - -o %o %u&#x27;<br>&#x27;ftp:<span class="hljs-symbol">:/usr/bin/axel</span> -n <span class="hljs-number">10</span> -o %o %u&#x27;<br>&#x27;http:<span class="hljs-symbol">:/usr/bin/axel</span> -n <span class="hljs-number">10</span> -o %o %u&#x27;<br>&#x27;https:<span class="hljs-symbol">:/usr/bin/axel</span> -n <span class="hljs-number">10</span> -o %o %u&#x27;<br>&#x27;rsync:<span class="hljs-symbol">:/usr/bin/rsync</span> --no-motd -z %u %o&#x27;<br>&#x27;scp:<span class="hljs-symbol">:/usr/bin/scp</span> -C %u %o&#x27;)<br></code></pre></td></tr></table></figure>
+<p><strong>注意某些软件包如 <code>rider</code> 和 <code>qqmusic-bin</code> 等下载源不支持 axel，启用多线程下载后可能会导致构建失败</strong></p>
+<h3 id="重新开启-Secure-Boot（未测试）"><a href="#重新开启-Secure-Boot（未测试）" class="headerlink" title="重新开启 Secure Boot（未测试）"></a><strong>重新开启 Secure Boot（未测试）</strong></h3><p>如果想在开启 Secure Boot 的情况下登录进 Manjaro Linux，可以使用经过微软签名的 PreLoader 或者 shim，然后在 UEFI 设置中将 Secure Boot 级别设置为 Microsoft &amp; 3rd Party CA</p>
+<p>具体教程参考以下网址：</p>
+<p>Secure Boot — ArchWiki</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Unified_Extensible_Firmware_Interface/Secure_Boot#Microsoft_Windows">https://wiki.archlinux.org/index.php/Unified_Extensible_Firmware_Interface/Secure_Boot#Microsoft_Windows</a></p>
+<h3 id="Git-配置用户名、邮箱"><a href="#Git-配置用户名、邮箱" class="headerlink" title="Git 配置用户名、邮箱"></a><strong>Git 配置用户名、邮箱</strong></h3><p>配置用户名、邮箱：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;(user_name)&quot;</span><br>git config --global user.email <span class="hljs-string">&quot;(user_email)&quot;</span><br></code></pre></td></tr></table></figure>
+<p>Git 使用教程参考以下网址：</p>
+<p>菜鸟教程 — Git 教程</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-tutorial.html">https://www.runoob.com/git/git-tutorial.html</a></p>
+<h3 id="使用-SSH-连接到-Github"><a href="#使用-SSH-连接到-Github" class="headerlink" title="使用 SSH 连接到 Github"></a><strong>使用 SSH 连接到 Github</strong></h3><p>推荐使用 SSH 连接到 Github，其安全性更高，访问速度较快且更加稳定</p>
+<p>配置参考以下网址：</p>
+<p>Github Docs — 使用 SSH 连接到 Github</p>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh">https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh</a></p>
+<p>在 Linux 上主要是以下内容：</p>
+<h4 id="生成新-SSH-密钥并添加到-ssh-agent"><a href="#生成新-SSH-密钥并添加到-ssh-agent" class="headerlink" title="生成新 SSH 密钥并添加到 ssh-agent"></a><strong>生成新 SSH 密钥并添加到 ssh-agent</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t ed25519 -C <span class="hljs-string">&quot;(user_email)&quot;</span><br><span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(ssh-agent -s)</span>&quot;</span><br>ssh-add ~/.ssh/id_ed25519<br></code></pre></td></tr></table></figure>
+<p>第一步会提示输入安全密码，可以按 <code>Enter</code> 跳过，不影响后续操作和使用</p>
+<h4 id="新增-SSH-密钥到-GitHub-帐户"><a href="#新增-SSH-密钥到-GitHub-帐户" class="headerlink" title="新增 SSH 密钥到 GitHub 帐户"></a><strong>新增 SSH 密钥到 GitHub 帐户</strong></h4><p>通过 <code>cat ~/.ssh/id_ed25519.pub</code> 查看公钥并复制到 Github 账户下的“设置 &gt;&gt; SSH and GPG keys”中</p>
+<h4 id="测试-SSH-连接"><a href="#测试-SSH-连接" class="headerlink" title="测试 SSH 连接"></a><strong>测试 SSH 连接</strong></h4><p>在终端中输入：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh -T <span class="hljs-symbol">git@</span>github.com<br></code></pre></td></tr></table></figure>
+<p>这一步要输入 <code>yes</code> 确定</p>
+<p><strong>注意 Linux 上和 Windows 上用的是不同的密钥</strong></p>
+<h2 id="一些有用的命令总结"><a href="#一些有用的命令总结" class="headerlink" title="一些有用的命令总结"></a><strong>一些有用的命令总结</strong></h2><h3 id="获取设备信息"><a href="#获取设备信息" class="headerlink" title="获取设备信息"></a><strong>获取设备信息</strong></h3><h4 id="简要信息"><a href="#简要信息" class="headerlink" title="简要信息"></a><strong>简要信息</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">screenfetch<br></code></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo inxi -b<br></code></pre></td></tr></table></figure>
+<h4 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a><strong>详细信息</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo inxi -Fa<br></code></pre></td></tr></table></figure>
+<h4 id="命令行进程查看器"><a href="#命令行进程查看器" class="headerlink" title="命令行进程查看器"></a><strong>命令行进程查看器</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">htop<br></code></pre></td></tr></table></figure>
+<h4 id="命令行音量调节器"><a href="#命令行音量调节器" class="headerlink" title="命令行音量调节器"></a><strong>命令行音量调节器</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">alsamixer<br></code></pre></td></tr></table></figure>
+<h4 id="内存大小"><a href="#内存大小" class="headerlink" title="内存大小"></a><strong>内存大小</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">free<br></code></pre></td></tr></table></figure>
+<h4 id="上一次关机的系统日志"><a href="#上一次关机的系统日志" class="headerlink" title="上一次关机的系统日志"></a><strong>上一次关机的系统日志</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">journalctl -rb -1<br></code></pre></td></tr></table></figure>
+<h3 id="查看并转换编码"><a href="#查看并转换编码" class="headerlink" title="查看并转换编码"></a><strong>查看并转换编码</strong></h3><p>查看编码的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">file -i (file_name)<br></code></pre></td></tr></table></figure>
+<p>其中 <code>charset</code> 一栏的输出即为文件编码</p>
+<p>转换编码可以使用系统预装的 <code>iconv</code>，方法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)<br></code></pre></td></tr></table></figure>
+<p>该方法适合对文本文件转换编码，对 ZIP 压缩包和 PDF 文件等二进制文件则无法使用</p>
+<p><code>iconv</code> 支持的编码格式可以用 <code>iconv -l</code> 查看</p>
+<h3 id="转换图片格式"><a href="#转换图片格式" class="headerlink" title="转换图片格式"></a><strong>转换图片格式</strong></h3><p>批量将图片从 PNG 格式转换为 JPG 格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ls -1 *.png | xargs -n 1 bash -c <span class="hljs-string">&#x27;convert &quot;$0&quot; &quot;$&#123;0%.png&#125;.jpg&quot;&#x27;</span><br></code></pre></td></tr></table></figure>
+<h3 id="批量更改文件名"><a href="#批量更改文件名" class="headerlink" title="批量更改文件名"></a><strong>批量更改文件名</strong></h3><p>批量将文件名中的空格改成下划线：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> *; <span class="hljs-keyword">do</span> mv -n <span class="hljs-string">&quot;<span class="hljs-variable">$file</span>&quot;</span> `<span class="hljs-built_in">echo</span> <span class="hljs-variable">$file</span> | tr <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-string">&#x27;_&#x27;</span>`; <span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+<p><strong>Linux 的内存策略可以参考这个网站：<a target="_blank" rel="noopener" href="https://www.linuxatemyram.com/">https://www.linuxatemyram.com/</a></strong></p>
+<h3 id="命令行解压-ZIP-压缩包"><a href="#命令行解压-ZIP-压缩包" class="headerlink" title="命令行解压 ZIP 压缩包"></a><strong>命令行解压 ZIP 压缩包</strong></h3><p>建议使用系统预装的 <code>unar</code>，因为它可以自动检测文件编码（系统右键菜单默认的 Ark 不具备这个功能，可能导致乱码）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">unar (file_name).zip<br></code></pre></td></tr></table></figure>
+<h3 id="设置命令别名"><a href="#设置命令别名" class="headerlink" title="设置命令别名"></a><strong>设置命令别名</strong></h3><p>在 <code>~/.bashrc</code> 中添加一句 <code>alias (new_command)=(old-command)</code>，这样直接输入 <code>new_command</code> 即等效于输入 <code>old_command</code></p>
+<h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a><strong>美化</strong></h2><h3 id="自定义壁纸"><a href="#自定义壁纸" class="headerlink" title="自定义壁纸"></a><strong>自定义壁纸</strong></h3><p>桌面壁纸可以在 <a target="_blank" rel="noopener" href="https://www.pling.com/">pling.com</a> 下载，专门为 Manjaro 定制的壁纸可以在这里找到：</p>
+<p>Wallpapers Manjaro — pling.com</p>
+<p><a target="_blank" rel="noopener" href="https://www.pling.com/browse/cat/309/order/latest/">https://www.pling.com/browse/cat/309/order/latest/</a></p>
+<p>默认的壁纸保存位置为 <code>/usr/share/wallpapers/</code></p>
+<p>还可以使用包管理器（pacman/sudo pacman/pamac）下载壁纸，用“添加/删除软件”或 <code>pamac search wallpaper</code> 查找</p>
+<p>右键点击桌面得到桌面菜单，点击“配置桌面和壁纸”即可选择想要的壁纸，位置建议选择“缩放并裁剪”</p>
+<h3 id="添加用户图标"><a href="#添加用户图标" class="headerlink" title="添加用户图标"></a><strong>添加用户图标</strong></h3><p>系统设置 &gt;&gt; 用户账户 &gt;&gt; 图像</p>
+<h3 id="开机登录美化"><a href="#开机登录美化" class="headerlink" title="开机登录美化"></a><strong>开机登录美化</strong></h3><p>开机与关机 &gt;&gt; 登录屏幕（SDDM） &gt;&gt; Breeze 或者 Fluent</p>
+<p>外观 &gt;&gt; 欢迎屏幕 &gt;&gt; Snowy Night Miku、Manjaro Linux Reflection Splashscreen、ManjaroLogo Black、Plasma 5 Manjaro Splashscreen White Blur</p>
+<p><strong>现在新设计的登录屏幕（SDDM）和欢迎屏幕已经非常美观且改进了翻译问题，最方便的方法就是登录屏幕（SDDM）选择 Breath 2，欢迎屏幕选择 Breath2 2021</strong></p>
+<h4 id="SDDM-时间显示调整为-24-小时制"><a href="#SDDM-时间显示调整为-24-小时制" class="headerlink" title="SDDM 时间显示调整为 24 小时制"></a><strong>SDDM 时间显示调整为 24 小时制</strong></h4><p>更改 <code>/usr/share/sddm/themes/(theme_name)/components/Clock.qml</code> 或 <code>/usr/share/sddm/themes/(theme_name)/Clock.qml</code> 中的 <code>Qt.formatTime</code> 一行：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">text: <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Qt</span>.</span></span>format<span class="hljs-constructor">Time(<span class="hljs-params">timeSource</span>.<span class="hljs-params">data</span>[<span class="hljs-string">&quot;Local&quot;</span>][<span class="hljs-string">&quot;DateTime&quot;</span>])</span><br></code></pre></td></tr></table></figure>
+<p>将其改为：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">text: <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Qt</span>.</span></span>format<span class="hljs-constructor">Time(<span class="hljs-params">timeSource</span>.<span class="hljs-params">data</span>[<span class="hljs-string">&quot;Local&quot;</span>][<span class="hljs-string">&quot;DateTime&quot;</span>], <span class="hljs-string">&quot;hh:mm:ss&quot;</span>)</span><br></code></pre></td></tr></table></figure>
+<p>保存重启即可</p>
+<h3 id="主题-Mac-风格美化（可选）"><a href="#主题-Mac-风格美化（可选）" class="headerlink" title="主题 Mac 风格美化（可选）"></a><strong>主题 Mac 风格美化（可选）</strong></h3><p>参考以下网址：</p>
+<p>KDE 桌面的 Mac 化</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luoshuitianyi/p/10587788.html">https://www.cnblogs.com/luoshuitianyi/p/10587788.html</a></p>
+<p>其中 Plasma 主题、GTK 主题和图标主题分别选择：<br>Plasma Theme: Mojave-CT<br>GTK Theme: Mojave-light-alt [GTK2/3]<br>Icon Theme: La Capitaine</p>
+<p>KDE 桌面美化指南</p>
+<p><a target="_blank" rel="noopener" href="https://acherstyx.github.io/2020/06/30/KDE%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8D%97/">https://acherstyx.github.io/2020/06/30/KDE%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8D%97/</a></p>
+<p>Latte-Dock 的推荐设置：</p>
+<p>行为：位置 &gt;&gt; 底部，可见性 &gt;&gt; 自动隐藏，延迟 &gt;&gt; 显示 &gt;&gt; none</p>
+<p>外观：绝对大小 &gt;&gt; 96，背景大小 &gt;&gt; 10%</p>
+<p><strong>不想使用 Mac 风格主题但又想使用浅色主题时，建议使用 Manjaro 新官方主题 Breath2 2021（也有深浅搭配和深色主题可选）或 KDE 官方主题 Breeze，并将终端（Konsole 和 Yakuake）主题改为“白底黑字”，背景透明度选择 20%</strong></p>
+<h4 id="配置桌面小部件"><a href="#配置桌面小部件" class="headerlink" title="配置桌面小部件"></a><strong>配置桌面小部件</strong></h4><p>右键点击桌面 &gt;&gt; 添加部件 &gt;&gt; 获取新部件 &gt;&gt; 下载新 Plasma 部件</p>
+<p>在这里可以下载桌面小部件，并在“添加部件”处添加，例如 Simple System Monitor</p>
+<h4 id="zsh-与-Oh-My-Zsh-配置（可选）"><a href="#zsh-与-Oh-My-Zsh-配置（可选）" class="headerlink" title="zsh 与 Oh-My-Zsh 配置（可选）"></a><strong>zsh 与 Oh-My-Zsh 配置（可选）</strong></h4><p>Konsole &gt;&gt; 设置 &gt;&gt; 编辑当前方案 &gt;&gt; 常规 &gt;&gt; 命令 &gt;&gt; <code>usr/bin/zsh</code></p>
+<p>安装 Oh-My-Zsh，执行：（不推荐用包管理器安装）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br></code></pre></td></tr></table></figure>
+<p>安装插件，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-syntax-highlightinggit <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions<br></code></pre></td></tr></table></figure>
+<p>编辑设置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+<p>选择 Oh-My-Zsh 主题：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">ZSH_THEME</span>=<span class="hljs-string">&quot;geoffgarside&quot;</span><br></code></pre></td></tr></table></figure>
+<p>选择 Oh-My-Zsh 插件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">plugins</span>=(git zsh-autosuggestions zsh-syntax-highlighting)<br></code></pre></td></tr></table></figure>
+<p>更新 Oh-My-Zsh，执行：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">omz update</span><br></code></pre></td></tr></table></figure>
+<p>卸载 Oh-My-Zsh，执行:</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">uninstall_oh_my_zsh</span><br></code></pre></td></tr></table></figure>
+<p><strong>如果遇到开关机的时候报错：<code>\[FAILED] failed to start pkgfile database update</code>，卸载 <code>manjaro-zsh-config</code>，这会卸载 <code>zsh</code> 及其所有依赖，然后重新安装 <code>zsh</code></strong></p>
+<h3 id="GRUB-美化"><a href="#GRUB-美化" class="headerlink" title="GRUB 美化"></a><strong>GRUB 美化</strong></h3><p>选择主题 grub2-themes ，下载地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vinceliuice/grub2-themes">https://github.com/vinceliuice/grub2-themes</a></p>
+<p>以 Vimix grub theme （2K，黑白图标） 为例，解压后在文件夹内执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ./install.sh -b -t vimix -i white -s 2k<br></code></pre></td></tr></table></figure>
+<p>删除多余启动条目，需要修改<code>/boot/grub/grub.cfg</code></p>
+<p>删除整一段 <code>submenu &#39;Manjaro Linux 的高级选项&#39;</code>，删除整一段 <code>UEFI Firmware Settings</code>，并将 <code>Windows Boot Manager (on /dev/nvme0n1p1)</code> 改为 <code>Windows</code></p>
+<p>恢复默认的<code>/boot/grub/grub.cfg</code>需要输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> GRUB_DISABLE_OS_PROBER=<span class="hljs-literal">false</span> | sudo tee -a /etc/default/grub &amp;&amp; sudo update-grub<br></code></pre></td></tr></table></figure>
+<h3 id="pacman-添加吃豆人彩蛋"><a href="#pacman-添加吃豆人彩蛋" class="headerlink" title="pacman 添加吃豆人彩蛋"></a><strong>pacman 添加吃豆人彩蛋</strong></h3><p>编辑 <code>/etc/pacman.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/pacman.conf<br></code></pre></td></tr></table></figure>
+<p>去掉 <code>Color</code> 前面的注释，并在下一行加入：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ILoveCandy</span><br></code></pre></td></tr></table></figure>
+<p>即可添加吃豆人彩蛋</p>
+<h3 id="安装-KDE-的-Wayland-支持（不推荐）"><a href="#安装-KDE-的-Wayland-支持（不推荐）" class="headerlink" title="安装 KDE 的 Wayland 支持（不推荐）"></a><strong>安装 KDE 的 Wayland 支持（不推荐）</strong></h3><p>与 Xorg 相比，Wayland 对触屏的支持更佳，但某些应用在 Wayland 上会有兼容性问题，目前 KDE 对 Wayland 的支持处于能用但还不太完善的状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S plasma-wayland-session<br></code></pre></td></tr></table></figure>
+<p>安装后即可在登录界面选择 Wayland 会话</p>
+<h2 id="软件的下载与配置"><a href="#软件的下载与配置" class="headerlink" title="软件的下载与配置"></a><strong>软件的下载与配置</strong></h2><p><strong>能用包管理器的尽量用包管理器安装！</strong></p>
+<h3 id="PGP-密钥无法导入"><a href="#PGP-密钥无法导入" class="headerlink" title="PGP 密钥无法导入"></a><strong>PGP 密钥无法导入</strong></h3><p>如果安装软件时需要导入 PGP 密钥而发生 <code>gpg: 从公钥服务器接收失败：一般错误</code> 的问题，将 PGP 密钥复制下来并运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gpg --keyserver p80.pool.sks-keyservers.net --recv-keys (pgp_key)<br></code></pre></td></tr></table></figure>
+<p>再重新安装软件即可</p>
+<h3 id="安装软件后在开始菜单中找不到图标"><a href="#安装软件后在开始菜单中找不到图标" class="headerlink" title="安装软件后在开始菜单中找不到图标"></a><strong>安装软件后在开始菜单中找不到图标</strong></h3><p>执行命令：</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql">sudo <span class="hljs-keyword">update</span>-desktop-<span class="hljs-keyword">database</span><br></code></pre></td></tr></table></figure>
+<h3 id="语言包"><a href="#语言包" class="headerlink" title="语言包"></a><strong>语言包</strong></h3><p>系统设置 &gt;&gt; 语言包 &gt;&gt; 右上角点击“已安装的软件包”安装语言包</p>
+<h3 id="Kate-插件下载"><a href="#Kate-插件下载" class="headerlink" title="Kate 插件下载"></a><strong>Kate 插件下载</strong></h3><p>下载 Kate 插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S aspell hspell libvoikko<br></code></pre></td></tr></table></figure>
+<h3 id="字体安装"><a href="#字体安装" class="headerlink" title="字体安装"></a><strong>字体安装</strong></h3><p>Manjaro KDE 支持直接在 Dolphin 的右键菜单中安装 TTF 和 OTF 字体，但不支持 TTC 字体集，TTC 字体集可以在系统字体安装的默认文件夹 <code>/usr/share/fonts</code> 中用命令 <code>fc-cache -fv</code> 安装</p>
+<p><strong>注意不管是 Windows 还是 Manjaro Linux 都要将字体“为所有用户安装”，尤其是 Windows 11 右键直接安装是安装到个人用户目录 <code>C:\Users\user_name\AppData\Local\Microsoft\Windows\Fonts</code> 而非系统目录 <code>C:\Windows\Fonts</code></strong></p>
+<h3 id="安装微软字体"><a href="#安装微软字体" class="headerlink" title="安装微软字体"></a><strong>安装微软字体</strong></h3><p>安装方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mkdir /usr/share/fonts/winfonts<br>sudo cp (win-font-path)/* /usr/share/fonts/winfonts/<br><span class="hljs-built_in">cd</span> /usr/share/fonts/winfonts/<br>fc-cache -fv<br></code></pre></td></tr></table></figure>
+<p>这样就可以安装微软雅黑、宋体、黑体等字体了</p>
+<p><strong>注意需要排除掉 MS Gothic、Yu Gothic 和 Malgun Gothic 字体，因它们只有部分日/韩文汉字字形（与中文汉字字形一样的会被排除，最后导致部分中文汉字显示为日/韩文字形）</strong></p>
+<h3 id="安装-Google-Noto-字体"><a href="#安装-Google-Noto-字体" class="headerlink" title="安装 Google Noto 字体"></a><strong>安装 Google Noto 字体</strong></h3><p>命令行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S noto-fonts noto-fonts-cjk<br></code></pre></td></tr></table></figure>
+<p>所有语言字体的下载地址如下：</p>
+<p>Google Noto Fonts</p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/get/noto/">https://www.google.com/get/noto/</a></p>
+<p>中文（CJK）字体的下载地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/get/noto/help/cjk/">https://www.google.com/get/noto/help/cjk/</a></p>
+<h3 id="更改程序和终端默认中文字体"><a href="#更改程序和终端默认中文字体" class="headerlink" title="更改程序和终端默认中文字体"></a><strong>更改程序和终端默认中文字体</strong></h3><p>安装的 Noto Sans CJK 字体可能在某些情况下（框架未定义地区）汉字字形与标准形态不符，例如门、关、复等字字形与规范中文不符</p>
+<p>这是因为每个程序中可以设置不同的默认字体，而这些字体的属性由 fontconfig 控制，其使用顺序是据地区代码以 A-Z 字母表顺序成默认排序，由于 <code>ja</code> 在 <code>zh</code> 之前，故优先显示日文字形</p>
+<p>解决方法是手动修改字体设置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/fonts/conf.d/64-language-selector-prefer.conf<br></code></pre></td></tr></table></figure>
+<p>并加入以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">fontconfig</span> <span class="hljs-meta-keyword">SYSTEM</span> <span class="hljs-meta-string">&quot;fonts.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">fontconfig</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>sans-serif<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK HK<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK KR<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>serif<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Serif CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Serif CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Serif CJK HK<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Serif CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Serif CJK KR<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>monospace<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK HK<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK KR<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">fontconfig</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>保存退出即可</p>
+<p><strong>另一种处理方法是只安装简体中文字体，比如 Noto Sans SC（注意没有 CJK）</strong></p>
+<h3 id="安装中文输入法"><a href="#安装中文输入法" class="headerlink" title="安装中文输入法"></a><strong>安装中文输入法</strong></h3><p>推荐使用 Fcitx5:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5 fcitx5-chinese-addons manjaro-asian-input-support-fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool<br></code></pre></td></tr></table></figure>
+<p>如果无法启动输入法，在系统设置 &gt;&gt; 区域设置 &gt;&gt; 输入法 &gt;&gt; 添加输入法中手动添加“拼音”</p>
+<p>对应的 git 版本为：（需要使用 Arch Linux CN 源）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5-git fcitx5-chinese-addons-git manjaro-asian-input-support-fcitx5 fcitx5-gtk-git fcitx5-qt5-git fcitx5-configtool-git<br></code></pre></td></tr></table></figure>
+<p>可以添加词库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki<br></code></pre></td></tr></table></figure>
+<p>一个稳定的替代版本是 Fcitx 4.2.9.8-1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-im fcitx-configtool fcitx-cloudpinyin manjaro-asian-input-support-fcitx<br></code></pre></td></tr></table></figure>
+<p>可以配合 googlepinyin 或 sunpinyin 使用，即执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-googlepinyin<br></code></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pacman -S fcitx-sunpinyin<br></code></pre></td></tr></table></figure>
+<p>也可以用 <code>sudo pacman -S sunpinyin</code> 安装 Sunpinyin</p>
+<p><strong>安装输入法之后需要重启电脑才能生效</strong></p>
+<h3 id="安装其它软件"><a href="#安装其它软件" class="headerlink" title="安装其它软件"></a><strong>安装其它软件</strong></h3><p>以下命令中的 <code>pamac install</code> 也可以在“添加/删除软件”（即 pamac）中搜索安装，如果不是 AUR 仓库中的软件，也可以用 <code>sudo pacman -S</code> 安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install geogebra stellarium typora v2ray qv2ray-dev-git vlc thunderbird qbittorrent baidunetdisk-bin<br></code></pre></td></tr></table></figure>
+<p><strong>这里的 qv2ray-dev-git 一定要选择 Archlinux CN 软件源的版本</strong></p>
+<h4 id="用-debtap-安装-deb-包（不推荐）"><a href="#用-debtap-安装-deb-包（不推荐）" class="headerlink" title="用 debtap 安装 .deb 包（不推荐）"></a><strong>用 debtap 安装 <code>.deb</code> 包（不推荐）</strong></h4><p>首先要下载并更新 debtap 包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install debtap<br>sudo debtap -u<br></code></pre></td></tr></table></figure>
+<p><strong>运行 <code>sudo debtap -u</code> 时建议连接北京大学校园网</strong></p>
+<p>进入含有 <code>.deb</code> 安装包的文件夹，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo debtap (package_name).deb<br></code></pre></td></tr></table></figure>
+<p>系统会询问三个问题：文件名随便写，协议写 <code>GPL</code> 即可，编辑文件直接按 <code>Enter</code> 跳过</p>
+<p>此处会生成一个 <code>tar.zst</code> 包，双击打开（右键用“软件安装程序”打开）即可安装</p>
+<h3 id="安装-TeX-Live"><a href="#安装-TeX-Live" class="headerlink" title="安装 TeX Live"></a><strong>安装 TeX Live</strong></h3><p>推荐从 ISO 安装 TeX Live</p>
+<p>首先在<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">清华大学镜像</a>或者<a target="_blank" rel="noopener" href="https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/">上海交大镜像</a>下载 TeX Live ISO，文件名为 <code>texlive.iso</code>（和 <code>texlive(year).iso</code>、<code>texlive(year)-(date).iso</code> 是一致的）</p>
+<p>在 Dolphin 中右键点击 ISO 镜像文件挂载，或在终端中运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mount -t iso9660 -o ro,loop,noauto (texlive_path)/texlive.iso /mnt<br></code></pre></td></tr></table></figure>
+<h4 id="使用命令行界面安装（推荐）"><a href="#使用命令行界面安装（推荐）" class="headerlink" title="使用命令行界面安装（推荐）"></a><strong>使用命令行界面安装（推荐）</strong></h4><p>进入镜像文件夹，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo perl install-tl -gui text<br></code></pre></td></tr></table></figure>
+<p>用大写字母命令控制安装：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-built_in">D</span> <span class="hljs-operator">&gt;&gt;</span> <span class="hljs-number">1</span> <span class="hljs-operator">&gt;&gt;</span> 输入要安装 <span class="hljs-variable">TeX</span> <span class="hljs-variable">Live</span> 的位置（<span class="hljs-variable">TEXDIR</span>） <span class="hljs-operator">&gt;&gt;</span> <span class="hljs-variable">R</span><br><span class="hljs-built_in">O</span> <span class="hljs-operator">&gt;&gt;</span> <span class="hljs-variable">L</span> <span class="hljs-operator">&gt;&gt;</span> 都选择默认位置（按 <span class="hljs-built_in">Enter</span>） <span class="hljs-operator">&gt;&gt;</span> <span class="hljs-variable">R</span><br><span class="hljs-built_in">I</span><br></code></pre></td></tr></table></figure>
+<p>TEXDIR 建议选择 <code>/home/(user_name)/</code> 下的文件夹以方便查看和修改，TEXMFLOCAL 会随 TEXDIR 自动更改</p>
+<p>CTAN 镜像源可以使用 TeX Live 管理器 tlmgr 更改，更改到清华大学镜像需要在命令行中执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet<br>sudo tlmgr --repository http://www.texlive.info/tlgpg/ install tlgpg<br></code></pre></td></tr></table></figure>
+<h4 id="使用图形界面安装"><a href="#使用图形界面安装" class="headerlink" title="使用图形界面安装"></a><strong>使用图形界面安装</strong></h4><p>首先要检查是否安装 tcl 和 tk：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install tcl tk<br></code></pre></td></tr></table></figure>
+<p>进入镜像文件夹，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo perl install-tl -gui<br></code></pre></td></tr></table></figure>
+<p>即可在图形界面下载 TeX Live（如果不加 <code>sudo</code> 则只能将其安装到 <code>/home/(user_name)/</code> 下的文件夹且无法勾选 Create symlinks in standard directories: 一项），高级设置需要点击左下角的 Advanced 按钮</p>
+<p><strong>记住勾选 Create symlinks in standard directories 一项（自动添加到 PATH），Specify directories 选择默认文件夹即可，之后不需要自己添加 PATH</strong></p>
+<p>可以运行 <code>tex --version</code> 检查是否安装成功，若成功应显示 TeX 的版本号、TeX Live 的版本号和版权信息</p>
+<p>还可以运行 <code>tlmgr --version</code> 和 <code>texdoc (package_name)</code> （选择常见的宏包名称如 <code>texdoc ctex</code>）检查是否安装成功</p>
+<h3 id="TeXstudio-安装与配置（可选）"><a href="#TeXstudio-安装与配置（可选）" class="headerlink" title="TeXstudio 安装与配置（可选）"></a><strong>TeXstudio 安装与配置（可选）</strong></h3><p>安装 TeXstudio：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install texstudio<br></code></pre></td></tr></table></figure>
+<p>帮助 &gt;&gt; 检查 LaTeX 安装信息</p>
+<p>如果能检测到 LaTeX，说明 TeX Live 安装成功，开始设置</p>
+<p>选项 &gt;&gt; 设置 TeXstudio</p>
+<p>首先在左下角勾选“显示高级选项”</p>
+<p>常规 &gt;&gt; 会话 &gt;&gt; 取消勾选“启动时恢复上一次会话”（可选）</p>
+<p>菜单 &gt;&gt; 数学 &gt;&gt; <code>\frac&#123;&#125;&#123;&#125;</code> &gt;&gt; <code>\frac&#123;%|&#125;&#123;&#125;</code></p>
+<p>菜单 &gt;&gt; 数学 &gt;&gt; <code>\dfrac&#123;&#125;&#123;&#125;</code> &gt;&gt; <code>\dfrac&#123;%|&#125;&#123;&#125;</code></p>
+<p>快捷键 &gt;&gt; 数学 &gt;&gt; 数学字体格式 &gt;&gt; 罗马字体 &gt;&gt; 当前快捷键 &gt;&gt; <code>Alt+Shift+R</code></p>
+<p>编辑器 &gt;&gt; 缩进模式 &gt;&gt; 自动增加或减少缩进</p>
+<p>编辑器 &gt;&gt; 缩进模式 &gt;&gt; 勾选“将缩进替换为空格”和“将文本中的制表符（Tab）替换为空格”</p>
+<p>编辑器 &gt;&gt; 显示行号 &gt;&gt; 所有行号</p>
+<p>编辑器 &gt;&gt; 取消勾选“行内检查”</p>
+<p>高级编辑器 &gt;&gt; 自动保存所有文件 &gt;&gt; 1 分钟</p>
+<p>高级编辑器 &gt;&gt; 破解/变通 &gt;&gt; 取消勾选“自动选择最佳显示选项”，并勾选“禁用字符宽度缓存”和“关闭固定位置模式”</p>
+<p>补全 &gt;&gt; 取消勾选“输入参数”</p>
+<h3 id="Thunderbird-配置"><a href="#Thunderbird-配置" class="headerlink" title="Thunderbird 配置"></a><strong>Thunderbird 配置</strong></h3><h4 id="Thunderbird-首选项配置"><a href="#Thunderbird-首选项配置" class="headerlink" title="Thunderbird 首选项配置"></a><strong>Thunderbird 首选项配置</strong></h4><p>进入首选项界面调整显示：</p>
+<p>首选项 &gt;&gt; 常规 &gt;&gt; Thunderbird 起始页 &gt;&gt; 清空并取消勾选</p>
+<p>首选项 &gt;&gt; 常规 &gt;&gt; 默认搜索引擎 &gt;&gt; 改为 Bing</p>
+<p>首选项 &gt;&gt; 隐私与安全 &gt;&gt; 邮件内容 &gt;&gt; 勾选“允许消息中的远程内容”</p>
+<p>右键点击上方邮件工具栏，选择“自定义”，自行配置即可</p>
+<h4 id="Thunderbird-帐号配置"><a href="#Thunderbird-帐号配置" class="headerlink" title="Thunderbird 帐号配置"></a><strong>Thunderbird 帐号配置</strong></h4><p>点击邮箱帐号，配置“账户设置”如下：</p>
+<p>服务器 &gt;&gt; 服务器设置 &gt;&gt; 每隔 1 分钟检查一次新消息</p>
+<p>服务器 &gt;&gt; 服务器设置 &gt;&gt; 在删除消息时 &gt;&gt; 立即删除</p>
+<h3 id="Python-安装与配置"><a href="#Python-安装与配置" class="headerlink" title="Python 安装与配置"></a><strong>Python 安装与配置</strong></h3><p>Manjaro 预装了 Python，但没有安装包管理器，可以使用 <code>pip</code> 或 <code>conda</code>（即安装 Miniconda）</p>
+<h4 id="pip-安装"><a href="#pip-安装" class="headerlink" title="pip 安装"></a><strong>pip 安装</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &amp;&amp; python get-pip.py<br></code></pre></td></tr></table></figure>
+<p>即可安装 pip，此时不建议安装 conda，pip 下载包的命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install (package_name)<br></code></pre></td></tr></table></figure>
+<p>这里不建议安装 spyder 和 jupyter notebook，安装最基本的包即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install numpy scipy matplotlib astropy autopep8<br></code></pre></td></tr></table></figure>
+<h4 id="Miniconda-安装与配置"><a href="#Miniconda-安装与配置" class="headerlink" title="Miniconda 安装与配置"></a><strong>Miniconda 安装与配置</strong></h4><p>Miniconda 是 Anaconda 的精简版，推荐使用 Miniconda</p>
+<p>下载地址如下：</p>
+<p>Miniconda — Conda documentation</p>
+<p><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a></p>
+<p>或者在<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学镜像站</a>点击右侧的“获取下载链接”按钮，在“应用软件” &gt;&gt; Conda 里面选择</p>
+<p>安装过程参考以下网址：（Miniconda 和 Anaconda 的安装步骤相同）</p>
+<p>Anaconda Documentation — Installing on Linux</p>
+<p><a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/install/linux/">https://docs.anaconda.com/anaconda/install/linux/</a></p>
+<p>输入以下命令：（Windows 用户无法直接创建名为 <code>.condarc</code> 的文件，可先执行 <code>conda config --set show_channel_urls yes</code> 生成该文件之后再修改）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.condarc<br></code></pre></td></tr></table></figure>
+<p>修改 <code>~/.condarc</code> 以使用清华大学镜像：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">channels:<br>  - defaults<br>show_channel_urls: true<br>default_channels:<br>  - https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/main<br>  - https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/r<br>  - https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/msys2<br>custom_channels:<br>  conda-forge: https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/anaconda/</span>cloud<br>  pytorch: https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/anaconda/</span>cloud<br></code></pre></td></tr></table></figure>
+<p>或上海交大镜像：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk">channels:<br>  - defaults<br>default_channels:<br>  - https:<span class="hljs-regexp">//mi</span>rror.sjtu.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/main<br>  - https:<span class="hljs-regexp">//mi</span>rror.sjtu.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/r<br>  - https:<span class="hljs-regexp">//mi</span>rror.sjtu.edu.cn<span class="hljs-regexp">/anaconda/</span>pkgs/msys2<br>custom_channels:<br>  conda-forge: https:<span class="hljs-regexp">//mi</span>rror.sjtu.edu.cn<span class="hljs-regexp">/anaconda/</span>cloud/<br>  pytorch: https:<span class="hljs-regexp">//mi</span>rror.sjtu.edu.cn<span class="hljs-regexp">/anaconda/</span>cloud/<br></code></pre></td></tr></table></figure>
+<p>若不用特定的镜像，改为默认值：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">channels:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">defaults</span><br><span class="hljs-attr">ssl_verify:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>下载所需要的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install numpy scipy matplotlib astropy spyder jupyter<br></code></pre></td></tr></table></figure>
+<p>各个操作系统平台上可下载的包可以在以下网站查询：</p>
+<p>Anaconda Documentation — Anaconda Package Lists</p>
+<p><a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/packages/pkg-docs/">https://docs.anaconda.com/anaconda/packages/pkg-docs/</a></p>
+<h4 id="Conda-常用命令"><a href="#Conda-常用命令" class="headerlink" title="Conda 常用命令"></a><strong>Conda 常用命令</strong></h4><p>下载包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install (package_name)<br></code></pre></td></tr></table></figure>
+<p>下载特定版本的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install (package_name)=(version_number)<br></code></pre></td></tr></table></figure>
+<p>下载 conda-forge 中的软件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install -c conda-forge (package_name)<br></code></pre></td></tr></table></figure>
+<p>更新包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda update (package_name)<br></code></pre></td></tr></table></figure>
+<p>更新所有包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda update --all<br></code></pre></td></tr></table></figure>
+<p>恢复之前的版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda list --revisions<br>conda install --revision (revision_number)<br></code></pre></td></tr></table></figure>
+<p><strong>如果回滚到早期版本（<code>revision_number</code> 较小）之后又想回到某个高版本（<code>revision_number</code> 较大），必须要把两个版本中的版本都装一遍</strong></p>
+<p>删除所有旧版本的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda clean -p<br></code></pre></td></tr></table></figure>
+<p>列出所有下载的包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda list<br></code></pre></td></tr></table></figure>
+<p>添加软件源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda config --add channels (channel_URL)<br></code></pre></td></tr></table></figure>
+<h4 id="加入-AstroConda-软件源"><a href="#加入-AstroConda-软件源" class="headerlink" title="加入 AstroConda 软件源"></a><strong>加入 AstroConda 软件源</strong></h4><p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda config --add channels http://ssb.stsci.edu/astroconda<br></code></pre></td></tr></table></figure>
+<p>这相当于在 <code>~/.condarc</code> 中 <code>channels</code> 一栏改为：</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haml">channels:<br>  -<span class="ruby"> defaults</span><br><span class="ruby"></span>  -<span class="ruby"> <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/ssb.stsci.edu/astroconda</span></span><br></code></pre></td></tr></table></figure>
+<p>这样就可以下载 <code>wcstools</code> 等软件</p>
+<h4 id="下载-photutils"><a href="#下载-photutils" class="headerlink" title="下载 photutils"></a><strong>下载 photutils</strong></h4><p>需要在 conda-forge 中下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install -c conda-forge photutils<br></code></pre></td></tr></table></figure>
+<h4 id="Spyder-配置"><a href="#Spyder-配置" class="headerlink" title="Spyder 配置"></a><strong>Spyder 配置</strong></h4><p>通用 &gt;&gt; 显示器分辨率 &gt;&gt; 自定义高分辨率缩放 &gt;&gt; 1.0</p>
+<p>外观 &gt;&gt; 语法高亮主题 &gt;&gt; IDLE</p>
+<p>编辑选定的方案：</p>
+<p>文本：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less">普通文本 <span class="hljs-selector-id">#000000</span><br>注释：<span class="hljs-selector-id">#999999</span>, <span class="hljs-selector-tag">B</span><br>字符串：<span class="hljs-selector-id">#00aa00</span><br>数值：<span class="hljs-selector-id">#aa0000</span><br>关键字：<span class="hljs-selector-id">#ff5500</span>, <span class="hljs-selector-tag">B</span><br>内置：<span class="hljs-selector-id">#990099</span><br>定义：<span class="hljs-selector-id">#0000ff</span><br>实例：<span class="hljs-selector-id">#ff55ff</span>, <span class="hljs-selector-tag">B</span><br></code></pre></td></tr></table></figure>
+<p>高亮：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 1c">当前 Cell：<span class="hljs-meta">#ffaaff</span><br>当前行：<span class="hljs-meta">#aaffff</span><br>事件：<span class="hljs-meta">#ffff00</span><br>匹配圆括号：<span class="hljs-meta">#99ff99</span><br>不匹配圆括号：<span class="hljs-meta">#ff9999</span><br>链接：<span class="hljs-meta">#55ff00</span><br></code></pre></td></tr></table></figure>
+<p>编辑器 &gt;&gt; 勾选“显示标签栏”、“显示缩进指导”、“显示行号”、“高亮显示当前行”、“高亮显示当前 Cell”，并把“高亮延迟时间”设定为 100 毫秒</p>
+<p>用 Spyder 打开某个文件需要在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">spyder (file_path)/(file_name)<br></code></pre></td></tr></table></figure>
+<p>Linux 上 Spyder 需要在 conda 中安装 <code>fcitx-qt5</code> 才能支持 Fcitx/Fcitx5 输入中文字符：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">conda</span> install -c conda-forge fcitx-qt<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<h3 id="Visual-Studio-Code-安装与配置"><a href="#Visual-Studio-Code-安装与配置" class="headerlink" title="Visual Studio Code 安装与配置"></a><strong>Visual Studio Code 安装与配置</strong></h3><h4 id="Visual-Studio-Code-安装"><a href="#Visual-Studio-Code-安装" class="headerlink" title="Visual Studio Code 安装"></a><strong>Visual Studio Code 安装</strong></h4><p>发行版维护者从开源代码构建的版本，可以用 <code>code</code> 命令打开（缺点是图标被重新设计过，且更新落后于微软官方版）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install code<br></code></pre></td></tr></table></figure>
+<p>微软官方的二进制包（包含部分私有的组件），同样可以用 <code>code</code> 命令打开（如果不介意私有组件而且不习惯 Code - OSS 的图标，个人推荐首选此项）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install visual-studio-code-bin<br></code></pre></td></tr></table></figure>
+<p>内测版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install visual-studio-code-insiders<br></code></pre></td></tr></table></figure>
+<p>第三方发布的从开源代码构建的二进制包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install vscodium-bin<br></code></pre></td></tr></table></figure>
+<p>从最新的开源代码构建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install code-git<br></code></pre></td></tr></table></figure>
+<p>下载扩展：Python（会自动下载 Pylance、Jupyter 等扩展），LaTeX Workshop，C/C++，Rainbow Brackets，Prettier - Code formatter，Markdown all in One</p>
+<p>扩展保存在 <code>~/.vscode/extensions/</code> 文件夹内</p>
+<h4 id="Visual-Studio-Code-图标更改（可选）"><a href="#Visual-Studio-Code-图标更改（可选）" class="headerlink" title="Visual Studio Code 图标更改（可选）"></a><strong>Visual Studio Code 图标更改（可选）</strong></h4><p>如果图标美化后 Visual Studio Code 图标变成圆形，想恢复原图标，更改路径如下：</p>
+<p>程序启动器 &gt;&gt; 编辑应用程序 &gt;&gt; Visual Studio Code &gt;&gt; 点击图标更改 &gt;&gt; 其他图标</p>
+<p>其图标位置在 <code>/usr/share/icons/visual-studio-code.png</code></p>
+<h4 id="Visual-Studio-Code-缩放比例"><a href="#Visual-Studio-Code-缩放比例" class="headerlink" title="Visual Studio Code 缩放比例"></a><strong>Visual Studio Code 缩放比例</strong></h4><p>放大比例：<code>Ctrl+=</code></p>
+<p>缩小比例：<code>Ctrl+-</code></p>
+<h4 id="Visual-Studio-Code-设置快捷键"><a href="#Visual-Studio-Code-设置快捷键" class="headerlink" title="Visual Studio Code 设置快捷键"></a><strong>Visual Studio Code 设置快捷键</strong></h4><p>若要更改全局快捷键，设置文件在 <code>~/.config/Code/User/keybinding.json</code>，可以在 Visual Studio Code 中按 <code>Ctrl+K Ctrl+S</code> 开启设置</p>
+<h4 id="Latex-Workshop-插件设置"><a href="#Latex-Workshop-插件设置" class="headerlink" title="Latex Workshop 插件设置"></a><strong>Latex Workshop 插件设置</strong></h4><p>若想在 <a target="_blank" rel="noopener" href="https://github.com/James-Yu/LaTeX-Workshop">LaTeX Workshop</a> 里面添加 <code>\frac&#123;&#125;&#123;&#125;</code> 命令的快捷键为 <code>Ctrl+M Ctrl+F</code>，则添加一段：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;ctrl+m ctrl+f&quot;</span>,<br>    <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;editor.action.insertSnippet&quot;</span>,<br>    <span class="hljs-attr">&quot;args&quot;</span>: &#123; <span class="hljs-attr">&quot;snippet&quot;</span>: <span class="hljs-string">&quot;\\frac&#123;$1&#125;&#123;$2&#125;$0&quot;</span> &#125;,<br>    <span class="hljs-attr">&quot;when&quot;</span>: <span class="hljs-string">&quot;editorTextFocus &amp;&amp; !editorReadonly &amp;&amp; editorLangId =~ /latex|rsweave|jlweave/&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>若要更改行间公式 <code>\[\]</code> 的自动补全（公式独占一行），在 <code>~/.vscode/extensions/james-yu.latex-workshop-(version_number)/data/commands.json</code> 中找到：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br><span class="hljs-attr">&quot;[&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;[&quot;</span>,<br>    <span class="hljs-attr">&quot;snippet&quot;</span>: <span class="hljs-string">&quot;[$&#123;1&#125;\\]&quot;</span>,<br>    <span class="hljs-attr">&quot;detail&quot;</span>: <span class="hljs-string">&quot;display math \\[ ... \\]&quot;</span><br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>改为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br><span class="hljs-attr">&quot;[&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;[&quot;</span>,<br>    <span class="hljs-attr">&quot;snippet&quot;</span>: <span class="hljs-string">&quot;[\n    $&#123;1&#125;\n\\]&quot;</span>,<br>    <span class="hljs-attr">&quot;detail&quot;</span>: <span class="hljs-string">&quot;display math \\[ ... \\]&quot;</span><br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>重启 Visual Studio Code 即可生效</p>
+<h4 id="Rainbow-Brackets-插件设置"><a href="#Rainbow-Brackets-插件设置" class="headerlink" title="Rainbow Brackets 插件设置"></a><strong>Rainbow Brackets 插件设置</strong></h4><p>更改 Rainbow Brackets 的括号配色可以修改文件 <code>~/.vscode/extensions/2gua.rainbow-brackets-0.0.6/out/src/extension.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> roundBracketsColor = [<span class="hljs-string">&quot;#ff5500&quot;</span>, <span class="hljs-string">&quot;#cc0066&quot;</span>, <span class="hljs-string">&quot;#00aa66&quot;</span>, <span class="hljs-string">&quot;#ff9999&quot;</span>];<br><span class="hljs-keyword">var</span> squareBracketsColor = [<span class="hljs-string">&quot;#33ccff&quot;</span>, <span class="hljs-string">&quot;#8080ff&quot;</span>, <span class="hljs-string">&quot;#0077aa&quot;</span>];<br><span class="hljs-keyword">var</span> squigglyBracketsColor = [<span class="hljs-string">&quot;#aa00aa&quot;</span>, <span class="hljs-string">&quot;#009900&quot;</span>, <span class="hljs-string">&quot;#996600&quot;</span>];<br></code></pre></td></tr></table></figure>
+<p>重启 Visual Studio Code 即可生效</p>
+<h4 id="Markdown-插件设置"><a href="#Markdown-插件设置" class="headerlink" title="Markdown 插件设置"></a><strong>Markdown 插件设置</strong></h4><p>Visual Studio Code 自带 Markdown 预览功能，但是不支持数学命令的补全，也不支持复选框：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [x] item 1<br><span class="hljs-bullet">-</span> [ ] item 2<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzhang-gh/vscode-markdown">Markdown all in one</a> 对数学公式补全支持较好，也支持复选框，缺点是不支持自动补全配对括号（在设置中将所有语言的括号自动配对打开即可），且部分数学公式环境无法渲染（可以在设置中将该插件的公式支持关闭），其设置为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-string">&quot;editor.autoClosingBrackets&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br><span class="hljs-string">&quot;markdown.extension.math.enabled&quot;</span>: <span class="hljs-literal">false</span>,<br></code></pre></td></tr></table></figure>
+<p>而 Markdown 预览支持最好的插件是 <a target="_blank" rel="noopener" href="https://github.com/shd101wyy/markdown-preview-enhanced">Markdown Preview Enhanced</a>，使用时可以选择插件预览或默认预览</p>
+<h3 id="Typora-美化"><a href="#Typora-美化" class="headerlink" title="Typora 美化"></a><strong>Typora 美化</strong></h3><h4 id="源代码模式"><a href="#源代码模式" class="headerlink" title="源代码模式"></a><strong>源代码模式</strong></h4><p>更改 <code>/usr/share/typora/resources/style/base-control.css</code>：（在 Windows 中则是 <code>C:\Program Files\Typora\resources\style\base-control.css</code>）</p>
+<p>找到 <code>.CodeMirror.cm-s-typora-default div.CodeMirror-cursor</code> 一行，将光标宽度改为 <code>1px</code>，颜色从 <code>#e4629a</code> 改为 <code>#000000</code></p>
+<p>更改 <code>/usr/share/typora/resources/style/base.css</code>：（在 Windows 中则是 <code>C:\Program Files\Typora\resources\style\base.css</code>）</p>
+<p>找到 <code>:root</code> 一行，将 <code>--monospace</code> 改成自己想要的等宽字体</p>
+<h4 id="主题渲染模式"><a href="#主题渲染模式" class="headerlink" title="主题渲染模式"></a><strong>主题渲染模式</strong></h4><p>在 <code>/home/(user_name)/.config/Typora/themes/</code> 中自己写一个 CSS 文件（可以复制其中一个默认主题，重命名后更改）</p>
+<p>找到 <code>body</code> 一行，将 <code>font-family</code> 改成自己想要的字体</p>
+<p>找到 <code>tt</code> 一行，将 <code>font-family</code> 改成自己想要的等宽字体（<code>monospace</code>）</p>
+<h3 id="SAOImageDS9-安装"><a href="#SAOImageDS9-安装" class="headerlink" title="SAOImageDS9 安装"></a><strong>SAOImageDS9 安装</strong></h3><p>推荐选择二进制包 <code>ds9-bin</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install ds9-bin<br></code></pre></td></tr></table></figure>
+<p>如果出现这样的错误导致 SAOImageDS9 无法打开或闪退：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">application-specific initialization failed: <span class="hljs-type">unknown</span> color <span class="hljs-type">name</span> &quot;BACKGROUND&quot;<br>Unable <span class="hljs-keyword">to</span> initialize <span class="hljs-keyword">window</span> <span class="hljs-keyword">system</span>.<br></code></pre></td></tr></table></figure>
+<p>在终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">xrdb -load /dev/null<br>xrdb -query<br></code></pre></td></tr></table></figure>
+<p>即可解决</p>
+<h3 id="Github-Desktop-安装（可选）"><a href="#Github-Desktop-安装（可选）" class="headerlink" title="Github Desktop 安装（可选）"></a><strong>Github Desktop 安装（可选）</strong></h3><p>推荐选择二进制包 <code>github-desktop-bin</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install github-desktop-bin<br></code></pre></td></tr></table></figure>
+<p>登录时要创建一个密钥环，密钥设为 Github 密码即可</p>
+<h3 id="WPS-安装（可选）"><a href="#WPS-安装（可选）" class="headerlink" title="WPS 安装（可选）"></a><strong>WPS 安装（可选）</strong></h3><p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts<br></code></pre></td></tr></table></figure>
+<h3 id="微信安装"><a href="#微信安装" class="headerlink" title="微信安装"></a><strong>微信安装</strong></h3><p>极简版（原生适配高分辨率屏幕，不需要 wine/deepin-wine 即可运行；但是功能较少，不支持截屏和“订阅号消息”，且对大文件传输的支持不佳）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install wechat-uos<br></code></pre></td></tr></table></figure>
+<p>功能较多，和最新的 Windows 电脑版同步更新，但依赖 deepin-wine，且暂不支持“截屏时隐藏当前窗口”的版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install deepin-wine-wechat<br></code></pre></td></tr></table></figure>
+<h4 id="deepin-wine-wechat-高分辨率适配调整"><a href="#deepin-wine-wechat-高分辨率适配调整" class="headerlink" title="deepin-wine-wechat 高分辨率适配调整"></a><strong>deepin-wine-wechat 高分辨率适配调整</strong></h4><p>用命令 <code>/opt/apps/com.qq.weixin.deepin/files/run.sh winecfg</code> 调出 Wine Configuration，对于 200% 的放大率：</p>
+<p>Graphics &gt;&gt; Screen Resolution &gt;&gt; 192 dpi</p>
+<p>其余基于 Deepin Wine 的软件（如腾讯会议）也是类似的处理方法，将 <code>com.qq.weixin.deepin</code> 换成对应的文件夹名称即可（都在 <code>/opt/apps/</code> 目录下）</p>
+<h3 id="会议软件安装"><a href="#会议软件安装" class="headerlink" title="会议软件安装"></a><strong>会议软件安装</strong></h3><p>腾讯会议：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install com.tencent.deepin.meeting<br></code></pre></td></tr></table></figure>
+<p>高分辨率适配调整：</p>
+<p>用命令 <code>/opt/apps/com.tencent.meeting.deepin/files/run.sh winecfg</code> 调出 Wine Configuration，对于 200% 的放大率：</p>
+<p>Graphics &gt;&gt; Screen Resolution &gt;&gt; 192 dpi</p>
+<h3 id="音乐软件安装"><a href="#音乐软件安装" class="headerlink" title="音乐软件安装"></a><strong>音乐软件安装</strong></h3><h4 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a><strong>网易云音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install netease-cloud-music<br></code></pre></td></tr></table></figure>
+<h4 id="QQ-音乐"><a href="#QQ-音乐" class="headerlink" title="QQ 音乐"></a><strong>QQ 音乐</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install qqmusic-bin<br></code></pre></td></tr></table></figure>
+<p>默认是暗色主题，右上角皮肤键（衣服图案）可以更改为亮色主题</p>
+<h3 id="Geant4-安装"><a href="#Geant4-安装" class="headerlink" title="Geant4 安装"></a><strong>Geant4 安装</strong></h3><h4 id="从源代码安装-Geant4"><a href="#从源代码安装-Geant4" class="headerlink" title="从源代码安装 Geant4"></a><strong>从源代码安装 Geant4</strong></h4><p>从官网上下载源代码压缩包：</p>
+<p>Geant4 — Download</p>
+<p><a target="_blank" rel="noopener" href="https://geant4.web.cern.ch/support/download">https://geant4.web.cern.ch/support/download</a></p>
+<p>进入解压后的文件夹，若要将 Geant4 安装在 <code>(Geant4_directory)</code>，例如 <code>~/Geant4</code>，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir build<br><span class="hljs-built_in">cd</span> ./build<br>cmake -DCMAKE_INSTALL_PREFIX=(Geant4_directory) -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON -DGEANT4_INSTALL_DATA=ON -DGEANT4_BUILD_MULTITHREADED=ON ..<br>make -j8<br>make install -j8<br></code></pre></td></tr></table></figure>
+<p>之后在 <code>~/.bashrc</code> 中添加一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> (Geant4_directory)/bin/geant4.sh<br></code></pre></td></tr></table></figure>
+<h4 id="检验是否安装成功"><a href="#检验是否安装成功" class="headerlink" title="检验是否安装成功"></a><strong>检验是否安装成功</strong></h4><p>打开 <code>(Geant4_directory)/share/Geant4-(version_number)/examples/basic/B1</code>，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir build<br><span class="hljs-built_in">cd</span> ./build<br>cmake ..<br>make -j8<br>./exampleB1<br></code></pre></td></tr></table></figure>
+<p>如果出现图形交互界面，说明安装成功</p>
+<h3 id="Surface：能用上触控笔的软件（可选）"><a href="#Surface：能用上触控笔的软件（可选）" class="headerlink" title="Surface：能用上触控笔的软件（可选）"></a><strong>Surface：能用上触控笔的软件（可选）</strong></h3><h4 id="绘画"><a href="#绘画" class="headerlink" title="绘画"></a><strong>绘画</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install krita<br></code></pre></td></tr></table></figure>
+<h4 id="手写笔记"><a href="#手写笔记" class="headerlink" title="手写笔记"></a><strong>手写笔记</strong></h4><p>可以选择 Xournal++ 或者 Write</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install xournalpp<br>pamac install write_stylus<br></code></pre></td></tr></table></figure>
+<h3 id="Surface：屏幕键盘（可选）"><a href="#Surface：屏幕键盘（可选）" class="headerlink" title="Surface：屏幕键盘（可选）"></a><strong>Surface：屏幕键盘（可选）</strong></h3><p>目前最受欢迎的屏幕键盘应该是 OnBoard</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install onboard<br></code></pre></td></tr></table></figure>
+<p>但 OnBoard 在 Wayland 上无法使用。如果需要在 Wayland 会话中使用屏幕键盘，推荐安装 CellWriter</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pamac install cellwriter<br></code></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><strong>参考资料</strong></h2><p>BitLocker 恢复密钥</p>
+<p><a target="_blank" rel="noopener" href="https://account.microsoft.com/devices/recoverykey?refd=account.microsoft.com">https://account.microsoft.com/devices/recoverykey?refd=account.microsoft.com</a></p>
+<p>Windows 10 如何关闭快速启动</p>
+<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/ca00d56c7a40e6e99febcf4f.html">https://jingyan.baidu.com/article/ca00d56c7a40e6e99febcf4f.html</a></p>
+<p>创建和使用 Surface 的 USB 恢复驱动器</p>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/help/4023512/surface-creating-and-using-a-usb-recovery-drive">https://support.microsoft.com/zh-cn/help/4023512/surface-creating-and-using-a-usb-recovery-drive</a></p>
+<p>下载 Surface 的恢复映像</p>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/surfacerecoveryimage">https://support.microsoft.com/zh-cn/surfacerecoveryimage</a></p>
+<p>下载 Windows 10 光盘映像</p>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10ISO">https://www.microsoft.com/zh-cn/software-download/windows10ISO</a></p>
+<p>如何使用 Surface UEFI</p>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/help/4023531/surface-how-to-use-surface-uefi">https://support.microsoft.com/zh-cn/help/4023531/surface-how-to-use-surface-uefi</a></p>
+<p>Win 10 环境下安装 Manjaro KDE（双系统）</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Jaywhen-xiang/p/11561661.html">https://www.cnblogs.com/Jaywhen-xiang/p/11561661.html</a></p>
+<p>Manjaro 20 KDE 配置心得</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40293491/article/details/107526553">https://blog.csdn.net/weixin_40293491/article/details/107526553</a></p>
+<p>Manjaro 安装体验小结</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76608451">https://zhuanlan.zhihu.com/p/76608451</a></p>
+<p>Manjaro 安装后你需要这样做</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/haohao77/p/9034499.html#11-%E9%85%8D%E7%BD%AE%E5%AE%98%E6%96%B9%E6%BA%90">https://www.cnblogs.com/haohao77/p/9034499.html#11-%E9%85%8D%E7%BD%AE%E5%AE%98%E6%96%B9%E6%BA%90</a></p>
+<p>Manjaro Wiki — Pacman Overview</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pacman_Overview">https://wiki.manjaro.org/index.php/Pacman_Overview</a></p>
+<p>ArchWiki — Pacman</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Pacman">https://wiki.archlinux.org/index.php/Pacman</a></p>
+<p>Manjaro Wiki — Pamac</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Pamac">https://wiki.manjaro.org/index.php/Pamac</a></p>
+<p>GitHub — sudo pacman</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Jguer/sudo">https://github.com/Jguer/sudo</a> pacman</p>
+<p>Manjaro Wiki — Manjaro Hardware Detection Overview</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview">https://wiki.manjaro.org/index.php/Manjaro_Hardware_Detection_Overview</a></p>
+<p>Manjaro Wiki — Configure Graphics Cards</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Configure_Graphics_Cards">https://wiki.manjaro.org/index.php/Configure_Graphics_Cards</a></p>
+<p>Manjaro Wiki — Manjaro Kernels</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Manjaro_Kernels">https://wiki.manjaro.org/index.php/Manjaro_Kernels</a></p>
+<p>ArchWiki — Sudo (简体中文)</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Sudo_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/index.php/Sudo_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<p>Manjaro Wiki — Switching Branches</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php?title=Switching_Branches">https://wiki.manjaro.org/index.php?title=Switching_Branches</a></p>
+<p>在 Mac 上用 Openconnect 连接 Pulse Secure VPN</p>
+<p><a target="_blank" rel="noopener" href="https://blog.yangl1996.com/post/use-openconnect-to-connect-to-pulse-secure-on-mac/">https://blog.yangl1996.com/post/use-openconnect-to-connect-to-pulse-secure-on-mac/</a></p>
+<p>双系统下 Ubuntu 读写/挂载 Windows 中的硬盘文件 + 解决文件系统突然变成只读</p>
+<p><a target="_blank" rel="noopener" href="https://jakting.com/archives/ubuntu-rw-windows-files.html">https://jakting.com/archives/ubuntu-rw-windows-files.html</a></p>
+<p>修改 hosts 解决 GitHub 访问失败</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107334179">https://zhuanlan.zhihu.com/p/107334179</a></p>
+<p>Manjaro Linux Forum — Connect to internet from command-line as a beginner</p>
+<p><a target="_blank" rel="noopener" href="https://forum.manjaro.org/t/howto-connect-to-internet-from-command-line-as-a-beginner/">https://forum.manjaro.org/t/howto-connect-to-internet-from-command-line-as-a-beginner/</a></p>
+<p>Arch Wiki — XDG user directories</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/XDG_user_directories">https://wiki.archlinux.org/index.php/XDG_user_directories</a></p>
+<p>Arch Wiki — Cinnamon</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Cinnamon#Installation">https://wiki.archlinux.org/index.php/Cinnamon#Installation</a></p>
+<p>Arch Wiki — Intel Graphics</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Intel_graphics#Installation">https://wiki.archlinux.org/index.php/Intel_graphics#Installation</a></p>
+<p>KDE Community — Plasma 5.9 Errata</p>
+<p><a target="_blank" rel="noopener" href="https://community.kde.org/Plasma/5.9_Errata#Intel_GPUs">https://community.kde.org/Plasma/5.9_Errata#Intel_GPUs</a></p>
+<p>ArchWiki — Baloo</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Baloo">https://wiki.archlinux.org/index.php/Baloo</a></p>
+<p>Arch Wiki — 关于 Logitech BLE 鼠标的问题</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Bluetooth_mouse#Problems_with_the_Logitech_BLE_mouse_(M557,_M590,_anywhere_mouse_2,_etc">https://wiki.archlinux.org/index.php/Bluetooth_mouse#Problems_with_the_Logitech_BLE_mouse_(M557,_M590,_anywhere_mouse_2,_etc</a>)</p>
+<p>Linux-Surface — Installation and Setup</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup">https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup</a></p>
+<p>Arch Wiki — System time（简体中文）</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/System_time_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/index.php/System_time_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<p>KDE 桌面的 Mac 化</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/luoshuitianyi/p/10587788.html">https://www.cnblogs.com/luoshuitianyi/p/10587788.html</a></p>
+<p>KDE 桌面美化指南</p>
+<p><a target="_blank" rel="noopener" href="https://acherstyx.github.io/2020/06/30/KDE%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8D%97/">https://acherstyx.github.io/2020/06/30/KDE%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%E6%8C%87%E5%8D%97/</a></p>
+<p>Oh-My-Zsh 及主题、插件的安装与配置</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/misfit/p/10694397.html">https://www.cnblogs.com/misfit/p/10694397.html</a></p>
+<p>Linux GRUB 删除多余启动条目</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/JackLiu16/article/details/80383969">https://blog.csdn.net/JackLiu16/article/details/80383969</a></p>
+<p>AUR 镜像使用帮助</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/AUR/">https://mirrors.tuna.tsinghua.edu.cn/help/AUR/</a></p>
+<p>TUNA NTP (网络授时) 服务使用说明</p>
+<p><a target="_blank" rel="noopener" href="https://tuna.moe/help/ntp/">https://tuna.moe/help/ntp/</a></p>
+<p>SJTUG 软件源镜像服务</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.sjtug.sjtu.edu.cn/#/">https://mirrors.sjtug.sjtu.edu.cn/#/</a></p>
+<p>Manjaro 为包管理器 pacman 和 yaourt/sudo pacman 添加多线程下载</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dc90000/article/details/101752743?utm_medium=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase&amp;depth_1-utm_source=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase">https://blog.csdn.net/dc90000/article/details/101752743?utm_medium=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase&amp;depth_1-utm_source=distribute.wap_relevant.none-task-blog-OPENSEARCH-6.nonecase</a></p>
+<p>ArchWiki — Microsoft fonts（简体中文）</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Microsoft_fonts_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/index.php/Microsoft_fonts_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<p>Archlinux 使用 Windows 字体及相关配置</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_33528967/article/details/93380729">https://blog.csdn.net/sinat_33528967/article/details/93380729</a></p>
+<p>ArchWiki — Fcitx5 (简体中文)</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">https://wiki.archlinux.org/index.php/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)</p>
+<p>Archived Manjaro Forum — 比较几种中文输入法后，我最终选择了 sunpinyin + cloudpinyin 组合</p>
+<p><a target="_blank" rel="noopener" href="https://archived.forum.manjaro.org/t/sunpinyin-cloudpinyin/114282">https://archived.forum.manjaro.org/t/sunpinyin-cloudpinyin/114282</a></p>
+<p>Acquiring TeX Live as an ISO image</p>
+<p><a target="_blank" rel="noopener" href="https://www.tug.org/texlive/acquire-iso.html">https://www.tug.org/texlive/acquire-iso.html</a></p>
+<p>TeX Live - Quick install</p>
+<p><a target="_blank" rel="noopener" href="https://www.tug.org/texlive/quickinstall.html">https://www.tug.org/texlive/quickinstall.html</a></p>
+<p>TeX Live Documentation — TeXLive Installation</p>
+<p><a target="_blank" rel="noopener" href="https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#installation">https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#installation</a></p>
+<p>Font size of mailbox is too small</p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/zh-CN/questions/1297871">https://support.mozilla.org/zh-CN/questions/1297871</a></p>
+<p>Anaconda Documentation — Installing on Linux</p>
+<p><a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/install/linux/">https://docs.anaconda.com/anaconda/install/linux/</a></p>
+<p>恢复 Anaconda 环境, 卸载 Anaconda, 重装 Anaconda</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangweiwells/article/details/88374361">https://blog.csdn.net/wangweiwells/article/details/88374361</a></p>
+<p>Geant4 — Building and Installing from Source</p>
+<p><a target="_blank" rel="noopener" href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html</a></p>
+<p>Geant4 — Postinstall Setup</p>
+<p><a target="_blank" rel="noopener" href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html</a></p>
+<p>Geant4 基础 — 准备与安装</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135917392">https://zhuanlan.zhihu.com/p/135917392</a></p>
+<p>Linux ate my RAM!</p>
+<p><a target="_blank" rel="noopener" href="https://www.linuxatemyram.com/">https://www.linuxatemyram.com/</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Manjaro/">Manjaro</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/tools/Time-Calculator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">时间计算器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Hello-World/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+  <script type="text/javascript" src="/js/love.js"></script>
+
+
+</body>
+</html>
