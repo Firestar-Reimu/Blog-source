@@ -1,20 +1,20 @@
 ---
 title: Hello World
-date: 2021-09-06 12:00:00
-plugins:
-  - mathjax
-category:
-  - 教程
-tag:
-  - Hello World
-  - Blog
+date: 2023-02-03 12:00:00
+updated:
+top_img: /img/PKU_peach_blossom.jpg
+tags: 博客
+categories: 博客
+description: 搭建 GitHub Pages + Hexo + Butterfly 博客的笔记
+cover: /img/PKU_peach_blossom.jpg
+katex: true
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=1&height=66"></iframe>
 
 ### 申请 GitHub Pages
 
-新建一个 repository，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 GitHub 仓库用来存放博客的源代码（可选）
+新建一个 GitHub 仓库，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 GitHub 仓库用来存放博客的源代码（可选）
 
 ### 申请域名
 
@@ -26,11 +26,11 @@ tag:
 记录类型：CNAME；
 主机记录自选（我这里选择的是 blog，因为 www 经常无法与 GitHub Pages 连接）；
 解析线路选择默认；
-记录值选择(user_name).github.io；
+记录值选择 `(user_name).github.io`；
 TTL选择“10分钟”
 ```
 
-再去名为 `(user_name).github.io` 的 repository，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用。
+再去名为 `(user_name).github.io` 的仓库，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用。
 
 此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top` 试一试，如果能显示`README.md` 中的内容则设置成功。
 
@@ -42,20 +42,16 @@ TTL选择“10分钟”
 
 下载 Node-js 和 npm：`sudo pacman -S nodejs npm`
 
-下载 Hexo 的方法如下：（推荐如下的全局下载方案）
+下载 Hexo 的方法如下：
 
 ```bash
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
+npm install hexo
 ```
 
-然后在 `~/.profile` 中加入一行：`export PATH=~/.npm-global/bin:$PATH`
+之后在 `~/.bashrc` 中加入一行：
 
-最后输入：（npm 5.0.0 开始，默认安装不需要 `–-save` 选项，已经可以自动执行）
-
-```bash
-source ~/.profile
-npm install -g hexo-cli
+```
+PATH=~/node_modules/.bin:$PATH
 ```
 
 找一个空文件夹 `(hexo_folder)`，运行：
@@ -79,39 +75,81 @@ pretty_urls:
   trailing_html: false
 ```
 
-添加文章：`npx hexo new post hello`，这生成 `blog.example.top/hello`
-
-在子文件夹下添加文章：`npx hexo new post --path hello/me`，这生成 `blog.example.top/hello/me`
-
-每篇文章的 Markdown 文件内一开始有用 `---` 分隔的部分，下文称为 **Front-matter**，例如：
-
-```
-title: Hello World
-date: 2021-09-06 12:00:00
-math: true
-category:
-- 教程
-tag:
-- Hello World
-- Blog
-index_img: /img/Purple_Flower.jpg
-banner_img: /img/Purple_Flower.jpg
-```
-
-### Fluid 主题
-
-我选择的是 [Volantis](https://volantis.js.org/) 主题，安装方法：
+添加文章：
 
 ```bash
-npm install hexo-theme-volantis
+npx hexo new post hello
 ```
 
-这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-fluid`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update hexo-theme-volantis`
+这会生成 `blog.example.top/hello`
+
+在子文件夹下添加文章：
+
+```bash
+npx hexo new post --path hello/world
+```
+
+这生成 `blog.example.top/hello/world`
+
+### 调试并部署到 GitHub
+
+安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
+
+```bash
+npm install hexo-deployer-git
+```
+
+修改配置 `_config.yml`：
+
+```yaml
+deploy:
+  type: git
+  repo: https://oauth2:(user_token)@github.com/(user_name)/(user_name).github.io
+  branch: (branch_name) # default is "main"
+```
+
+从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
+
+申请 Personal Access Token 时记得勾选全部权限
+
+如果使用 SSH，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
+
+调试：
+
+```bash
+npx hexo clean && npx hexo s --debug
+```
+
+部署：
+
+```bash
+npx hexo clean && npx hexo deploy
+```
+
+查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
+
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
+
+CNAME 文件中只需要写一行自定义域名即可：
+
+```
+blog.example.top
+```
+
+### Butterfly 主题
+
+我选择的是 [Butterfly](https://butterfly.js.org/) 主题，安装方法：
+
+```bash
+npm install hexo-theme-butterfly
+```
+
+这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-butterfly`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update hexo-theme-butterfly`
 
 可以在 `(hexo_folder)/themes` 中创建软链接：
 
 ```bash
-ln -s ../node_modules/hexo-theme-volantis/
+ln -s ../node_modules/hexo-theme-butterfly/
 ```
 
 可以卸载自带的默认主题 Landscape：
@@ -120,177 +158,20 @@ ln -s ../node_modules/hexo-theme-volantis/
 npm uninstall hexo-theme-landscape
 ```
 
-Volantis 配置的官方指南在 https://volantis.js.org/v5/getting-started/
+Butterfly 配置的官方指南在 https://butterfly.js.org/v5/getting-started/
 
-在`(hexo_folder)/_config.yml`下修改：`theme:volantis`
+在`(hexo_folder)/_config.yml`下修改：`theme:butterfly`
 
-在博客目录下创建 `_config.volantis.yml` 文件，以后如果修改任何主题配置，都只需修改 `_config.volantis.yml` 的配置即可，其优先级比主题目录下的 `_config.yml`高
+在博客目录下创建 `_config.butterfly.yml` 文件，以后如果修改任何主题配置，都只需修改 `_config.butterfly.yml` 的配置即可，其优先级比主题目录下的 `_config.yml`高
 
-- 主题字体设置
+本站的主题字体设置：
 
 ```yaml
 font:
-    font_size: 16px
-    font_family: Noto Sans CJK SC, sans-serif
-    code_font_size: 100%
-```
-
-- MathJax 渲染（虽然慢但是支持比 KaTeX 多而且字体更美观）：严格按照[官方文档](https://hexo.fluid-dev.com/docs/guide/##latex-数学公式)，记得更改渲染引擎为`hexo-renderer-kramed` 并删掉原有的 `hexo-renderer-marked` ，书写格式见下方 **LaTeX Test** 一节，如需使用，需在 Front-matter 中指定 `math: true`，支持行内公式（和行间公式）。但是这样会修改丢失对 Markdown 复选框的支持，开启则需要将如下代码加入到本地的`(hexo_folder)/node_modules/hexo-renderer-kramed/lib/renderer.js`的第19行中（参考[这里](https://corecabin.cn/2021/08/14/solve-some-problems-of-hexo-renderer-kramed-rendering-conflicts/)），行内公式和行内代码冲突也可以参考[这里](https://corecabin.cn/2021/08/14/solve-some-problems-of-hexo-renderer-kramed-rendering-conflicts/)
-
-```js
-// Support To-Do List
-Renderer.prototype.listitem = function(text) {
-  if (/^\s*\[[x ]\]\s*/.test(text)) {
-    text = text.replace(/^\s*\[ \]\s*/, '<input type="checkbox"></input> ').replace(/^\s*\[x\]\s*/, '<input type="checkbox" checked></input> ');
-    return '<li style="list-style: none">' + text + '</li>\n';
-  } else {
-    return '<li>' + text + '</li>\n';
-  }
-};
-```
-
-### 如何用“友链”页的模板创建一个“工具”页
-
-首先新建一个页面：`npx hexo new page tools`，注意发表文章要将模板 `page` 改为 `post`
-
-这样就有了 `example.top/tools/` 的页面
-
-再找到 `icon-tools` 的图标：https://blog.csdn.net/Xiaoming782893687/article/details/90744911
-
-实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_ewg5czgn3cd.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "tools", link: "/tools/", icon: "iconfont icon-tools" }`
-
-在博客目录内的 `/source/tools/index.md` 的 Front-matter 加入 `layout: links`，这会引入主题目录中的模板：`/layout/links.ejs`
-
-于是开始设置 `_config.fluid.yml`：
-
-```yaml
-links:
-  enable: true
-  banner_img: (your_picture)
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  subtitle:
-  # 友链的成员项
-  # Member item of page
-  items:
-    - {
-      title: "(your_title)",
-      intro: "(your_intro)",
-      link: "(your_link)",
-      avatar: "(your_avatar)"
-    }
-```
-
-并修改主题目录下`/languages/`中的所有`.yml`文件，例如`en.yml`中改为：
-
-```yaml
-links:
-  title: Tools
-  subtitle: Tools
-```
-
-### 如何在导航栏菜单创建一个 GitHub 链接
-
-和创建“工具”方法类似，这次需要找到 `icon-github`（自带图标太小了）的图标
-
-实际操作是：在 `custom_css` 一栏中加入 `- //at.alicdn.com/t/font_2794470_brhhjh3wx87.css`，然后就可以在导航栏菜单 `menu:` 一栏中加入 `- { key: "GitHub", link: "https://github.com/(user_name)", icon: "iconfont icon-github" }` 即可
-
-### 加入特效：鼠标点击有小红心
-
-在主题目录下的 `/source/js` 文件夹中新建文件 `love.js`，在 `love.js` 文件中添加以下代码：（修改过，更新了已经弃用的部分，原始代码参见[这里](https://segmentfault.com/a/1190000007215988)）
-
-```js
-!(function (e, t, a) {
-  function n() {
-    c(
-      ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
-    ),
-      o(),
-      r();
-  }
-  function r() {
-    for (var e = 0; e < d.length; e++)
-      d[e].alpha <= 0
-        ? (t.body.removeChild(d[e].el), d.splice(e, 1))
-        : (d[e].y--,
-          (d[e].scale += 0.004),
-          (d[e].alpha -= 0.013),
-          (d[e].el.style.cssText =
-            "left:" +
-            d[e].x +
-            "px;top:" +
-            d[e].y +
-            "px;opacity:" +
-            d[e].alpha +
-            ";transform:scale(" +
-            d[e].scale +
-            "," +
-            d[e].scale +
-            ") rotate(45deg);background:" +
-            d[e].color +
-            ";z-index:99999"));
-    requestAnimationFrame(r);
-  }
-  function o() {
-    var t = "function" == typeof e.onclick && e.onclick;
-    e.onclick = function (e) {
-      t && t(), i(e);
-    };
-  }
-  function i(e) {
-    var a = t.createElement("div");
-    (a.className = "heart"),
-      d.push({
-        el: a,
-        x: e.clientX - 5,
-        y: e.clientY - 5,
-        scale: 1,
-        alpha: 1,
-        color: s(),
-      }),
-      t.body.appendChild(a);
-  }
-  function c(e) {
-    var a = t.createElement("style");
-    try {
-      a.appendChild(t.createTextNode(e));
-    } catch (t) {
-      a.styleSheet.cssText = e;
-    }
-    t.getElementsByTagName("head")[0].appendChild(a);
-  }
-  function s() {
-    return (
-      "rgb(" +
-      ~~(255 * Math.random()) +
-      "," +
-      ~~(255 * Math.random()) +
-      "," +
-      ~~(255 * Math.random()) +
-      ")"
-    );
-  }
-  var d = [];
-  (e.requestAnimationFrame = (function () {
-    return (
-      e.requestAnimationFrame ||
-      e.webkitRequestAnimationFrame ||
-      e.mozRequestAnimationFrame ||
-      e.oRequestAnimationFrame ||
-      e.msRequestAnimationFrame ||
-      function (e) {
-        setTimeout(e, 1e3 / 60);
-      }
-    );
-  })()),
-    n();
-})(window, document);
-```
-
-在主题目录下的 `\layout\layout.ejs` 文件末尾 `<!-- SCRIPTS -->` 一段中添加以下代码：
-
-```ejs
-<script type="text/javascript" src="/js/love.js"></script>
+  global-font-size:
+  code-font-size:
+  font-family: Noto Sans CJK SC, PingFang SC, Microsoft Yahei, sans-serif
+  code-font-family: JetBrains Mono NL, Noto Sans Mono CJK SC, Menlo, Consolas, monospace
 ```
 
 ### 插入网易云音乐
@@ -311,44 +192,11 @@ links:
 
 直接粘贴到 Markdown 文件内即可
 
-### 调试并部署到 GitHub
+### LaTeX 测试
 
-安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
+行内公式： $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$
 
-```bash
-npm install hexo-deployer-git
-```
-
-修改配置 `_config.yml`：
-
-```yaml
-deploy:
-  type: git
-  repo: <repository url> # https://github.com/(user_name)/(user_name).github.io
-  branch: (branch_name) # default is "main"
-```
-
-调试：
-
-```bash
-npx hexo clean && npx hexo s --debug
-```
-
-部署：
-
-```bash
-npx hexo clean && npx hexo deploy
-```
-
-查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
-
-注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
-
-### LaTeX Test
-
-This is an equation: $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$.
-
-Another Example: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$
+另一个行内公式: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$
 
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
@@ -389,13 +237,13 @@ $$
     &= T+V \\
     &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
     &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B}{(AD - BC)^2}(Dp_x - Bp_\theta)(Ap_\theta - Cp_x) + mg(ax^2 - l\cos\theta) \\
     &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
     &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
 \end{align*}
 $$
 
-### Code Test
+### 代码高亮测试
 
 ```python
 def fib(n):
@@ -407,18 +255,8 @@ def fib(n):
 fib(1000)
 ```
 
-```bash
-iconv -f (from_encoding) -t (to_encoding) (from_file_name) -o (to_file_name)
-```
+### 图片测试
 
-### Picture Test
+格式：`![](../img/(your_picture)`，图片放在博客目录的 `/source/img/` 下
 
-格式：`![](../images/(your_picture.jpg)`，图片默认放在博客目录的 `/source/images/` 下
-
-![](../images/hello_world_reimu.jpg)
-
-### 进阶功能
-
-- [x] Aplayer
-- [ ] 樱花特效
-- [ ] 点赞功能
+![](../img/hello_world_reimu.jpg)
