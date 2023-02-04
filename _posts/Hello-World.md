@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2023-02-03 12:00:00
+date: 2021-09-06 12:00:00
 updated:
 top_img: /img/PKU_peach_blossom.jpg
 tags: 博客
@@ -129,9 +129,9 @@ deploy:
 
 从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
 
-申请 Personal Access Token 时记得勾选 `repo` 部分的权限，使用后会被撤销，下次使用需要重新申请
+申请 Personal Access Token 时记得勾选 `repo` 部分的权限
 
-如果使用 SSH，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
+如果使用 SSH 密钥，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
 
 之后在博客目录运行：
 

@@ -1,6 +1,6 @@
 ---
 title: Arch Linux 双系统安装指南
-date: 2023-02-03 15:00:00
+date: 2021-09-07 22:00:00
 updated:
 top_img: /img/archlinux.jpg
 tags: Linux
@@ -9,18 +9,6 @@ description: 在 ThinkPad X13 2021 Intel 上安装 Arch Linux KDE Plasma + Windo
 cover: /img/archlinux.jpg
 disableNunjucks: true
 ---
-
-# **在 ThinkPad X13 2021 Intel 上安装 Arch Linux KDE Plasma + Windows 11 双系统的指南**
-
-```text
-OS: Arch Linux x86_64
-Kernel: x86_64 Linux 6.1.3-arch1-1
-Resolution: 2560x1600
-DE: KDE 5.101.0 / Plasma 5.26.5
-WM: KWin
-CPU: 11th Gen Intel Core i7-1165G7 @ 8x 4.7GHz
-GPU: Mesa Intel(R) Xe Graphics (TGL GT2)
-```
 
 ## **Windows 的准备工作**
 
@@ -131,6 +119,8 @@ sudo cp (iso_path)/(iso_name) /dev/sda
 #### **在 UEFI 中设置从 USB 启动**
 
 启动时按 `Enter` 打断正常开机，然后按下 `Fn+Esc` 解锁 `Fn` 按钮，再按 `Fn+F12` 选择第一个启动项为 USB HDD
+
+---
 
 ## **安装系统**
 
@@ -383,6 +373,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 不要忘记移除安装介质
 
+---
+
 ## **初始配置**
 
 **现在登录到新装好的系统时使用的是 Root 用户，用户名为 `root`，需要手动输入**
@@ -517,6 +509,8 @@ pacman -S firefox firefox-i18n-zh-cn konsole dolphin dolphin-plugins ark kate gw
 `poppler-data` 是 PDF 渲染所需的编码数据，不下载 `poppler-data` 会导致部分 PDF 文件的中文字体无法在 Okular 中显示
 
 **KDE Frameworks/KDE Gear/Plasma 的更新时间表可以在 [KDE Community Wiki](https://community.kde.org/Schedules) 查看**
+
+---
 
 ## **在图形界面下设置**
 
@@ -1587,6 +1581,8 @@ sudo pacman -S plasma-wayland-session
 
 [Secure Boot -- ArchWiki](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Microsoft_Windows)
 
+---
+
 ## **一些有用的命令总结**
 
 ### **获取设备信息**
@@ -1792,6 +1788,8 @@ unar (file_name).zip
 ### **设置命令别名**
 
 在 `~/.bashrc` 中添加一句 `alias (new_command)=(old-command)`，这样直接输入 `new_command` 即等效于输入 `old_command`
+
+---
 
 ## **美化**
 
@@ -2045,6 +2043,8 @@ ILoveCandy
 右键点击桌面 >> 添加部件 >> 获取新部件 >> 下载新 Plasma 部件
 
 在这里可以下载桌面小部件，并在“添加部件”处添加
+
+---
 
 ## **软件的下载与配置**
 
