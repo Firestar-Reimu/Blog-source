@@ -3,18 +3,20 @@ title: 时间计算器
 date: 2023-02-03 16:00:00
 tags: 天文
 category: 工具
-top_img: /img/OrionNebula.jpg
+top_img: /img/time.jpg
 description: 时间计算器
-cover: /img/OrionNebula.jpg
+cover: /img/time.jpg
 ---
 
 <script src="../js/time-calculator.js"></script>
 
 <style>
 .button {
-  color: #FF5500;
+    color: #FF5500;
 }
 </style>
+
+## **设置时间并转化为儒略日**
 
 <div align="center">
 <form>
@@ -77,16 +79,19 @@ cover: /img/OrionNebula.jpg
 <div align="center">
 <button value="submit" onclick="time_to_JD()" class="button">Convert to JD</button>
 
-<input id="JD" size="15em"/>
-<br>
+<input id="JD" size="25em"/>
+</div>
+
+---
+
+## **将当前时间转化为儒略日**
 
 <body onload="time_now()">
 <div align="center" id="clock"></div>
 </body>
 
----
-
+<div align="center">
 <button value="submit" onclick="time_now_to_JD()" class="button">Convert current time to JD</button>
 
-<input id="JD_now" size="15em"/>
+<input id="JD_now" size="25em"/>
 </div>

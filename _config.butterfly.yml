@@ -3,15 +3,14 @@
 # --------------------------------------
 
 menu:
-  首页: / || fas fa-home
+  # Home: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
-  # 工具: /tools/ || fas fa-wrench
-  # 源码: /source/ || fab fa-github
+  源码: https://github.com/Firestar-Reimu/Blog-Source || fab fa-github
   关于: /about/ || fas fa-heart
 
 nav:
@@ -22,9 +21,9 @@ nav:
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: mac light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
-highlight_lang: false # show the code language
+highlight_lang: true # show the code language
 highlight_shrink: none # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
 highlight_height_limit: false # unit: px
 code_word_wrap: false
@@ -56,7 +55,7 @@ algolia_search:
 
 # Local search
 local_search:
-  enable: false
+  enable: true
   preload: false
   CDN:
 
@@ -76,7 +75,7 @@ mathjax:
 katex:
   enable: true
   per_page: false
-  hide_scrollbar: true
+  hide_scrollbar: false
 
 # Image (圖片設置)
 # --------------------------------------
@@ -96,7 +95,7 @@ disable_top_img: false
 index_img: /img/Reimu_1.jpg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: 'linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)'
+default_top_img: 'linear-gradient(45deg, #0062be, #925696, #cc426e, #fb0347)'
 
 # The banner image of archive page
 archive_img:
@@ -256,7 +255,7 @@ addThis:
 # Share.js
 # https://github.com/overtrue/share.js
 sharejs:
-  enable: true
+  enable: false
   sites: facebook,twitter,wechat,weibo,qq
 
 # AddToAny
@@ -432,7 +431,7 @@ messenger:
 footer:
   owner:
     enable: true
-    since: 2020
+    since: 2021
   custom_text:
   copyright: true # Copyright of theme and framework
 
@@ -524,7 +523,7 @@ tag_ui: # 留空或 index
 background:
 
 # Footer Background
-footer_bg: false
+footer_bg: 'linear-gradient(45deg, #0062be, #925696, #cc426e, #fb0347)'
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:

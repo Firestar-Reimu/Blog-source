@@ -8,41 +8,44 @@ categories: 博客
 description: 搭建 GitHub Pages + Hexo + Butterfly 博客的笔记
 cover: /img/PKU_peach_blossom.jpg
 katex: true
+disableNunjucks: true
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=1&height=66"></iframe>
 
-### 申请 GitHub Pages
+### **申请 GitHub Pages**
 
 新建一个 GitHub 仓库，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 GitHub 仓库用来存放博客的源代码（可选）
 
-### 申请域名
+### **申请域名**
 
-我选择的是阿里云，在[万网](https://wanwang.aliyun.com/)输入自己想要的域名并购买。一般来讲 `.top` 最便宜，`.xyz` 次之。 假设域名为 `example.top` 根据网站提示做好域名实名制认证等流程。在[域名控制台](https://dc.console.aliyun.com/next/#/domain/list/all-domain)中选择：域名 >> 操作 >> 解析
+这里选择的是阿里云，在[万网](https://wanwang.aliyun.com/)输入自己想要的域名并购买
+
+一般来讲 `.top` 最便宜，`.xyz` 次之
+
+假设域名为 `example.top`，根据网站提示做好域名实名制认证等流程
+
+在[域名控制台](https://dc.console.aliyun.com/next/#/domain/list/all-domain)中选择：域名 >> 操作 >> 解析
 
 解析中添加一条记录：
 
-```
-记录类型：CNAME；
-主机记录自选（我这里选择的是 blog，因为 www 经常无法与 GitHub Pages 连接）；
-解析线路选择默认；
-记录值选择 `(user_name).github.io`；
-TTL选择“10分钟”
-```
+- 记录类型：CNAME
+- 主机记录自选
+- 解析线路选择“默认”
+- 记录值选择 `(user_name).github.io`
+- TTL选择“10分钟”
 
-再去名为 `(user_name).github.io` 的仓库，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用。
+在名为 `(user_name).github.io` 的仓库，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用
 
-此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top` 试一试，如果能显示`README.md` 中的内容则设置成功。
+此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top`，如果能显示 `README.md` 中的内容则设置成功
 
-### Hexo 搭建并添加文章
+### **Hexo 搭建并添加文章**
 
-我选择用 [Hexo](https://hexo.io/zh-cn/index.html)
+[Hexo](https://hexo.io/zh-cn/index.html) 是一个快速、简洁且高效的博客框架，建议在 Linux 上搭建
 
-建议在 Linux 上搭建，而不用 Windows
+首先下载 Node-js 和 npm：`sudo pacman -S nodejs npm`
 
-下载 Node-js 和 npm：`sudo pacman -S nodejs npm`
-
-下载 Hexo 的方法如下：
+之后在 npm 中下载 Hexo 框架：
 
 ```bash
 npm install hexo
@@ -50,21 +53,21 @@ npm install hexo
 
 之后在 `~/.bashrc` 中加入一行：
 
-```
+```bash
 PATH=~/node_modules/.bin:$PATH
 ```
 
-找一个空文件夹 `(hexo_folder)`，运行：
+创建博客文件夹 `(blog_folder)`，运行：
 
 ```bash
-npx hexo init (hexo_folder)
-cd (hexo_folder)
+hexo init (blog_folder)
+cd (blog_folder)
 npm install
 ```
 
-所有的 npm 和 hexo 命令都要在`(hexo_folder)`（下文称为“**博客目录**”）下执行
+所有的 npm 和 hexo 命令都要在 `(blog_folder)` 下执行
 
-全局配置的官方指南在[这里](https://hexo.io/zh-cn/docs/)，在 `(hexo_folder)/_config.yml` 下修改：
+按照 [Hexo 文档](https://hexo.io/zh-cn/docs/)进行网站全局配置，在 `(blog_folder)/_config.yml` 下修改：
 
 ```yaml
 url: https://blog.example.top
@@ -78,7 +81,7 @@ pretty_urls:
 添加文章：
 
 ```bash
-npx hexo new post hello
+hexo new post hello
 ```
 
 这会生成 `blog.example.top/hello`
@@ -86,12 +89,22 @@ npx hexo new post hello
 在子文件夹下添加文章：
 
 ```bash
-npx hexo new post --path hello/world
+hexo new post --path hello/world
 ```
 
 这生成 `blog.example.top/hello/world`
 
-### 调试并部署到 GitHub
+### **调试并预览网站**
+
+在博客目录运行：
+
+```bash
+hexo clean && hexo s --debug
+```
+
+之后可以在 http://localhost:4000/ 查看网站预览
+
+### **部署到 GitHub**
 
 安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
 
@@ -99,13 +112,13 @@ npx hexo new post --path hello/world
 npm install hexo-deployer-git
 ```
 
-修改配置 `_config.yml`：
+修改配置 `_config.yml`：（不要忘记设置更新分支 `branch` 的值）
 
 ```yaml
 deploy:
   type: git
   repo: https://oauth2:(user_token)@github.com/(user_name)/(user_name).github.io
-  branch: (branch_name) # default is "main"
+  branch: (branch_name)
 ```
 
 从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
@@ -114,29 +127,25 @@ deploy:
 
 如果使用 SSH，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
 
-调试：
+之后在博客目录运行：
 
 ```bash
-npx hexo clean && npx hexo s --debug
+hexo clean && hexo deploy
 ```
 
-部署：
-
-```bash
-npx hexo clean && npx hexo deploy
-```
+即可部署到 GitHub
 
 查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
 
-注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `npx hexo deploy` 才能将 CNAME 文件一并推送至部署分支
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `hexo deploy` 才能将 CNAME 文件一并推送至部署分支
 
 CNAME 文件中只需要写一行自定义域名即可：
 
-```
+```text
 blog.example.top
 ```
 
-### Butterfly 主题
+### **Butterfly 主题**
 
 我选择的是 [Butterfly](https://butterfly.js.org/) 主题，安装方法：
 
@@ -144,13 +153,15 @@ blog.example.top
 npm install hexo-theme-butterfly
 ```
 
-这样的话它会保存在`(hexo_folder)/node_modules/hexo-theme-butterfly`（下文称为“**主题目录**”），更新主题需要在`(hexo_folder)`下执行`npm update hexo-theme-butterfly`
+这样的话它会保存在 `(blog_folder)/node_modules/hexo-theme-butterfly`，更新主题需要在 `(blog_folder)` 下执行 `npm update hexo-theme-butterfly`
 
-可以在 `(hexo_folder)/themes` 中创建软链接：
+可以在 `(blog_folder)/themes` 中创建软链接：
 
 ```bash
 ln -s ../node_modules/hexo-theme-butterfly/
 ```
+
+这样主题目录就是 `(blog_folder)/theme/hexo-theme-butterfly`
 
 可以卸载自带的默认主题 Landscape：
 
@@ -158,11 +169,17 @@ ln -s ../node_modules/hexo-theme-butterfly/
 npm uninstall hexo-theme-landscape
 ```
 
-Butterfly 配置的官方指南在 https://butterfly.js.org/v5/getting-started/
+在`(blog_folder)/_config.yml`下修改：`theme:butterfly`
 
-在`(hexo_folder)/_config.yml`下修改：`theme:butterfly`
+在博客目录下创建 `_config.butterfly.yml` 文件，并复制主题目录下 `_config.yml` 的内容
 
-在博客目录下创建 `_config.butterfly.yml` 文件，以后如果修改任何主题配置，都只需修改 `_config.butterfly.yml` 的配置即可，其优先级比主题目录下的 `_config.yml`高
+以后如果修改任何主题配置，都只需修改 `_config.butterfly.yml` 的配置即可，其优先级比主题目录下的 `_config.yml` 高，但不要删除主题目录下的 `_config.yml`，Hexo 会自动合并自定义设置和默认设置
+
+按照 [Butterfly 文档](https://butterfly.js.org)进行网站全局配置，在 `(blog_folder)/_config.butterfly.yml` 下修改如下：
+
+[_config.butterfly.yml -- Blog-source](https://github.com/Firestar-Reimu/Blog-source/blob/main/_config.butterfly.yml)
+
+### **自定义字体**
 
 本站的主题字体设置：
 
@@ -174,29 +191,106 @@ font:
   code-font-family: JetBrains Mono NL, Noto Sans Mono CJK SC, Menlo, Consolas, monospace
 ```
 
-### 插入网易云音乐
+此时网页的粗体会过粗，可以将 `(blog_folder)/theme/hexo-theme-butterfly/source/css/_third-party/normalize.min.css` 中：
+
+```css
+b,
+strong {
+  font-weight: bolder
+}
+```
+
+此处 `font-weight` 的值改成 `bold` 即可
+
+### **数学公式显示**
+
+按照 [Butterfly 文档](https://butterfly.js.org/posts/ceeb73f)的指南配置即可，这里选择的是更快更轻量的 [KaTeX](https://katex.org/)
+
+首先修改 `.config.butterfly.yml`，启用 KaTeX：
+
+```yaml
+katex:
+  enable: true
+  per_page: false
+  hide_scrollbar: false
+```
+
+之后将渲染器改为 `hexo-renderer-markdown-it` 并安装相应插件：
+
+```bash
+npm uninstall hexo-renderer-marked
+npm install hexo-renderer-markdown-it
+npm install katex @renbaoshuo/markdown-it-katex
+```
+
+最后在博客目录的 `.config.yml` 中加入：
+
+```yaml
+markdown:
+    plugins:
+      - '@renbaoshuo/markdown-it-katex'
+```
+
+### **显示复选框**
+
+下载插件：（也可以换成其它相同功能的插件）
+
+```bash
+npm install markdown-it-task-lists
+```
+
+之后在博客目录的 `.config.yml` 中加入：
+
+```yaml
+markdown:
+    plugins:
+      - markdown-it-task-lists
+```
+
+### **禁用 Nunjucks 标签**
+
+Hexo 使用 [Nunjucks](https://mozilla.github.io/nunjucks/) 来解析文章，内容若包含 `{{`、`}}`、`{%`、`%}`、`{#`、`#}` 会无法渲染，可以用以下两种方法禁用 Nunjucks 标签：
+
+第一种是在文章的 [front-matter](https://hexo.io/zh-cn/docs/front-matter) 中写入 `disableNunjucks:true`
+
+第二种是用 `{% raw %}` 和 `{% endraw %}` 包裹无法渲染的部分，例如 `{% raw %} {% %} {% endraw %}`
+
+### **在导航菜单创建一个 GitHub 链接**
+
+修改 `.config.butterfly.yml` 中 `menu` 一栏，其格式为 `(name): (url) || (icon)`：
+
+```yaml
+menu:
+  源码: https://github.com/Firestar-Reimu/firestar-reimu.github.io || fab fa-github
+```
+
+其中图标 `icon` 可以在 [FontAwesome](https://fontawesome.com/) 中找到
+
+### **插入图片**
+
+图片放在博客目录的 `(blog_folder)/source/img/` 下，插入图片的标准的格式为 `![(name)](../img/(your_picture)`
+
+但是这样无法自定义图片大小，也可以使用 HTML 语法，例如：
+
+```html
+<img src="../img/(your_picture)" width="50%" height="50%">
+```
+
+### **插入网易云音乐**
 
 在网易云音乐的网页版上选择一首音乐（不能是 VIP 音乐），点进页面 `https://music.163.com/#/song?id=(music_id)` 后选择“生成外链播放器”，“自动播放”一栏自选，再复制 HTML 代码：
 
 ```html
-<iframe
-  frameborder="no"
-  border="0"
-  marginwidth="0"
-  marginheight="0"
-  width="330"
-  height="86"
-  src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=0&height=66"
-></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=(music_id)&auto=1&height=66"></iframe>
 ```
 
 直接粘贴到 Markdown 文件内即可
 
-### LaTeX 测试
+### **数学公式测试**
 
-行内公式： $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$
+$\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$
 
-另一个行内公式: $\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$
+$\sum\limits_{n=0}^{\infty}\dfrac{x^n}{n!}=\mathrm{e}^x$
 
 $$
 \dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L'}{\partial \dot{p}}\right) - \dfrac{\partial L'}{\partial p} = 0
@@ -237,26 +331,80 @@ $$
     &= T+V \\
     &= \frac{1}{2}m(\dot{x} + \dot{\theta}l\cos\theta)^2 + \frac{1}{2}m(2ax\dot{x} + \dot{\theta}l\sin\theta)^2 + mg(ax^2 - l\cos\theta) \\
     &= \frac{1}{2}m(1+4a^2x^2)\dot{x}^2 - \frac{1}{2}ml^2\dot{\theta}^2 + ml(\cos\theta + 2ax\sin\theta)\dot{x}\dot{\theta} + mg(ax^2 - l\cos\theta) \\
-    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B}{(AD - BC)^2}(Dp_x - Bp_\theta)(Ap_\theta - Cp_x) + mg(ax^2 - l\cos\theta) \\
-    &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} \\
+    &= \frac{A}{2}\cdot\left(\frac{Dp_x - Bp_\theta}{AD - BC}\right)^2 + \frac{D}{2}\cdot\left(\frac{Ap_\theta - Cp_x}{AD - BC}\right)^2 + \frac{B(Dp_x - Bp_\theta)(Ap_\theta - Cp_x)}{(AD - BC)^2} + mg(ax^2 - l\cos\theta) \\
+    &= \frac{Dp_x^2 + Ap_\theta^2 - (B+C)p_x p_\theta}{2(AD - BC)} + mg(ax^2 - l\cos\theta) \\
     &= \frac{[p_\theta,\ p_x]\begin{bmatrix}A & B \\ C & D\end{bmatrix}\begin{bmatrix}p_\theta \\ p_x\end{bmatrix}}{2\begin{vmatrix}A & B \\ C & D\end{vmatrix}} + mg(ax^2 - l\cos\theta)
 \end{align*}
 $$
 
-### 代码高亮测试
+### **图片测试**
 
-```python
-def fib(n):
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-fib(1000)
+<img src="../img/hello_world_reimu.jpg" width="50%" height="50%">
+
+### **代码高亮测试**
+
+```javascript
+function time_now() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = check_time(m);
+  s = check_time(s);
+  document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout(function () {
+    time_now();
+  }, 100);
+}
 ```
 
-### 图片测试
+```python
+def Chebyshev(func, n, x_array):
+    x = np.array([np.cos(np.pi * (m + 0.5) / n) for m in range(n)])
+    y = func(x)
+    c = np.zeros(n)
+    for k in range(n):
+        for m in range(n):
+            c[k] += (2 / n) * y[m] * np.cos(np.pi * k * (m + 0.5) / n)
+    print(c)
+    y_array = np.zeros(len(x_array))
+    for i in range(1, len(c)):
+        y_array += c[i] * np.cos(i * np.arccos(x_array))
+    y_array += 1 / 2 * c[0]
+    return y_array
+```
 
-格式：`![](../img/(your_picture)`，图片放在博客目录的 `/source/img/` 下
+```c++
+V3 GetPoCAPoint(V3 const& p1, V3 const& p2, V3 const& p3, V3 const& p4) {
+    V3 v_in = p2 - p1;
+    V3 v_out = p4 - p3;
+    V3 v_n = v_in.cross(v_out);
+    v_n = v_n.normalize();
+    double d = (p3 - p2).dot(v_n);
+    double t_i = (v_out.x * (d * v_n.y + p2.y - p3.y) - v_out.y * (d * v_n.x + p2.x - p3.x)) / (v_out.x * v_in.y - v_in.x * v_out.y);
+    return p2 - (t_i * v_in) + (0.5 * d * v_n);
+}
+```
 
-![](../img/hello_world_reimu.jpg)
+```latex
+\begin{align*}
+    \partial_i r
+    &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
+    &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
+    &= \frac{x-x'}{r}
+\end{align*}
+```
+
+### **表格测试**
+
+| **A1** | **A2** | **A3** | **A4** |
+| :----: | :----: | :----: | :----: |
+|   B1   |   B2   |   B3   |   B4   |
+|   C1   |   C2   |   C3   |   C4   |
+|   D1   |   D2   |   D3   |   D4   |
+
+### **复选框测试**
+
+- [x] 🥰
+- [ ] 😀
+

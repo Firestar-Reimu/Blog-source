@@ -1,13 +1,26 @@
 ---
-title: Arch Linux + Windows 安装指南
+title: Arch Linux 双系统安装指南
 date: 2023-02-03 15:00:00
 updated:
-top_img: /img/Plasma_Ocean.jpg
+top_img: /img/archlinux.jpg
 tags: Linux
 categories: Linux
 description: 在 ThinkPad X13 2021 Intel 上安装 Arch Linux KDE Plasma + Windows 11 双系统的指南
-cover: /img/Plasma_Ocean.jpg
+cover: /img/archlinux.jpg
+disableNunjucks: true
 ---
+
+# **在 ThinkPad X13 2021 Intel 上安装 Arch Linux KDE Plasma + Windows 11 双系统的指南**
+
+```text
+OS: Arch Linux x86_64
+Kernel: x86_64 Linux 6.1.3-arch1-1
+Resolution: 2560x1600
+DE: KDE 5.101.0 / Plasma 5.26.5
+WM: KWin
+CPU: 11th Gen Intel Core i7-1165G7 @ 8x 4.7GHz
+GPU: Mesa Intel(R) Xe Graphics (TGL GT2)
+```
 
 ## **Windows 的准备工作**
 
@@ -153,7 +166,7 @@ iwctl station (device_name) connect (SSID)
 
 连接到有线或无线网络后，可以用 `ping` 测试：
 
-```
+```text
 ping -c (count_number) archlinux.org
 ```
 
@@ -227,7 +240,7 @@ mount --mkdir /dev/(efi_system_partition) /mnt/boot
 
 编辑 `/etc/pacman.d/mirrorlist`（ISO 镜像中自带有 `vim` 等常用编辑器），在文件的最顶端添加：
 
-```
+```text
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 ```
 
@@ -235,7 +248,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 
 或添加：
 
-```
+```text
 Server = https://mirror.sjtu.edu.cn/archlinux/$repo/os/$arch
 ```
 
@@ -296,7 +309,7 @@ locale-gen
 
 然后创建 `/etc/locale.conf` 文件，并编辑设定 LANG 变量：
 
-```
+```text
 LANG=en_US.UTF-8
 ```
 
@@ -306,13 +319,13 @@ LANG=en_US.UTF-8
 
 创建 `/etc/hostname` 文件，写入自定义的主机名：
 
-```
+```text
 (my_hostname)
 ```
 
 编辑本地主机名解析 `/etc/hosts`，写入：
 
-```
+```text
 127.0.0.1        localhost
 ::1              localhost
 127.0.1.1        (my_hostname)
@@ -404,7 +417,7 @@ EDITOR=vim visudo
 
 在开头的一个空行键入：
 
-```
+```text
 Defaults editor=/usr/bin/vim
 ```
 
@@ -422,7 +435,7 @@ Defaults editor=/usr/bin/vim
 
 在最后一行（空行）按 `i` 进入输入模式，加上这一行：
 
-```
+```text
 Defaults:(user_name) !authenticate
 ```
 
@@ -477,7 +490,7 @@ pacman -S plasma
 
 可以排除掉一些软件包：
 
-```
+```text
 ^4 ^5 ^20 ^21 ^33
 ```
 
@@ -535,6 +548,8 @@ pacman -S firefox firefox-i18n-zh-cn konsole dolphin dolphin-plugins ark kate gw
 
 然后重启电脑
 
+**重启后会发现许多窗口和图标变小，建议先调整全局缩放为 100%，重新启动，再调至 200%，再重启**
+
 #### **触摸板设置**
 
 系统设置 >> 输入设备 >> 触摸板 >> 手指轻触 >> 选择“轻触点击”
@@ -567,13 +582,13 @@ Dolphin 中单击文件、文件夹时的行为默认是单击打开，如果需
 
 创建一个新文件：`/etc/sddm.locale`，写入：
 
-```
+```text
 LANG="zh_CN.UTF-8"
 ```
 
 再编辑 `/lib/systemd/system/sddm.service`，在 `[Service]` 一节内加入：
 
-```
+```text
 EnvironmentFile=-/etc/sddm.locale
 ```
 
@@ -589,13 +604,13 @@ sudo pacman -S os-prober
 
 想要让 `grub-mkconfig` 探测其他已经安装的系统并自动把他们添加到启动菜单中，编辑 `/etc/default/grub` 并取消下面这一行的注释：
 
-```
+```text
 GRUB_DISABLE_OS_PROBER=false
 ```
 
 想要让 GRUB 记住上一次启动的启动项，首先将 `GRUB_DEFAULT` 的值改为 `saved`，再取消下面这一行的注释：
 
-```
+```text
 GRUB_SAVEDEFAULT=true
 ```
 
@@ -625,7 +640,7 @@ lsblk -f
 
 在输出结果中可以发现 Windows 的硬盘分区，其中第一列（`NAME`）是卷标，第四列（`UUID`）是 UUID：
 
-```
+```text
 NAME       FSTYPE       LABEL   UUID
 ├─(name_C) ntfs         C       (UUID_C)
 ├─(name_D) ntfs         D       (UUID_D)
@@ -639,7 +654,7 @@ sudo vim /etc/fstab
 
 在最后加入这两行：
 
-```
+```text
 UUID=(UUID_C)                     /home/(user_name)/C    ntfs3 defaults,umask=0 0 0
 UUID=(UUID_D)                     /home/(user_name)/D    ntfs3 defaults,umask=0 0 0
 ```
@@ -648,7 +663,7 @@ UUID=(UUID_D)                     /home/(user_name)/D    ntfs3 defaults,umask=0 
 
 如果安装生成 fstab 文件时使用 `-L` 选项，即 `genfstab -L /mnt >> /mnt/etc/fstab`，则 `/etc/fstab` 中应加入：
 
-```
+```text
 (name_C)                     /home/(user_name)/C    ntfs3 defaults,umask=0 0 0
 (name_D)                     /home/(user_name)/D    ntfs3 defaults,umask=0 0 0
 ```
@@ -663,7 +678,7 @@ UUID=(UUID_D)                     /home/(user_name)/D    ntfs3 defaults,umask=0 
 
 这相当于直接编辑 `/etc/fstab`，加入：
 
-```
+```text
 /dev/(name_C)                     /home/(user_name)/C    ntfs  0 0
 /dev/(name_D)                     /home/(user_name)/D    ntfs  0 0
 ```
@@ -710,7 +725,7 @@ sudo mount -t ntfs3 /dev/(partition_name) (mount_path)/(mount_folder)
 
 Dolphin 中可以用 NTFS3 驱动挂载 NTFS 移动硬盘，但是会因为不支持 `windows_names` 参数报错，解决方法是创建文件 `/etc/udisks2/mount_options.conf` 并写入：
 
-```
+```text
 [defaults]
 ntfs_defaults=uid=$UID,gid=$GID
 ```
@@ -795,7 +810,7 @@ nmcli connection edit PKU\ Secure
 
 在 `nmcli` 界面内输入：
 
-```
+```text
 set wifi-sec.key-mgmt wpa-eap
 set ipv4.method auto
 set 802-1x.eap peap
@@ -893,14 +908,14 @@ makepkg -si
 
 在 `/etc/pacman.conf` 文件末尾添加以下两行以启用清华大学镜像：
 
-```
+```text
 [archlinuxcn]
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ```
 
 或上海交大镜像：
 
-```
+```text
 [archlinuxcn]
 Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
 ```
@@ -985,10 +1000,18 @@ pamac remove -o
 pacman 有从本地安装包安装软件的功能，只需输入：
 
 ```bash
-sudo pacman -U (package_path)/(package_name)
+sudo pacman -U (package_name).tar.zst
 ```
 
-**重启后会发现许多窗口和图标变小，建议先调整全局缩放为 100%，重新启动，再调至 200%，再重启**
+#### **从 PKGBUILD 安装软件**
+
+在 PKGBUILD 所在的文件夹内执行：
+
+```bash
+makepkg -si
+```
+
+即可安装
 
 ### **Vim 配置**
 
@@ -1000,7 +1023,7 @@ Vim 的配置可以参考以下网址：
 
 应用 `Ctrl+C`、`Ctrl+V`、`Ctrl+A`、`Ctrl+Z` 等快捷键，需要在 `/etc/vimrc` 中写入：
 
-```
+```text
 source $VIMRUNTIME/mswin.vim
 ```
 
@@ -1038,7 +1061,7 @@ nano 的配置文件在 `/etc/nanorc`，可以通过取消注释设置选项配�
 
 在 `~/.zshrc` 或 `~/.bashrc` 中添加一行：
 
-```
+```text
 export LANGUAGE=en_US.UTF-8
 ```
 
@@ -1173,7 +1196,7 @@ sudo pacman -S fcitx5-im fcitx5-chinese-addons
 
 编辑 `/etc/environment` 并添加以下几行：
 
-```
+```text
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
@@ -1239,7 +1262,7 @@ sudo pacman -S fcitx-sunpinyin
 
 编辑 `/boot/grub/grub.cfg`，找到两行：
 
-```
+```text
 echo    'Loading Linux linux'
 echo    'Loading initial ramdisk ...'
 ```
@@ -1273,7 +1296,7 @@ sudo systemctl edit --full systemd-fsck@.service
 
 分别在 `Service` 一段中编辑 `StandardOutput` 和 `StandardError` 如下：
 
-```
+```text
 [Service]
 Type=oneshot
 RemainAfterExit=yes
@@ -1345,7 +1368,7 @@ Git 使用教程参考以下网址：
 
 此时会在开机时显示如下内容而无法进入选择系统的界面：
 
-```
+```text
 error: no such partition.
 Entering rescue mode...
 grub rescue>
@@ -1353,7 +1376,7 @@ grub rescue>
 
 此时执行 `ls`，显示如下：
 
-```
+```text
 ((hd_number)) ((hd_number),(gpt_number))
 ```
 
@@ -1376,7 +1399,7 @@ normal
 
 即可进入 GRUB 界面，从这里登录 Arch Linux 系统，登录后执行：
 
-```
+```text
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -1491,7 +1514,7 @@ sudo vim /etc/tlp.conf
 
 若更改 CPU 频率，修改以下位置：
 
-```
+```text
 CPU_MIN_PERF_ON_AC=0
 CPU_MAX_PERF_ON_AC=100
 CPU_MIN_PERF_ON_BAT=0
@@ -1500,7 +1523,7 @@ CPU_MAX_PERF_ON_BAT=30
 
 若更改 CPU 睿频设置，修改以下位置：
 
-```
+```text
 CPU_BOOST_ON_AC=1
 CPU_BOOST_ON_BAT=0
 ```
@@ -1746,13 +1769,13 @@ sed -ie "s/\t/    /g" ./*
 
 首先用下列命令在一个 Vim 窗口中打开多个文件
 
-```
+```text
 vim `find . -type f -name "(files)"`
 ```
 
 然后执行：
 
-```
+```text
 :argdo %:retab! | update
 ```
 
@@ -1800,13 +1823,13 @@ KDE Plasma 每个版本的壁纸可以在这里找到：
 
 更改 `/usr/share/sddm/themes/(theme_name)/components/Clock.qml` 或 `/usr/share/sddm/themes/(theme_name)/Clock.qml` 中的 `Qt.formatTime` 一行：
 
-```
+```text
 text: Qt.formatTime(timeSource.data["Local"]["DateTime"])
 ```
 
 将其改为：
 
-```
+```text
 text: Qt.formatTime(timeSource.data["Local"]["DateTime"], "H:mm:ss")
 ```
 
@@ -1822,7 +1845,7 @@ text: Qt.formatTime(timeSource.data["Local"]["DateTime"], "H:mm:ss")
 
 其中 Plasma 主题、GTK 主题和图标主题推荐选择：
 
-```
+```text
 Plasma Theme: Mojave-CT
 GTK Theme: Mojave-light-alt [GTK2/3]
 Icon Theme: La Capitaine
@@ -1846,7 +1869,7 @@ find /usr/share/icons ~/.local/share/icons ~/.icons -type d -name "cursors"
 
 备用的光标主题可以在 `/usr/share/icons/default/index.theme` 设置：
 
-```
+```text
 [Icon Theme]
 Inherits=(cursor_theme_name)
 ```
@@ -1940,25 +1963,25 @@ vim ~/.zshrc
 
 选择 Oh-My-Zsh 主题，推荐使用 geoffgarside：
 
-```
+```text
 ZSH_THEME="geoffgarside"
 ```
 
 选择 Oh-My-Zsh 插件：
 
-```
+```text
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 ```
 
 更新 Oh-My-Zsh，执行：
 
-```
+```text
 omz update
 ```
 
 卸载 Oh-My-Zsh，执行:
 
-```
+```text
 uninstall_oh_my_zsh
 ```
 
@@ -1991,13 +2014,13 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 Vim 的颜色主题推荐使用 [PaperColor](https://github.com/NLKNguyen/papercolor-theme)，需要将其中的 `PaperColor.vim` 文件复制到 `/usr/share/vim/vim90/colors/`，并在 `/etc/vimrc` 中添加：
 
-```
+```text
 colorscheme PaperColor
 ```
 
 默认使用暗色主题，如果要使用亮色主题需要在 `/etc/vimrc` 中添加：
 
-```
+```text
 set background=light
 ```
 
@@ -2011,7 +2034,7 @@ sudo vim /etc/pacman.conf
 
 去掉 `Color` 前面的注释，并在下一行加入：
 
-```
+```text
 ILoveCandy
 ```
 
@@ -2047,7 +2070,7 @@ sudo update-desktop-database
 
 如果在打开 Kate 的时候出现：
 
-```
+```text
 kf.sonnet.core: No language dictionaries for the language: "en_US"
 ```
 
@@ -2101,7 +2124,7 @@ sudo systemctl enable --now v2raya
 
 此时系统测试网络连接的功能被屏蔽，可以通过在 `/etc/NetworkManager/conf.d/20-connectivity.conf` 中写入以下内容关闭此功能：
 
-```
+```text
 [connectivity]
 enabled=false
 ```
@@ -2136,7 +2159,7 @@ perl install-tl -gui text
 
 用大写字母命令控制安装：
 
-```
+```text
 C >> 输入字母选择要安装/不安装的软件包集合
 D >> 输入数字，选择要安装 TeX Live 的各种位置 >> R
 O >> L >> 都选择默认位置（按 Enter） >> R
@@ -2207,7 +2230,7 @@ perl install-tl -select-repository -gui text
 
 biber 是 biblatex 的默认后端，用来替换过时的 biblatex，如果在运行 biber 的过程中出现以下报错：
 
-```
+```text
 error while loading shared libraries: libcrypt.so.1: cannot open shared object file: No such file or directory
 ```
 
@@ -2221,13 +2244,13 @@ sudo pacman -S libxcrypt-compat
 
 使用 `texdoc (package_name)` 命令获取 LaTeX 宏包的说明文档，如果在运行 `biber` 的过程中出现以下报错：
 
-```
+```text
 kf.service.services: KApplicationTrader: mimeType "x-scheme-handler/file" not found
 ```
 
 需要修改 `~/.config/mimeapps.list` 文件，加入：
 
-```
+```text
 x-scheme-handler/file=firefox.desktop;
 ```
 
@@ -2266,6 +2289,10 @@ sudo pacman -S texstudio
 首先在左下角勾选“显示高级选项”
 
 常规 >> 会话 >> 取消勾选“启动时恢复上一次会话”（可选）
+
+菜单 >> 数学 >> `\frac{}{}` >> `\frac{%|}{}`
+
+菜单 >> 数学 >> `\dfrac{}{}` >> `\dfrac{%|}{}`
 
 快捷键 >> 数学 >> 数学字体格式 >> 罗马字体 >> 当前快捷键 >> `Alt+Shift+R`
 
@@ -2343,7 +2370,7 @@ ssh-add ~/.ssh/id_ed25519
 
 在终端中输入：
 
-```
+```bash
 ssh -T git@github.com
 ```
 
@@ -2419,7 +2446,7 @@ vim ~/.condarc
 
 修改 `~/.condarc` 以使用清华大学镜像：
 
-```
+```text
 channels:
   - defaults
 show_channel_urls: true
@@ -2434,7 +2461,7 @@ custom_channels:
 
 或上海交大镜像：
 
-```
+```text
 channels:
   - defaults
 default_channels:
@@ -2448,7 +2475,7 @@ custom_channels:
 
 若不用特定的镜像，改为默认值：
 
-```
+```text
 channels:
   - defaults
 ssl_verify: true
@@ -2565,7 +2592,7 @@ conda config --add channels http://ssb.stsci.edu/astroconda
 
 这相当于在 `~/.condarc` 中 `channels` 一栏改为：
 
-```
+```text
 channels:
   - defaults
   - http://ssb.stsci.edu/astroconda
@@ -2613,7 +2640,7 @@ Spyder 配置如下：
 
 文本：
 
-```
+```text
 普通文本 #000000
 注释：#999999, B
 字符串：#00aa00
@@ -2626,7 +2653,7 @@ Spyder 配置如下：
 
 高亮：
 
-```
+```text
 当前 Cell：#ffaaff
 当前行：#aaffff
 事件：#ffff00
@@ -2647,7 +2674,7 @@ Spyder 会在 `~/.config/spyder-py3` 中创建初始文件 `temp.py`
 
 如果使用 Anaconda/Miniconda 安装 Spyder，需要用 conda 安装 `fcitx-qt5` 才能支持 Fcitx/Fcitx5 输入中文字符：
 
-```
+```text
 conda install -c conda-forge fcitx-qt5
 ```
 
@@ -2769,7 +2796,7 @@ git config --global --add safe.directory "*"
 
 Visual Studio Code 自带 Markdown 预览功能，但是不支持快捷键（如粗体、斜体）、数学命令的补全（只支持预览），也不支持复选框：
 
-```
+```text
 - [x] item 1
 - [ ] item 2
 ```
@@ -2821,7 +2848,7 @@ yay -S ds9-bin
 
 如果出现这样的错误导致 SAOImageDS9 无法打开或闪退：
 
-```
+```text
 application-specific initialization failed: unknown color name "BACKGROUND"
 Unable to initialize window system.
 ```
@@ -2903,19 +2930,19 @@ pyraf
 
 退出 IRAF：
 
-```
+```text
 logout
 ```
 
 退出 PyRAF：
 
-```
+```text
 exit()
 ```
 
 启动参数编辑器（the EPAR Parameter Editor）的命令为：
 
-```
+```text
 epar (task_name)
 ```
 
@@ -3069,7 +3096,7 @@ yay -S ktorrent
 
 或者同样功能强大且跨平台的 qBittorrent：
 
-```
+```text
 yay -S qbittorrent
 ```
 
@@ -3083,7 +3110,7 @@ yay -S qbittorrent
 
 系统设置 >> 快捷键 >> 添加应用程序 >> Konsole >> Konsole 的快捷键设为 `Meta+Return`
 
-### **用 debtap 安装 `.deb` 包（不推荐）**
+### **用 debtap 安装 `.deb` 包**
 
 首先要下载并更新 [debtap](https://github.com/helixarch/debtap) 包：
 
@@ -3092,14 +3119,24 @@ yay -S debtap
 sudo debtap -u
 ```
 
-**运行 `sudo debtap -u` 时建议连接北京大学校园网**
-
 进入含有 `.deb` 安装包的文件夹，输入：
 
 ```bash
-sudo debtap (package_name).deb
+debtap (package_name).deb
 ```
 
-系统会询问三个问题：文件名随便写，协议写软件包所用的协议，编辑文件可以直接按 `Enter` 跳过
+系统会询问三个问题：文件名、协议、编辑文件，都可以直接按 `Enter` 跳过
 
-此处会生成一个 `tar.zst` 包，双击打开（右键用“软件安装程序”打开）即可安装
+此处会生成一个 `tar.zst` 包，可以用 `pacman` 安装：
+
+```bash
+sudo pacman -U (package_name).tar/zst
+```
+
+运行：
+
+```bash
+debtap -P (package_name).deb
+```
+
+会生成一个 `PKGBUILD` 文件，之后用 `makepkg -si` 也可安装

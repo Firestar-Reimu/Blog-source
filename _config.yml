@@ -103,9 +103,10 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://oauth2: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@github.com/Firestar-Reimu/firestar-reimu.github.io
+  repo: https://oauth2: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@github.com/Firestar-Reimu/firestar-reimu.github.io
   branch: main # default is "main"
 
 markdown:
     plugins:
       - '@renbaoshuo/markdown-it-katex'
+      - markdown-it-task-lists
