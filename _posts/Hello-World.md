@@ -15,7 +15,11 @@ disableNunjucks: true
 
 ### **申请 GitHub Pages**
 
-新建一个 GitHub 仓库，命名为 `(user_name).github.io`，隐私设置为 Public，再建一个 GitHub 仓库用来存放博客的源代码（可选）
+新建一个 GitHub 仓库，命名为 `(user_name).github.io`，隐私设置为 Public
+
+这就可以获得一个网站 `https://(user_name).github.io`
+
+可以选择再建一个 GitHub 仓库用来存放博客的源代码
 
 ### **申请域名**
 
@@ -25,7 +29,9 @@ disableNunjucks: true
 
 假设域名为 `example.top`，根据网站提示做好域名实名制认证等流程
 
-在[域名控制台](https://dc.console.aliyun.com/next/#/domain/list/all-domain)中选择：域名 >> 操作 >> 解析
+在[域名控制台](https://dc.console.aliyun.com/next/#/domain/list/all-domain)中选择：
+
+域名 >> 操作 >> 解析
 
 解析中添加一条记录：
 
@@ -106,7 +112,7 @@ hexo clean && hexo s --debug
 
 ### **部署到 GitHub**
 
-安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
+安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)：
 
 ```bash
 npm install hexo-deployer-git
@@ -123,7 +129,7 @@ deploy:
 
 从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
 
-申请 Personal Access Token 时记得勾选全部权限
+申请 Personal Access Token 时记得勾选 `repo` 部分的权限，使用后会被撤销，下次使用需要重新申请
 
 如果使用 SSH，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
 
@@ -137,9 +143,9 @@ hexo clean && hexo deploy
 
 查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
 
-注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于博客目录下的 `source` 文件夹，只有这样 `hexo deploy` 才能将 CNAME 文件一并推送至部署分支
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于 `(blog_folder)/source/` 文件夹，只有这样 `hexo deploy` 才能将 CNAME 文件一并推送至部署分支
 
-CNAME 文件中只需要写一行自定义域名即可：
+创建文本文件，文件名为 `CNAME`，文件中只需要写一行自定义域名即可：
 
 ```text
 blog.example.top
@@ -191,7 +197,7 @@ font:
   code-font-family: JetBrains Mono NL, Noto Sans Mono CJK SC, Menlo, Consolas, monospace
 ```
 
-此时网页的粗体会过粗，可以将 `(blog_folder)/theme/hexo-theme-butterfly/source/css/_third-party/normalize.min.css` 中：
+此时网页的粗体会过粗，可以在 `(blog_folder)/theme/hexo-theme-butterfly/source/css/_third-party/normalize.min.css` 中找到：
 
 ```css
 b,
@@ -200,7 +206,7 @@ strong {
 }
 ```
 
-此处 `font-weight` 的值改成 `bold` 即可
+将此处 `font-weight` 的值改成 `bold` 即可
 
 ### **数学公式显示**
 
@@ -233,7 +239,7 @@ markdown:
 
 ### **显示复选框**
 
-下载插件：（也可以换成其它相同功能的插件）
+下载插件 `markdown-it-task-lists`：（也可以换成其它相同功能的插件）
 
 ```bash
 npm install markdown-it-task-lists
