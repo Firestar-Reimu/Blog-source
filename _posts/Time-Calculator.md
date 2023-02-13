@@ -9,12 +9,7 @@ cover: /img/time.jpg
 ---
 
 <script src="../js/time-calculator.js"></script>
-
-<style>
-.button {
-    color: #FF5500;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="../css/time-calculator.css">
 
 ## **设置时间并转化为儒略日**
 
@@ -77,7 +72,8 @@ cover: /img/time.jpg
 </div>
 
 <div align="center">
-<button value="submit" onclick="time_to_JD()" class="button">Convert to JD</button>
+<button value="submit" onclick="time_to_JD()" class="button">转化</button>
+<br>
 
 <input id="JD" size="25em"/>
 </div>
@@ -87,11 +83,12 @@ cover: /img/time.jpg
 ## **将当前时间转化为儒略日**
 
 <body onload="time_now()">
-<div align="center" id="clock"></div>
+<div align="center" id="clock" class="clock"></div>
 </body>
 
 <div align="center">
-<button value="submit" onclick="time_now_to_JD()" class="button">Convert current time to JD</button>
+<button value="submit" onclick="time_now_to_JD()" class="button">转化</button>
+<br>
 
 <input id="JD_now" size="25em"/>
 </div>
