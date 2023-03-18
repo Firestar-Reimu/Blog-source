@@ -45,11 +45,15 @@ disableNunjucks: true
 
 此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top`，如果能显示 `README.md` 中的内容则设置成功
 
-### **Hexo 搭建并添加文章**
+### **Hexo 搭建**
 
 [Hexo](https://hexo.io/zh-cn/index.html) 是一个快速、简洁且高效的博客框架，建议在 Linux 上搭建
 
-首先下载 Node-js 和 npm：`sudo pacman -S nodejs npm`
+首先下载 Node-js 和 npm：
+
+```bash
+sudo pacman -S nodejs npm
+```
 
 之后在 npm 中下载 Hexo 框架：
 
@@ -57,32 +61,39 @@ disableNunjucks: true
 npm install hexo
 ```
 
-之后在 `~/.bashrc` 中加入一行：
+在 `~/.bashrc` 中加入一行：
 
 ```bash
 PATH=~/node_modules/.bin:$PATH
 ```
 
+执行 `source ~/.bashrc` 更新环境变量
+
 创建博客文件夹 `(blog_folder)`，运行：
 
 ```bash
 hexo init (blog_folder)
+```
+
+这一步必须要求 `(blog_folder)` 为空文件夹
+
+之后运行：
+
+```bash
 cd (blog_folder)
 npm install
 ```
-
-所有的 npm 和 hexo 命令都要在 `(blog_folder)` 下执行
 
 按照 [Hexo 文档](https://hexo.io/zh-cn/docs/)进行网站全局配置，在 `(blog_folder)/_config.yml` 下修改：
 
 ```yaml
 url: https://blog.example.top
 permalink: :title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: false
-  trailing_html: false
 ```
+
+**所有的 npm 和 hexo 命令都要在 `(blog_folder)` 下执行**
+
+### **全局配置**
 
 添加文章：
 
@@ -187,26 +198,42 @@ npm uninstall hexo-theme-landscape
 
 ### **自定义字体**
 
-本站的主题字体设置：
+本站的主题字体设置如下：
 
 ```yaml
 font:
-  global-font-size:
-  code-font-size:
-  font-family: Noto Sans CJK SC, PingFang SC, Microsoft Yahei, sans-serif
-  code-font-family: JetBrains Mono NL, Noto Sans Mono CJK SC, Menlo, Consolas, monospace
+  font-family: Noto Sans SC, PingFang SC, Microsoft Yahei, sans-serif
+  code-font-family: JetBrains Mono, Roboto Mono, Hack, Menlo, Consolas, monospace
 ```
 
-此时网页的粗体会过粗，可以在 `(blog_folder)/theme/hexo-theme-butterfly/source/css/_third-party/normalize.min.css` 中找到：
+可以在 `_config.butterfly.yml` 中找到 `Inject` 一节，这里可以插入自定义的 CSS 文件，编辑如下：
+
+```yaml
+inject:
+  head:
+    - <link rel="preconnect" href="https://fonts.googleapis.com">
+    - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    - <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=JetBrains+Mono&family=Roboto+Mono&&display=swap" rel="stylesheet">
+    - <link rel="stylesheet" href="/css/font.css">
+```
+
+其中前三个是从 [Google Font](https://fonts.google.com/) 中引入备用的字体文件
+
+最后一个为新创建的 `(blog_folder)/source/css/font.css`，其中写入：
 
 ```css
 b,
 strong {
-  font-weight: bolder
+    font-weight: bold;
+}
+
+#article-container pre,
+#article-container code {
+    font-variant-ligatures: none;
 }
 ```
 
-将此处 `font-weight` 的值改成 `bold` 即可
+第一段是防止网页的粗体过粗，第二段是禁用代码块中字体的连字属性
 
 ### **数学公式显示**
 
@@ -235,6 +262,22 @@ npm install katex @renbaoshuo/markdown-it-katex
 markdown:
     plugins:
       - '@renbaoshuo/markdown-it-katex'
+```
+
+### **配置本地搜索**
+
+下载插件 `hexo-generator-search`：
+
+```bash
+npm install hexo-generator-search
+```
+
+之后修改 `.config.butterfly.yml`，启用本地搜索：
+
+```yaml
+local_search:
+  enable: true
+  preload: false
 ```
 
 ### **显示复选框**
@@ -413,4 +456,3 @@ V3 GetPoCAPoint(V3 const& p1, V3 const& p2, V3 const& p3, V3 const& p4) {
 
 - [x] 🥰
 - [ ] 😀
-
