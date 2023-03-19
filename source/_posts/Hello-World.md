@@ -162,6 +162,10 @@ hexo clean && hexo deploy
 blog.example.top
 ```
 
+如果需要在 GitHub 的 `(user_name).github.io` 仓库中创建 `README` 文件，也需将其置于 `(blog_folder)/source/` 文件夹中
+
+这里不能用 `README.md`（只能写纯文本文件，不支持 Markdown 格式且不能加 `.md` 扩展名），否则会被渲染为 HTML 文件
+
 ### **Butterfly 主题**
 
 我选择的是 [Butterfly](https://butterfly.js.org/) 主题，安装方法：
@@ -317,7 +321,11 @@ menu:
 
 ### **插入图片**
 
-图片放在博客目录的 `(blog_folder)/source/img/` 下，插入图片的标准的格式为 `![(name)](../img/(your_picture)`
+图片放在博客目录的 `(blog_folder)/source/img/` 下，插入图片的标准的格式为：
+
+```markdown
+![(name)](../img/(your_picture))
+```
 
 但是这样无法自定义图片大小，也可以使用 HTML 语法，例如：
 
