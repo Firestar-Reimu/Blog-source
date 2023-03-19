@@ -154,17 +154,13 @@ hexo clean && hexo deploy
 
 查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
 
-注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于 `(blog_folder)/source/` 文件夹，只有这样 `hexo deploy` 才能将 CNAME 文件一并推送至部署分支
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，则创建文本文件，文件名为 `CNAME`，文件中只需要写一行自定义域名 `blog.example.top` 即可
 
-创建文本文件，文件名为 `CNAME`，文件中只需要写一行自定义域名即可：
+将 CNAME 文件置于 `(blog_folder)/source/` 文件夹，此时 `hexo deploy` 会一并推送至部署分支
 
-```text
-blog.example.top
-```
+若要在 GitHub 的 `(user_name).github.io` 仓库中创建 `README.md` 文件，也需将其置于 `(blog_folder)/source/` 文件夹中
 
-如果需要在 GitHub 的 `(user_name).github.io` 仓库中创建 `README` 文件，也需将其置于 `(blog_folder)/source/` 文件夹中
-
-这里不能用 `README.md`（只能写纯文本文件，不支持 Markdown 格式且不能加 `.md` 扩展名），否则会被渲染为 HTML 文件
+之后需要在 `(blog_folder)/_config.yml` 中配置 `skip_render: README.md`，否则会被渲染为 HTML 文件
 
 ### **Butterfly 主题**
 
@@ -190,7 +186,7 @@ ln -s ../node_modules/hexo-theme-butterfly/
 npm uninstall hexo-theme-landscape
 ```
 
-在`(blog_folder)/_config.yml`下修改：`theme:butterfly`
+在 `(blog_folder)/_config.yml` 下修改：`theme:butterfly`
 
 在博客目录下创建 `_config.butterfly.yml` 文件，并复制主题目录下 `_config.yml` 的内容
 
