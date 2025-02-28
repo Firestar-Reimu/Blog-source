@@ -13,6 +13,8 @@ disableNunjucks: true
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=22636684&auto=1&height=66"></iframe>
 
+## **创建一个网站**
+
 ### **申请 GitHub Pages**
 
 新建一个 GitHub 仓库，命名为 `(user_name).github.io`，隐私设置为 Public
@@ -44,6 +46,8 @@ disableNunjucks: true
 在名为 `(user_name).github.io` 的仓库，新建一个文件，文件名为 `CNAME`，填入 `blog.example.top` ，通过 GitHub 的网络检测后就可以使用
 
 此时可以分别在浏览器中输入 `(user_name).github.io` 和 `blog.example.top`，如果能显示 `README.md` 中的内容则设置成功
+
+## **Hexo 搭建与配置**
 
 ### **Hexo 搭建**
 
@@ -111,56 +115,7 @@ hexo new post --path hello/world
 
 这生成 `blog.example.top/hello/world`
 
-### **调试并预览网站**
-
-在博客目录运行：
-
-```bash
-hexo clean && hexo s --debug
-```
-
-之后可以在 http://localhost:4000/ 查看网站预览
-
-### **部署到 GitHub**
-
-安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)：
-
-```bash
-npm install hexo-deployer-git
-```
-
-修改配置 `_config.yml`：（不要忘记设置更新分支 `branch` 的值）
-
-```yaml
-deploy:
-  type: git
-  repo: https://oauth2:(user_token)@github.com/(user_name)/(user_name).github.io
-  branch: (branch_name)
-```
-
-从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
-
-申请 Personal Access Token 时记得勾选 `repo` 部分的权限
-
-如果使用 SSH 密钥，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
-
-之后在博客目录运行：
-
-```bash
-hexo clean && hexo deploy
-```
-
-即可部署到 GitHub
-
-查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
-
-注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，则创建文本文件，文件名为 `CNAME`，文件中只需要写一行自定义域名 `blog.example.top` 即可
-
-将 CNAME 文件置于 `(blog_folder)/source/` 文件夹，此时 `hexo deploy` 会一并推送至部署分支
-
-若要在 GitHub 的 `(user_name).github.io` 仓库中创建 `README.md` 文件，也需将其置于 `(blog_folder)/source/` 文件夹中
-
-之后需要在 `(blog_folder)/_config.yml` 中配置 `skip_render: README.md`，否则会被渲染为 HTML 文件
+## **网站主题设置**
 
 ### **Butterfly 主题**
 
@@ -192,7 +147,11 @@ npm uninstall hexo-theme-landscape
 
 以后如果修改任何主题配置，都只需修改 `_config.butterfly.yml` 的配置即可，其优先级比主题目录下的 `_config.yml` 高，但不要删除主题目录下的 `_config.yml`，Hexo 会自动合并自定义设置和默认设置
 
-按照 [Butterfly 文档](https://butterfly.js.org)进行网站全局配置，在 `(blog_folder)/_config.butterfly.yml` 下修改如下：
+按照 Butterfly 官网文档进行网站全局配置：
+
+[Butterfly - A Simple and Card UI Design theme for Hexo](https://butterfly.js.org)
+
+在 `(blog_folder)/_config.butterfly.yml` 下修改如下：
 
 [_config.butterfly.yml -- Blog-source](https://github.com/Firestar-Reimu/Blog-source/blob/main/_config.butterfly.yml)
 
@@ -202,8 +161,8 @@ npm uninstall hexo-theme-landscape
 
 ```yaml
 font:
-  font-family: Noto Sans SC, PingFang SC, Microsoft Yahei, sans-serif
-  code-font-family: JetBrains Mono, Roboto Mono, Hack, Menlo, Consolas, monospace
+  font_family: Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif
+  code_font_family: JetBrains Mono, Roboto Mono, Hack, Menlo, Consolas, monospace
 ```
 
 可以在 `_config.butterfly.yml` 中找到 `Inject` 一节，这里可以插入自定义的 CSS 文件，编辑如下：
@@ -217,27 +176,22 @@ inject:
     - <link rel="stylesheet" href="/css/font.css">
 ```
 
-其中前三个是从 [Google Font](https://fonts.google.com/) 中引入备用的字体文件
+其中前三个是从 [Google Font](https://fonts.google.com/) 中引入备用的字体文件（注意这里的 Noto Sans SC 只引入了两个字重）
 
-最后一个为新创建的 `(blog_folder)/source/css/font.css`，其中写入：
+最后一个是引用新创建的 `(blog_folder)/source/css/font.css`，其中写入：
 
 ```css
-b,
-strong {
-    font-weight: bold;
-}
-
 #article-container pre,
 #article-container code {
     font-variant-ligatures: none;
 }
 ```
 
-第一段是防止网页的粗体过粗，第二段是禁用代码块中字体的连字属性
+用于禁用代码块中字体的连字属性
 
 ### **数学公式显示**
 
-按照 [Butterfly 文档](https://butterfly.js.org/posts/ceeb73f)的指南配置即可，这里选择的是更快更轻量的 [KaTeX](https://katex.org/)
+按照 [Butterfly 文档（三）](https://butterfly.js.org/posts/4aa8abbe/)的指南配置即可，这里选择的是更快更轻量的 [KaTeX](https://katex.org/)
 
 首先修改 `.config.butterfly.yml`，启用 KaTeX：
 
@@ -248,11 +202,16 @@ katex:
   hide_scrollbar: false
 ```
 
-之后将渲染器改为 `hexo-renderer-markdown-it` 并安装相应插件：
+之后将渲染器改为 `hexo-renderer-markdown-it`：
 
 ```bash
 npm uninstall hexo-renderer-marked
 npm install hexo-renderer-markdown-it
+```
+
+并安装相应插件：
+
+```bash
 npm install katex @renbaoshuo/markdown-it-katex
 ```
 
@@ -339,6 +298,61 @@ menu:
 
 直接粘贴到 Markdown 文件内即可
 
+## **网站调试与部署**
+
+### **调试并预览网站**
+
+在博客目录运行：
+
+```bash
+hexo clean && hexo server --debug
+```
+
+之后可以在 http://localhost:4000/ 查看网站预览
+
+### **部署到 GitHub**
+
+安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)：
+
+```bash
+npm install hexo-deployer-git
+```
+
+修改配置 `_config.yml`：（不要忘记设置更新分支 `branch` 的值）
+
+```yaml
+deploy:
+  type: git
+  repo: https://oauth2:(user_token)@github.com/(user_name)/(user_name).github.io
+  branch: (branch_name)
+```
+
+从2021年8月13日起，GitHub 不再支持通过邮箱和密码校验身份，需要使用 [Personal Access Token](https://github.com/settings/tokens) 或者用 [SSH](https://github.com/settings/ssh/new) 密钥登陆 GitHub 才能向仓库上传代码
+
+申请 Personal Access Token 时记得勾选 `repo` 部分的权限
+
+如果使用 SSH 密钥，`repo` 一栏填写 `git@github.com:(user_name)/(user_name).github.io`
+
+最后在博客目录运行：
+
+```bash
+hexo clean && hexo deploy
+```
+
+即可部署到 GitHub
+
+查看 `(user_name).github.io` 和 `blog.example.top` 上的网页是否部署成功
+
+注意此时原有的自定义域名会被覆盖掉，如果 GitHub Pages 需要使用 CNAME 文件自定义域名，则创建文本文件，文件名为 `CNAME`，文件中只需要写一行自定义域名 `blog.example.top` 即可
+
+将 CNAME 文件置于 `(blog_folder)/source/` 文件夹，此时 `hexo deploy` 会一并推送至部署分支
+
+若要在 GitHub 的 `(user_name).github.io` 仓库中创建 `README.md` 文件，也需将其置于 `(blog_folder)/source/` 文件夹中
+
+之后需要在 `(blog_folder)/_config.yml` 中配置 `skip_render: README.md`，否则会被渲染为 HTML 文件
+
+## **网站功能测试**
+
 ### **数学公式测试**
 
 $\lim\limits_{n\to\infty}\left(1+\dfrac{1}{n}\right)^n=\mathrm{e}$
@@ -366,12 +380,13 @@ $$
 $$
 
 $$
-\begin{align*}
-    \partial_i r
-    &= \partial_i \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} \\
-    &= \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} \\
-    &= \frac{x-x'}{r}
-\end{align*}
+\sigma_x = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix},\quad
+\sigma_y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix},\quad
+\sigma_z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
+
+$$
+\frac{\partial r}{\partial x} = \frac{\partial}{\partial x} \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} = \left[(x-x')^2 + (y-y')^2 + (z-z')^2\right]^{-1/2} \frac{\partial (x-x')^2}{\partial x} = \frac{2(x-x')}{2\sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2}} = \frac{2(x-x')}{2r} = \frac{x-x'}{r}
 $$
 
 $$
@@ -398,16 +413,16 @@ $$
 
 ```javascript
 function time_now() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = check_time(m);
-  s = check_time(s);
-  document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
-  t = setTimeout(function () {
-    time_now();
-  }, 100);
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = check_time(m);
+    s = check_time(s);
+    document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+    t = setTimeout(function () {
+        time_now();
+    }, 100);
 }
 ```
 
@@ -450,11 +465,11 @@ V3 GetPoCAPoint(V3 const& p1, V3 const& p2, V3 const& p3, V3 const& p4) {
 
 ### **表格测试**
 
-| **A1** | **A2** | **A3** | **A4** |
-| :----: | :----: | :----: | :----: |
-|   B1   |   B2   |   B3   |   B4   |
-|   C1   |   C2   |   C3   |   C4   |
-|   D1   |   D2   |   D3   |   D4   |
+| **A1** | **A2** | **A3** | **A4** | **A5** |
+| :----: | :----: | :----: | :----: | :----: |
+|   B1   |   B2   |   B3   |   B4   |   B5   |
+|   C1   |   C2   |   C3   |   C4   |   C5   |
+|   D1   |   D2   |   D3   |   D4   |   D5   |
 
 ### **复选框测试**
 
